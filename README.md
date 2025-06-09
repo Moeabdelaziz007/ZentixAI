@@ -2,7 +2,10 @@
 
 This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
 
-Requires **Python&nbsp;3.8 or later**. No additional dependencies beyond the standard library are needed.
+Requires **Python&nbsp;3.8 or later**. Install the extra dependencies with:
+```bash
+pip install flask requests
+```
 
 Run the calculator plugin directly:
 ```bash
@@ -31,3 +34,19 @@ system.interact("أشعر بالقلق اليوم")
 system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
 # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
 ```
+
+### API Server Example
+
+Run the Flask server:
+```bash
+python api_server.py
+```
+
+Then send a request:
+```bash
+curl -X POST http://localhost:8000/interact \
+  -H "Content-Type: application/json" \
+  -d '{"message": "مرحباً", "user_profile": {"id": "1", "name": "أحمد"}}'
+```
+If the environment variable `GEMINI_API_KEY` is set, the server will also
+forward the message to Google Gemini and include its response in the output.
