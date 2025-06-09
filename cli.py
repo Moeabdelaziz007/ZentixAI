@@ -1,9 +1,12 @@
+"""Simple command line interface for :mod:`zero_system`."""
+
+import argparse
 from zero_system import ZeroSystem
 
 
-def main():
+def run_interactive(system: ZeroSystem) -> None:
+    """Launch an interactive chat loop."""
     print("=== Zero System CLI ===")
-    system = ZeroSystem()
     system.dna.show_dna()
     try:
         while True:
@@ -13,6 +16,26 @@ def main():
             system.interact(message)
     except KeyboardInterrupt:
         pass
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description="Zero System command line interface")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("interactive", help="start interactive session")
+    sub.add_parser("status", help="print system status")
+    sub.add_parser("demo", help="run predefined usage examples")
+
+    args = parser.parse_args(argv)
+
+    system = ZeroSystem()
+
+    if args.command == "interactive":
+        run_interactive(system)
+    elif args.command == "status":
+        print(system.system_status())
+    elif args.command == "demo":
+        system.demo_usage_examples()
 
 
 if __name__ == "__main__":
