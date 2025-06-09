@@ -33,6 +33,10 @@ from zero_system import ZeroSystem
 system = ZeroSystem()
 ```
 
+Each call to `system.interact` also appends an entry to `log.jsonl` containing
+the time, message and response. The file uses UTF-8 encoding and grows with
+every interaction.
+
 Below are sample interactions, retrieving the `"output"` field from each
 response:
 
