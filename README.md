@@ -64,13 +64,16 @@ resp["output"]
 ## Running Tests
 
 This repository includes a small test suite in the `tests/` directory. To run
-all tests, execute:
+all tests, execute the command from the parent directory (one level above the
+repository root):
 
 ```bash
-python -m unittest discover -v
+python -m unittest discover -v sss/tests
 ```
 
-The tests verify the calculator plugin and the digital sibling creation logic.
+Running `unittest` from the repository root will fail because the tests import
+modules via the `sss` package name. The suite verifies the calculator plugin and
+the digital sibling creation logic.
 
 ## License
 
