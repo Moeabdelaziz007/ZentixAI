@@ -8,6 +8,7 @@ import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
 import logging
+import sqlite3
 
 logging.basicConfig(
     level=logging.INFO,
@@ -152,9 +153,17 @@ class SiblingAIGenesisSkill(AbstractSkill):
 
 # ======================= نواة الأخ الرقمي =======================
 class AmrikyyBrotherAI:
-    def __init__(self, skills):
+    def __init__(self, skills, db_path="memory.db"):
         self.skills = skills
-        self.memory = []
+        self.conn = sqlite3.connect(db_path)
+        self.conn.execute(
+            """CREATE TABLE IF NOT EXISTS messages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                time TEXT,
+                user_id TEXT,
+                message TEXT
+            )"""
+        )
         self.personality = {
             "name": "أخوك الذكي",
             "mood": "متحمس",
@@ -162,12 +171,15 @@ class AmrikyyBrotherAI:
         }
 
     def hear(self, message, user_profile=None):
-        """يتلقى الرسالة ويحدد الرد المناسب"""
-        self.memory.append({
-            "time": datetime.now().isoformat(),
-            "message": message,
-            "user": user_profile
-        })
+        """يتلقى الرسالة ويحدد الرد المناسب ويخزنها في قاعدة البيانات"""
+        user_id = None
+        if isinstance(user_profile, dict):
+            user_id = user_profile.get("id")
+        self.conn.execute(
+            "INSERT INTO messages (time, user_id, message) VALUES (?, ?, ?)",
+            (datetime.now().isoformat(), user_id, message),
+        )
+        self.conn.commit()
 
         # تفعيل المهارات حسب المحتوى
         if is_sibling_request(message):
@@ -184,10 +196,28 @@ class AmrikyyBrotherAI:
             "personality": self.personality
         }
 
+    def get_history(self, limit=None):
+        """استرجاع المحادثات المخزنة."""
+        cursor = self.conn.cursor()
+        query = "SELECT time, user_id, message FROM messages ORDER BY id"
+        params = []
+        if limit:
+            query += " LIMIT ?"
+            params.append(limit)
+        cursor.execute(query, params)
+        rows = cursor.fetchall()
+        return [
+            {"time": t, "user_id": u, "message": m} for (t, u, m) in rows
+        ]
+
     def grow(self, new_skill):
         """يطور مهارة جديدة"""
         self.skills[new_skill] = lambda: {"status": "under_development"}
         return f"تم تطوير مهارة جديدة: {new_skill}"
+
+    def close(self):
+        """أغلق اتصال قاعدة البيانات."""
+        self.conn.close()
 
 
 # ======================= الحمض النووي الرقمي =======================
@@ -217,7 +247,7 @@ class DigitalDNA:
 
 # ======================= النظام الرئيسي =======================
 class ZeroSystem:
-    def __init__(self):
+    def __init__(self, db_path="memory.db"):
         # تهيئة المهارات
         self.skills = {
             "empathy_sensor": EmpathySensorSkill(),
@@ -231,7 +261,7 @@ class ZeroSystem:
         self.dna = DigitalDNA()
 
         # تهيئة الأخ الرقمي
-        self.brother_ai = AmrikyyBrotherAI(self.skills)
+        self.brother_ai = AmrikyyBrotherAI(self.skills, db_path=db_path)
 
         # إحصائيات النظام
         self.start_time = datetime.now()
@@ -250,6 +280,10 @@ class ZeroSystem:
     def create_sibling(self, traits=None):
         """ينشئ أخاً رقمياً جديداً"""
         return self.skills["sibling_genesis"].execute(traits)
+
+    def history(self, limit=None):
+        """إرجاع المحادثات السابقة المخزنة"""
+        return self.brother_ai.get_history(limit)
 
     def system_status(self):
         """يعرض حالة النظام"""
@@ -271,6 +305,10 @@ class ZeroSystem:
         for text, label in examples:
             print(f"\n\U0001F30D مثال ({label})")
             self.interact(text)
+
+    def close(self):
+        """أغلق موارد النظام."""
+        self.brother_ai.close()
 
 
 # ===== التشغيل الرئيسي =====

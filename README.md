@@ -4,6 +4,8 @@ This repository demonstrates a minimal plugin-based system in Python. See `plugi
 
 Requires **Python&nbsp;3.8 or later**. No additional dependencies beyond the standard library are needed.
 
+The demo now stores conversations in a lightweight SQLite database (`memory.db` by default). You can supply a custom path via `--db` when running `cli.py` and view past messages using the `history()` method.
+
 Run the calculator plugin directly:
 ```bash
 python plugin_example.py
