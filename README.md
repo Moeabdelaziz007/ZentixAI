@@ -24,6 +24,19 @@ python cli.py [interactive|status|dna|mood]
 - `dna` – print the digital DNA information
 - `mood` – show the current mood as detected by the embodiment skill
 
+## Web Dashboard
+
+A lightweight web dashboard provides a simple chat interface using Flask.
+Install the dependency and run the server:
+
+```bash
+pip install flask
+python dashboard.py
+```
+
+Then open [http://localhost:5000](http://localhost:5000) in a browser to chat
+with the system.
+
 ## Usage Examples
 
 Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
