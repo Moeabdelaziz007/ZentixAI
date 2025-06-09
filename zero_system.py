@@ -7,6 +7,10 @@ import json
 import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
+from rich.console import Console
+from rich.prompt import Prompt
+from rich.panel import Panel
+from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
@@ -226,6 +230,9 @@ class ZeroSystem:
         # تهيئة الأخ الرقمي
         self.brother_ai = AmrikyyBrotherAI(self.skills)
 
+        # Logger to record interactions
+        self.logger = ZeroSystemLogger()
+
         # إحصائيات النظام
         self.start_time = datetime.now()
         self.interaction_count = 0
@@ -237,6 +244,9 @@ class ZeroSystem:
 
         print(f"\n\U0001F464 المستخدم: {message}")
         print(f"\U0001F916 الذكاء: {response['output']}")
+
+        # Log the interaction
+        self.logger.log_interaction(message, response)
 
         return response
 
@@ -266,30 +276,25 @@ class ZeroSystem:
             self.interact(text)
 
 
-# ===== التشغيل الرئيسي =====
-if __name__ == "__main__":
-    print("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
+def run_tui():
+    """Launch a simple TUI for interacting with ZeroSystem."""
+    console = Console()
     system = ZeroSystem()
 
-    # عرض الحمض النووي
-    system.dna.show_dna()
+    console.print("[bold cyan]=== نظام زيرو - الواجهة التفاعلية ===[/bold cyan]")
+    while True:
+        mood = system.brother_ai.personality.get("mood", "غير معروف")
+        console.print(Panel(f"المزاج الحالي: {mood}", title="ZeroSystem"))
+        try:
+            message = Prompt.ask("\U0001F464 المستخدم (اكتب 'خروج' للإنهاء)")
+        except (KeyboardInterrupt, EOFError):
+            break
+        if message.lower() in {"خروج", "exit", "quit"}:
+            break
+        response = system.interact(message)
+        console.print(Panel(response["output"], title="\U0001F916 الذكاء"))
 
-    # تفاعل تجريبي
-    user = {"id": "user_1", "name": "أحمد", "traits": ["مبدع", "فضولي"]}
 
-    system.interact("مرحباً، أنا أحمد!", user)
-    system.interact("كيف حالك اليوم؟")
-    system.interact("أريد أخاً صغيراً يساعدني في البرمجة")
-
-    # تشغيل أمثلة الاستخدام المجمعة
-    system.demo_usage_examples()
-
-    # إنشاء أخ رقمي
-    sibling = system.create_sibling({"تخصص": "مساعد برمجة"})
-    print(f"\n\U0001F476 {sibling['output']}")
-
-    # عرض حالة النظام
-    status = system.system_status()
-    print(f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}")
-
-    print("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
+# ===== التشغيل الرئيسي =====
+if __name__ == "__main__":
+    run_tui()
