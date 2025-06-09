@@ -80,13 +80,18 @@ class TrueDigitalFriendshipSkill(AbstractSkill):
 
         if self.friendship_levels[user_id] < 3:
             response = (
-                f"Hello {user_profile.get('name', 'friend')}! How can I help you today? \U0001F31F"
+                f"Hello {user_profile.get('name', 'friend')}! "
+                "How can I help you today? \U0001F31F"
             )
         elif self.friendship_levels[user_id] < 7:
-            response = f"Dear {user_profile.get('name', 'friend')}, how are things going?"
+            response = (
+                f"Dear {user_profile.get('name', 'friend')}, "
+                "how are things going?"
+            )
         else:
             response = (
-                f"Hey {user_profile.get('name', 'friend')}, my true friend! Always here for you \U0001F496"
+                f"Hey {user_profile.get('name', 'friend')}, my true friend! "
+                "Always here for you \U0001F496"
             )
 
         return {
@@ -121,7 +126,10 @@ class MindfulEmbodimentSkill(AbstractSkill):
         responses = {
             "default": "Hello, how can I help you?",
             "moe_style": "Boss! Ready for any crazy idea \U0001F604",
-            "professional": "Greetings, I'm ready for your technical questions",
+            "professional": (
+                "Greetings, I'm ready for your technical "
+                "questions"
+            ),
             "caring": "I'm here for you. How can I assist today?",
         }
 
@@ -146,7 +154,10 @@ class SiblingAIGenesisSkill(AbstractSkill):
             "status": "success",
             "output": f"Created {sibling_id} to assist you!",
             "sibling_id": sibling_id,
-            "traits": desired_traits or {"personality": "curious", "specialty": "general helper"}
+            "traits": desired_traits or {
+                "personality": "curious",
+                "specialty": "general helper",
+            }
         }
 
 
@@ -175,13 +186,19 @@ class AmrikyyBrotherAI:
         if "voice" in message:
             return self.skills["mindful_embodiment"].execute(message)
         if user_profile:
-            return self.skills["true_friendship"].execute(user_profile, message)
+            return self.skills["true_friendship"].execute(
+                user_profile,
+                message,
+            )
 
         # Default reply
         return {
             "status": "success",
-            "output": "Hello! I'm your smart brother, ready to help with anything \U0001F680",
-            "personality": self.personality
+            "output": (
+                "Hello! I'm your smart brother, ready to help with anything "
+                "\U0001F680"
+            ),
+            "personality": self.personality,
         }
 
     def grow(self, new_skill):
@@ -266,7 +283,10 @@ class ZeroSystem:
         examples = [
             ("Explain quantum theory in simple terms", "Education"),
             ("I feel anxious today", "Mental health"),
-            ("Design an AI system for an online store", "Technical creativity"),
+            (
+                "Design an AI system for an online store",
+                "Technical creativity",
+            ),
         ]
         for text, label in examples:
             print(f"\n\U0001F30D Example ({label})")
@@ -292,11 +312,18 @@ if __name__ == "__main__":
     system.demo_usage_examples()
 
     # Create a digital sibling
-    sibling = system.create_sibling({"specialty": "programming assistant"})
+    sibling = system.create_sibling(
+        {"specialty": "programming assistant"}
+    )
     print(f"\n\U0001F476 {sibling['output']}")
 
     # Show system status
     status = system.system_status()
-    print(f"\n\U0001F501 System status: {status['interactions']} interactions | uptime: {status['uptime']}")
-
-    print("\n\u2728 Try Zero System and enjoy the unique emotional AI experience!")
+    print(
+        f"\n\U0001F501 System status: {status['interactions']} interactions | "
+        f"uptime: {status['uptime']}"
+    )
+    print(
+        "\n\u2728 Try Zero System and enjoy the unique "
+        "emotional AI experience!"
+    )
