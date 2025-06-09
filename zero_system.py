@@ -9,12 +9,6 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    filename="zero_system.log",
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
-
 
 def normalize_arabic(text: str) -> str:
     """Simplify Arabic text to ease pattern matching."""
@@ -293,6 +287,11 @@ class ZeroSystem:
 
 # ===== التشغيل الرئيسي =====
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.INFO,
+        filename="zero_system.log",
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
     print("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
     system = ZeroSystem()
 
