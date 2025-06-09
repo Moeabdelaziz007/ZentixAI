@@ -32,6 +32,17 @@ system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلك�
 # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
 ```
 
+## Running Tests
+
+This repository includes a small test suite in the `tests/` directory. To run
+all tests, execute:
+
+```bash
+python -m unittest discover -v
+```
+
+The tests verify the calculator plugin and the digital sibling creation logic.
+
 ## License
 
 Distributed under the [MIT License](LICENSE).
