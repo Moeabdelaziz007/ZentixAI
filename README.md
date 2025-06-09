@@ -12,23 +12,37 @@ This prints `{'result': 8}`.
 
 ## Usage Examples
 
-Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
+Run `python zero_system.py` to launch the demo. The script starts a simple
+interactive text interface where you can chat with the assistant. To use the
+system programmatically, instantiate `ZeroSystem` in your own code:
+
+```python
+from zero_system import ZeroSystem
+
+system = ZeroSystem()
+```
+
+Below are sample interactions, retrieving the `"output"` field from each
+response:
 
 ### التعليم
 ```python
-system.interact("شرح لي نظرية الكم بطريقة بسيطة")
+resp = system.interact("شرح لي نظرية الكم بطريقة بسيطة")
+resp["output"]
 # 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
 ```
 
 ### الصحة النفسية
 ```python
-system.interact("أشعر بالقلق اليوم")
+resp = system.interact("أشعر بالقلق اليوم")
+resp["output"]
 # 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
 ```
 
 ### الإبداع التقني
 ```python
-system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+resp = system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+resp["output"]
 # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
 ```
 
