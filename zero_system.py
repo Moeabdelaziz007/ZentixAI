@@ -7,6 +7,13 @@ import json
 import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    filename="zero_system.log",
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
 
 
 def normalize_arabic(text: str) -> str:
