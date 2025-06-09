@@ -4,7 +4,7 @@ This repository demonstrates a minimal plugin-based system in Python. See `plugi
 
 ## Setup
 
-The project only requires **Python&nbsp;3.8 or later** and uses no external packages beyond the standard library.
+The project only requires **Python&nbsp;3.8 or later** and uses no external packages beyond the standard library. No additional requirements need to be installed, and `requirements.txt` is intentionally empty.
 
 1. Clone this repository.
 2. *(Optional)* Create and activate a virtual environment.
@@ -59,8 +59,9 @@ resp["output"]
 
 ## Running Tests
 
-This repository includes a small test suite in the `tests/` directory. To run
-all tests, execute:
+This repository includes a small test suite in the `tests/` directory. The suite
+uses only the standard library `unittest` module. From the repository root, run
+all tests with:
 
 ```bash
 python -m unittest discover -v
