@@ -1,4 +1,6 @@
-from zero_system import ZeroSystem
+"""Command-line interface for interacting with ``ZeroSystem``."""
+
+from sss.zero_system import ZeroSystem
 
 
 def main():

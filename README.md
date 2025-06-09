@@ -38,7 +38,7 @@ This repository includes a small test suite in the `tests/` directory. To run
 all tests, execute:
 
 ```bash
-python -m unittest discover -v
+python -m pytest -q
 ```
 
 The tests verify the calculator plugin and the digital sibling creation logic.
