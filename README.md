@@ -2,7 +2,18 @@
 
 This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
 
-Requires **Python&nbsp;3.10 or later**. No additional dependencies beyond the standard library are needed.
+## Setup
+
+The project only requires **Python&nbsp;3.8 or later** and uses no external packages beyond the standard library.
+
+1. Clone this repository.
+2. *(Optional)* Create and activate a virtual environment.
+3. Run any of the example scripts:
+   ```bash
+   python plugin_example.py
+   python zero_system.py
+   python cli.py
+   ```
 
 Run the calculator plugin directly:
 ```bash
