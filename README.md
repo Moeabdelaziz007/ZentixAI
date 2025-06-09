@@ -1,10 +1,10 @@
 # sss
 
-This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it.
+This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
 
 ## Usage Examples
 
-Below are sample interactions with the system:
+Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
 
 ### التعليم
 ```python
