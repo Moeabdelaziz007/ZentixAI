@@ -102,33 +102,43 @@ class MindfulEmbodimentSkill(AbstractSkill):
             "default": "صوت هادئ وواضح",
             "moe_style": "صوت حيوي وساخر",
             "professional": "صوت رسمي وتحليلي",
-            "caring": "صوت دافئ ومتعاطف"
+            "caring": "صوت دافئ ومتعاطف",
+            "anxious": "صوت متوتر وسريع",
+            "cheerful": "صوت سعيد ومتفائل",
         }
+
+    def detect_context(self, text: str) -> str:
+        if "قلق" in text or "توتر" in text:
+            return "anxious"
+        elif "مرح" in text or "ضحك" in text:
+            return "cheerful"
+        elif "سؤال تقني" in text:
+            return "professional"
+        elif "احتاج دعم" in text:
+            return "caring"
+        else:
+            return "default"
 
     def get_description(self):
         return "يعدل الأسلوب حسب سياق المحادثة وذاكرة المستخدم"
 
-    def execute(self, context=""):
-        if "سؤال تقني" in context:
-            style = "professional"
-        elif "دعم" in context:
-            style = "caring"
-        elif "مرح" in context:
-            style = "moe_style"
-        else:
-            style = "default"
+    def execute(self, context: str = ""):
+        style = self.detect_context(context)
 
         responses = {
             "default": "مرحباً بك، كيف يمكنني مساعدتك؟",
             "moe_style": "يا زعيم! جاهز لأي فكرة مجنونة \U0001F604",
             "professional": "تحية طيبة، أنا جاهز لاستفساراتك التقنية",
-            "caring": "أنا هنا من أجلك، كيف يمكنني مساعدتك اليوم؟"
+            "caring": "أنا هنا من أجلك، كيف يمكنني مساعدتك اليوم؟",
+            "anxious": "هل هناك ما يسبب لك التوتر؟ أنا هنا للمساعدة.",
+            "cheerful": "يا سلام! خلينا نستمتع ونفكر بطريقة ممتعة!",
         }
 
         return {
             "status": "success",
             "output": responses[style],
-            "voice_style": self.voice_styles[style]
+            "voice_style": self.voice_styles[style],
+            "mood": style,
         }
 
 
@@ -163,6 +173,7 @@ class AmrikyyBrotherAI:
 
     def hear(self, message, user_profile=None):
         """يتلقى الرسالة ويحدد الرد المناسب"""
+        logging.info("Received message: %s", message)
         self.memory.append({
             "time": datetime.now().isoformat(),
             "message": message,
@@ -171,18 +182,23 @@ class AmrikyyBrotherAI:
 
         # تفعيل المهارات حسب المحتوى
         if is_sibling_request(message):
+            logging.info("Triggering sibling_genesis skill")
             return self.skills["sibling_genesis"].execute()
         if "صوت" in message:
+            logging.info("Triggering mindful_embodiment skill")
             return self.skills["mindful_embodiment"].execute(message)
         if user_profile:
+            logging.info("Triggering true_friendship skill")
             return self.skills["true_friendship"].execute(user_profile, message)
 
         # الرد الافتراضي
-        return {
+        response = {
             "status": "success",
             "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
             "personality": self.personality
         }
+        logging.info("Default response: %s", response["output"])
+        return response
 
     def grow(self, new_skill):
         """يطور مهارة جديدة"""
@@ -240,7 +256,9 @@ class ZeroSystem:
     def interact(self, message, user_profile=None):
         """يتفاعل مع المستخدم عبر الأخ الرقمي"""
         self.interaction_count += 1
+        logging.info("User message: %s", message)
         response = self.brother_ai.hear(message, user_profile)
+        logging.info("AI response: %s", response.get("output"))
 
         print(f"\n\U0001F464 المستخدم: {message}")
         print(f"\U0001F916 الذكاء: {response['output']}")
