@@ -215,6 +215,10 @@ class AmrikyyBrotherAI:
         self.skills[new_skill] = lambda: {"status": "under_development"}
         return f"تم تطوير مهارة جديدة: {new_skill}"
 
+    def close(self):
+        """أغلق اتصال قاعدة البيانات."""
+        self.conn.close()
+
 
 # ======================= الحمض النووي الرقمي =======================
 class DigitalDNA:
@@ -301,6 +305,10 @@ class ZeroSystem:
         for text, label in examples:
             print(f"\n\U0001F30D مثال ({label})")
             self.interact(text)
+
+    def close(self):
+        """أغلق موارد النظام."""
+        self.brother_ai.close()
 
 
 # ===== التشغيل الرئيسي =====

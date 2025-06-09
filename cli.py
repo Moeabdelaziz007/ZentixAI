@@ -1,9 +1,14 @@
+import argparse
 from zero_system import ZeroSystem
 
 
 def main():
     print("=== Zero System CLI ===")
-    system = ZeroSystem()
+    parser = argparse.ArgumentParser(description="Interact with Zero System")
+    parser.add_argument("--db", default="memory.db", help="Path to SQLite database")
+    args = parser.parse_args()
+
+    system = ZeroSystem(db_path=args.db)
     system.dna.show_dna()
     try:
         while True:
