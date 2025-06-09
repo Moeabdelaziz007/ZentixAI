@@ -242,9 +242,6 @@ class ZeroSystem:
         self.interaction_count += 1
         response = self.brother_ai.hear(message, user_profile)
 
-        print(f"\n\U0001F464 المستخدم: {message}")
-        print(f"\U0001F916 الذكاء: {response['output']}")
-
         # Log the interaction
         self.logger.log_interaction(message, response)
 
@@ -273,7 +270,8 @@ class ZeroSystem:
         ]
         for text, label in examples:
             print(f"\n\U0001F30D مثال ({label})")
-            self.interact(text)
+            resp = self.interact(text)
+            print(f"\U0001F916 الذكاء: {resp['output']}")
 
 
 def run_tui():
