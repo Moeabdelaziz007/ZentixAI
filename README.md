@@ -10,6 +10,20 @@ python plugin_example.py
 ```
 This prints `{'result': 8}`.
 
+## Command Line Interface
+
+`cli.py` exposes a small interface for the main system. Choose one of the
+following modes:
+
+```bash
+python cli.py [interactive|status|dna|mood]
+```
+
+- `interactive` – start an interactive chat session (default)
+- `status` – display basic system statistics
+- `dna` – print the digital DNA information
+- `mood` – show the current mood as detected by the embodiment skill
+
 ## Usage Examples
 
 Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
@@ -38,10 +52,12 @@ This repository includes a small test suite in the `tests/` directory. To run
 all tests, execute:
 
 ```bash
-python -m unittest discover -v
+pytest -v
 ```
 
-The tests verify the calculator plugin and the digital sibling creation logic.
+The tests verify the calculator plugin and the digital sibling creation logic
+and are implemented using the `unittest` framework, so `python -m unittest`
+will also work.
 
 ## License
 
