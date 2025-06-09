@@ -31,5 +31,6 @@ system.interact("Design an AI system for an online store")
 ```
 
 For better results, pass a user profile dictionary with an `id` and `name` to
-`interact()` so the assistant can remember you. You can also call
-`system.demo_usage_examples()` to see these examples automatically.
+`interact()` so the assistant can remember you. You can run
+`system.meta_loop()` to iterate through these examples automatically.
+

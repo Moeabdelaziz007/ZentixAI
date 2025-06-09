@@ -25,9 +25,13 @@ def normalize_arabic(text: str) -> str:
 
 def is_sibling_request(text: str) -> bool:
     """Detect if the message asks for creating a digital sibling."""
-    norm = normalize_arabic(text)
-    has_brother = any(term in norm for term in ["اخ", "شقيق"])
-    has_small = any(term in norm for term in ["صغير", "اصغر"])
+    norm = normalize_arabic(text.lower())
+    has_brother = any(
+        term in norm for term in ["اخ", "شقيق", "brother"]
+    )
+    has_small = any(
+        term in norm for term in ["صغير", "اصغر", "little", "small"]
+    )
     return has_brother and has_small
 
 
@@ -292,6 +296,12 @@ class ZeroSystem:
             print(f"\n\U0001F30D Example ({label})")
             self.interact(text)
 
+    def meta_loop(self, repeats: int = 3) -> None:
+        """Run the demo examples multiple times as a simple meta loop."""
+        for i in range(repeats):
+            print(f"\n=== Meta loop iteration {i + 1}/{repeats} ===")
+            self.demo_usage_examples()
+
 
 # ===== Main Execution =====
 if __name__ == "__main__":
@@ -308,8 +318,8 @@ if __name__ == "__main__":
     system.interact("How are you today?")
     system.interact("I want a little brother to help me with programming")
 
-    # Run the predefined usage examples
-    system.demo_usage_examples()
+    # Run the predefined usage examples via a meta loop
+    system.meta_loop()
 
     # Create a digital sibling
     sibling = system.create_sibling(
