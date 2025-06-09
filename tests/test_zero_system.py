@@ -1,6 +1,6 @@
 import unittest
 
-from sss.zero_system import ZeroSystem
+from zero_system import ZeroSystem
 
 class TestZeroSystem(unittest.TestCase):
     def test_create_sibling_increments_count(self):
@@ -11,5 +11,3 @@ class TestZeroSystem(unittest.TestCase):
         after = genesis_skill.siblings_created
         self.assertEqual(after, before + 1)
 
-if __name__ == "__main__":
-    unittest.main()

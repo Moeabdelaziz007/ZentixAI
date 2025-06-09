@@ -1,33 +1,32 @@
-import os
-import sys
+import unittest
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-import pytest
 from zero_system import MindfulEmbodimentSkill
 
-@pytest.fixture
-def skill():
-    return MindfulEmbodimentSkill()
 
-def test_default_context(skill):
-    result = skill.execute("اهلا")
-    assert result["mood"] == "default"
-    assert result["voice_style"] == "صوت هادئ وواضح"
-    assert "مرحباً بك" in result["output"]
+class TestMindfulEmbodiment(unittest.TestCase):
+    def setUp(self):
+        self.skill = MindfulEmbodimentSkill()
 
-def test_tech_context(skill):
-    result = skill.execute("لدي سؤال تقني حول البرمجة")
-    assert result["mood"] == "professional"
-    assert result["voice_style"] == "صوت رسمي وتحليلي"
-    assert "استفساراتك التقنية" in result["output"]
+    def test_default_context(self):
+        result = self.skill.execute("اهلا")
+        self.assertEqual(result["mood"], "default")
+        self.assertEqual(result["voice_style"], "صوت هادئ وواضح")
+        self.assertIn("مرحباً بك", result["output"])
 
-def test_fun_context(skill):
-    result = skill.execute("لنمرح ونضحك سويا")
-    assert result["mood"] == "cheerful"
-    assert result["voice_style"] == "صوت سعيد ومتفائل"
+    def test_tech_context(self):
+        result = self.skill.execute("لدي سؤال تقني حول البرمجة")
+        self.assertEqual(result["mood"], "professional")
+        self.assertEqual(result["voice_style"], "صوت رسمي وتحليلي")
+        self.assertIn("استفساراتك التقنية", result["output"])
 
-def test_support_context(skill):
-    result = skill.execute("انا احتاج دعم عاجل")
-    assert result["mood"] == "caring"
-    assert result["voice_style"] == "صوت دافئ ومتعاطف"
+    def test_fun_context(self):
+        result = self.skill.execute("لنمرح ونضحك سويا")
+        self.assertEqual(result["mood"], "cheerful")
+        self.assertEqual(result["voice_style"], "صوت سعيد ومتفائل")
+
+    def test_support_context(self):
+        result = self.skill.execute("انا احتاج دعم عاجل")
+        self.assertEqual(result["mood"], "caring")
+        self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+
+
