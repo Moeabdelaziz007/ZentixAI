@@ -10,22 +10,30 @@ This prints `{'result': 8}`.
 
 ## Usage Examples
 
-Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
+Install the optional [`rich`](https://github.com/Textualize/rich) library for a
+text user interface:
+```bash
+pip install rich
+```
+Run `python zero_system.py` to launch the demo and create a `system` object.
+Below are sample interactions with the system:
 
 ### التعليم
 ```python
-system.interact("شرح لي نظرية الكم بطريقة بسيطة")
+print(system.interact("شرح لي نظرية الكم بطريقة بسيطة")["output"])
 # 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
 ```
 
 ### الصحة النفسية
 ```python
-system.interact("أشعر بالقلق اليوم")
+print(system.interact("أشعر بالقلق اليوم")["output"])
 # 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
 ```
 
 ### الإبداع التقني
 ```python
-system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+print(system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")["output"])
 # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
 ```
+
+Every interaction is recorded to `zero_system.log` in JSON format.
