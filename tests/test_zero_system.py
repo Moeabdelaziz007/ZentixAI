@@ -1,6 +1,6 @@
 import unittest
 
-from zero_system import ZeroSystem
+from sss.zero_system import ZeroSystem
 
 class TestZeroSystem(unittest.TestCase):
     def test_create_sibling_increments_count(self):
