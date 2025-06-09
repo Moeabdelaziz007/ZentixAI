@@ -4,7 +4,8 @@ This repository demonstrates a minimal plugin-based system in Python. See `plugi
 
 ## Setup
 
-The project only requires **Python&nbsp;3.8 or later** and uses no external packages beyond the standard library.
+The core examples run on **Python&nbsp;3.8 or later** and rely only on the standard library.
+To use the optional Flask dashboard you will need to install the `flask` package.
 
 1. Clone this repository.
 2. *(Optional)* Create and activate a virtual environment.
@@ -14,6 +15,16 @@ The project only requires **Python&nbsp;3.8 or later** and uses no external pack
    python zero_system.py
    python cli.py
    ```
+4. *(Optional)* Launch the Flask dashboard:
+   ```bash
+   python dashboard.py
+   ```
+   The templates directory and the `static/` folder with CSS should be
+   placed beside `dashboard.py`.
+   The default stylesheet uses neon green and medium gray on a dark
+   background. The layout mimics the OpenAI chat interface with a
+   scrollable chat area and a message input at the bottom.
+   Edit `static/styles.css` to customize the theme.
 
 Run the calculator plugin directly:
 ```bash
