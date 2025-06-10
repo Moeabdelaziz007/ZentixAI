@@ -3,10 +3,14 @@ import unittest
 from sss.zero_system import MindfulEmbodimentSkill
 
 
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
-  class TestMindfulEmbodimentSkill(unittest.TestCase):
-  =======
+  <<<<<<< codex/clean-up-files-by-removing-git-conflict-markers
   class TestMindfulEmbodiment(unittest.TestCase):
+  =======
+    <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
+    class TestMindfulEmbodimentSkill(unittest.TestCase):
+    =======
+    class TestMindfulEmbodiment(unittest.TestCase):
+    >>>>>>> main
   >>>>>>> main
     def setUp(self):
         self.skill = MindfulEmbodimentSkill()
@@ -31,11 +35,16 @@ from sss.zero_system import MindfulEmbodimentSkill
     def test_support_context(self):
         result = self.skill.execute("انا احتاج دعم عاجل")
         self.assertEqual(result["mood"], "caring")
-        self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+          self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
 
 
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
+  <<<<<<< codex/clean-up-files-by-removing-git-conflict-markers
   if __name__ == "__main__":
       unittest.main()
   =======
+    <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
+    if __name__ == "__main__":
+        unittest.main()
+    =======
+    >>>>>>> main
   >>>>>>> main
