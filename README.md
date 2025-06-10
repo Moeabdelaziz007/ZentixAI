@@ -12,6 +12,13 @@ This is an [Onlook](https://onlook.com/) project set up with
 
 First, run the development server:
 
+  <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
+  * Requires **Python 3.8 or later**
+  * No additional dependencies beyond the standard library
+
+  Run the calculator plugin directly:
+  =======
+>>> >>>> main
 ```bash
 npm run dev
 # or
