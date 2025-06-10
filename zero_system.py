@@ -34,8 +34,12 @@ def is_sibling_request(text: str) -> bool:
 
 
 def append_json_log(message: str, response: dict, filename: str = "log.jsonl") -> None:
-    """Append interaction data to a JSON Lines file."""
-    path = os.path.join(os.path.dirname(__file__), filename)
+    """Append interaction data to a JSON Lines file.
+
+    ``filename`` may be an absolute path or just a file name relative to this
+    module's directory.
+    """
+    path = filename if os.path.isabs(filename) else os.path.join(os.path.dirname(__file__), filename)
     entry = {
         "time": datetime.now().isoformat(),
         "message": message,
@@ -241,7 +245,7 @@ class DigitalDNA:
 
 # ======================= النظام الرئيسي =======================
 class ZeroSystem:
-    def __init__(self):
+    def __init__(self, log_filename: str = "log.jsonl"):
         # تهيئة المهارات
         self.skills = {
             "empathy_sensor": EmpathySensorSkill(),
@@ -260,6 +264,7 @@ class ZeroSystem:
         # إحصائيات النظام
         self.start_time = datetime.now()
         self.interaction_count = 0
+        self.log_filename = log_filename
 
     def interact(self, message, user_profile=None):
         """يتفاعل مع المستخدم عبر الأخ الرقمي"""
@@ -267,7 +272,7 @@ class ZeroSystem:
         logging.info("User message: %s", message)
         response = self.brother_ai.hear(message, user_profile)
         logging.info("AI response: %s", response.get("output"))
-        append_json_log(message, response)
+        append_json_log(message, response, self.log_filename)
 
         print(f"\n\U0001F464 المستخدم: {message}")
         print(f"\U0001F916 الذكاء: {response['output']}")

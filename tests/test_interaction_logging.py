@@ -1,23 +1,24 @@
 import os
 import json
+import tempfile
 import unittest
 import sss.zero_system as zs
 
 class TestInteractionLogging(unittest.TestCase):
+    def setUp(self):
+        """Create a temporary file for logging."""
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.log_file = os.path.join(self.temp_dir.name, 'log.jsonl')
+
     def tearDown(self):
-        """Remove the log file after each test to prevent it from growing."""
-        log_path = os.path.join(os.path.dirname(zs.__file__), 'log.jsonl')
-        if os.path.exists(log_path):
-            os.remove(log_path)
+        """Clean up the temporary log directory."""
+        self.temp_dir.cleanup()
 
     def test_interact_creates_log_file(self):
-        log_path = os.path.join(os.path.dirname(zs.__file__), 'log.jsonl')
-        if os.path.exists(log_path):
-            os.remove(log_path)
-        system = zs.ZeroSystem()
+        system = zs.ZeroSystem(log_filename=self.log_file)
         system.interact('اختبار التسجيل')
-        self.assertTrue(os.path.exists(log_path))
-        with open(log_path, encoding='utf-8') as f:
+        self.assertTrue(os.path.exists(self.log_file))
+        with open(self.log_file, encoding='utf-8') as f:
             lines = f.readlines()
         self.assertGreaterEqual(len(lines), 1)
         entry = json.loads(lines[-1])
