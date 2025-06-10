@@ -3,15 +3,25 @@
 
     This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
 
+ codex/mention-purpose-in-readme
+The repository also includes `AGI.rtf`, which stores design notes and brainstorming ideas for the "Digital DNA" concept used in `zero_system.py`.
+
+Run the calculator plugin directly:
+```bash
+python plugin_example.py
+```
+This prints `{'result': 8}`.
+
   <<<<<<< codex/remove-merge-markers-and-refactor-logging-setup
   This is an [Onlook](https://onlook.com/) project set up with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [ShadCN](https://ui.shadcn.com).
-  =======
+  
     Run the calculator plugin directly:
     ```bash
     python plugin_example.py
     ```
     This prints `{'result': 8}`.
-  >>>>>>> main
+   main
+ main
 
   ## Usage Examples
 
