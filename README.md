@@ -11,14 +11,6 @@ This is an [Onlook](https://onlook.com/) project set up with
 ## Getting Started
 
 First, run the development server:
-
-  <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
-  * Requires **Python 3.8 or later**
-  * No additional dependencies beyond the standard library
-
-  Run the calculator plugin directly:
-  =======
->>> >>>> main
 ```bash
 npm run dev
 # or
@@ -29,40 +21,36 @@ pnpm dev
 bun dev
 ```
 
-  <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
-  ### الإبداع التقني
-  ```python
-  system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-  ```
+Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
 
-  ## Command Line Interface
+## Testing
 
-  Use `cli.py` to interact with the system from the terminal. The script exposes a
-  few simple commands:
+Run the unit tests with either of the following commands:
 
-  ```bash
-  # start an interactive chat session
-  python cli.py interactive
+```bash
+python -m unittest discover -v
+# or
+PYTHONPATH=$PWD pytest -q
+```
 
-  # display system status information
-  python cli.py status
+### الإبداع التقني
+```python
+system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+# 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+```
 
-  # run the predefined demo interactions
-  python cli.py demo
-  ```
+## Command Line Interface
 
-  ## Running Tests
+Use `cli.py` to interact with the system from the terminal. The script exposes a
+few simple commands:
 
-  This repository uses `pytest` for unit testing. From the repository root run:
+```bash
+# start an interactive chat session
+python cli.py interactive
 
-  ```bash
-  pytest
-  ```
+# display system status information
+python cli.py status
 
-  The tests in `tests/test_zero_system.py` verify that sibling requests are
-  detected correctly, that the system status includes expected fields, and that
-  creating siblings produces unique identifiers.
-  =======
-  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
-  >>>>>>> main
+# run the predefined demo interactions
+python cli.py demo
+```
