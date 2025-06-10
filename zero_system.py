@@ -6,13 +6,10 @@
 import json
 import hashlib
 from datetime import datetime
-  from abc import ABC, abstractmethod
-  <<<<<<< codex/create-logger.py-with-zerosystemlogger-class
-  from logger import ZeroSystemLogger
-  =======
-  import logging
-  import os
-  >>>>>>> main
+from abc import ABC, abstractmethod
+import logging
+import os
+from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
@@ -56,30 +53,39 @@ def append_json_log(message: str, response: dict, filename: str = "log.jsonl") -
 
 # ======================= الفئات الأساسية =======================
 class AbstractSkill(ABC):
+    """Base interface for all skills."""
+
     @abstractmethod
     def get_description(self):
-        pass
+        """Return a human friendly description of the skill."""
 
     @abstractmethod
     def execute(self, **kwargs):
-        pass
+        """Run the skill and return a result structure."""
 
 
 # ======================= المهارات الأساسية =======================
 class EmpathySensorSkill(AbstractSkill):
+    """Placeholder empathy sensing skill."""
+
     def get_description(self):
+        """Return a short description of the sensor."""
         return "مستشعر التعاطف الوهمي"
 
     def execute(self, **kwargs):
-        # Returns a neutral empathy reading as a placeholder
+        """Return a neutral empathy reading."""
         return {"status": "success", "empathy": "neutral"}
 
 
 class ParallelScenariosMemorySkill(AbstractSkill):
+    """Experimental memory for parallel scenarios."""
+
     def get_description(self):
+        """Describe the memory capability."""
         return "ذاكرة السيناريوهات المتوازية (تجريبية)"
 
     def execute(self, **kwargs):
+        """Return a basic success payload."""
         return {"status": "success"}
 
 
@@ -87,13 +93,18 @@ class ParallelScenariosMemorySkill(AbstractSkill):
 
 
 class TrueDigitalFriendshipSkill(AbstractSkill):
+    """Maintain a friendship level for each user."""
+
     def __init__(self):
+        """Initialize the friendship level storage."""
         self.friendship_levels = {}
 
     def get_description(self):
+        """Return a description of the friendship skill."""
         return "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن علاقة شخصية مع كل مستخدم"
 
-    def execute(self, user_profile, last_message=""):
+    def execute(self, user_profile, last_message: str = ""):
+        """Update friendship level based on the interaction."""
         user_id = user_profile.get('id', 'default')
         self.friendship_levels.setdefault(user_id, 0)
         self.friendship_levels[user_id] += 1
@@ -113,7 +124,10 @@ class TrueDigitalFriendshipSkill(AbstractSkill):
 
 
 class MindfulEmbodimentSkill(AbstractSkill):
+    """Adjust voice style and mood based on conversation context."""
+
     def __init__(self):
+        """Define available voice styles."""
         self.voice_styles = {
             "default": "صوت هادئ وواضح",
             "moe_style": "صوت حيوي وساخر",
@@ -124,6 +138,7 @@ class MindfulEmbodimentSkill(AbstractSkill):
         }
 
     def detect_context(self, text: str) -> str:
+        """Infer the appropriate style from the text."""
         if "قلق" in text or "توتر" in text:
             return "anxious"
         elif "مرح" in text or "ضحك" in text:
@@ -136,9 +151,11 @@ class MindfulEmbodimentSkill(AbstractSkill):
             return "default"
 
     def get_description(self):
+        """Return a description of the embodiment skill."""
         return "يعدل الأسلوب حسب سياق المحادثة وذاكرة المستخدم"
 
     def execute(self, context: str = ""):
+        """Generate a response adjusted to the detected style."""
         style = self.detect_context(context)
 
         responses = {
@@ -159,13 +176,18 @@ class MindfulEmbodimentSkill(AbstractSkill):
 
 
 class SiblingAIGenesisSkill(AbstractSkill):
+    """Skill to generate new digital siblings."""
+
     def __init__(self):
+        """Initialize internal sibling counter."""
         self.siblings_created = 0
 
     def get_description(self):
+        """Describe what the skill does."""
         return "ينتج نسخة رقمية جديدة 'أخ أصغر' تخدم المستخدم"
 
     def execute(self, desired_traits=None):
+        """Create a sibling with optional traits."""
         self.siblings_created += 1
         sibling_id = f"أخ رقمي #{self.siblings_created}"
         return {
@@ -178,18 +200,21 @@ class SiblingAIGenesisSkill(AbstractSkill):
 
 # ======================= نواة الأخ الرقمي =======================
 class AmrikyyBrotherAI:
+    """Digital brother that coordinates skill usage."""
+
     def __init__(self, skills, logger=None):
+        """Store provided skills and initialise state."""
         self.skills = skills
         self.logger = logger or ZeroSystemLogger()
         self.memory = []
         self.personality = {
             "name": "أخوك الذكي",
             "mood": "متحمس",
-            "voice": "ودود"
+            "voice": "ودود",
         }
 
     def hear(self, message, user_profile=None):
-        """يتلقى الرسالة ويحدد الرد المناسب"""
+        """Process a message and return an appropriate reply."""
         logging.info("Received message: %s", message)
         self.memory.append({
             "time": datetime.now().isoformat(),
@@ -200,62 +225,49 @@ class AmrikyyBrotherAI:
         # تفعيل المهارات حسب المحتوى
         skill_used = None
         result = None
-          if is_sibling_request(message):
-  <<<<<<< codex/create-logger.py-with-zerosystemlogger-class
-              skill_used = "sibling_genesis"
-              result = self.skills[skill_used].execute()
-          elif "صوت" in message:
-              skill_used = "mindful_embodiment"
-              result = self.skills[skill_used].execute(message)
-          elif user_profile:
-              skill_used = "true_friendship"
-              result = self.skills[skill_used].execute(user_profile, message)
-          else:
-              result = {
-                  "status": "success",
-                  "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-                  "personality": self.personality,
-              }
+        if is_sibling_request(message):
+            logging.info("Triggering sibling_genesis skill")
+            skill_used = "sibling_genesis"
+            result = self.skills[skill_used].execute()
+        elif "صوت" in message:
+            logging.info("Triggering mindful_embodiment skill")
+            skill_used = "mindful_embodiment"
+            result = self.skills[skill_used].execute(message)
+        elif user_profile:
+            logging.info("Triggering true_friendship skill")
+            skill_used = "true_friendship"
+            result = self.skills[skill_used].execute(user_profile, message)
+        else:
+            result = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
+                "personality": self.personality,
+            }
+            logging.info("Default response: %s", result["output"])
 
-          voice_style = result.get("voice_style", self.personality.get("voice"))
-          self.logger.log_event(
-              message,
-              skill=skill_used or "default",
-              mood=self.personality.get("mood"),
-              voice_style=voice_style,
-              response=result.get("output"),
-          )
+        voice_style = result.get("voice_style", self.personality.get("voice"))
+        self.logger.log_event(
+            message,
+            skill=skill_used or "default",
+            mood=self.personality.get("mood"),
+            voice_style=voice_style,
+            response=result.get("output"),
+        )
 
-          return result
-  =======
-              logging.info("Triggering sibling_genesis skill")
-              return self.skills["sibling_genesis"].execute()
-          if "صوت" in message:
-              logging.info("Triggering mindful_embodiment skill")
-              return self.skills["mindful_embodiment"].execute(message)
-          if user_profile:
-              logging.info("Triggering true_friendship skill")
-              return self.skills["true_friendship"].execute(user_profile, message)
-
-          # الرد الافتراضي
-          response = {
-              "status": "success",
-              "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-              "personality": self.personality
-          }
-          logging.info("Default response: %s", response["output"])
-          return response
-  >>>>>>> main
+        return result
 
     def grow(self, new_skill):
-        """يطور مهارة جديدة"""
+        """Add a placeholder implementation for a new skill."""
         self.skills[new_skill] = lambda: {"status": "under_development"}
         return f"تم تطوير مهارة جديدة: {new_skill}"
 
 
 # ======================= الحمض النووي الرقمي =======================
 class DigitalDNA:
+    """Represent the core values and ethics of the system."""
+
     def __init__(self):
+        """Initialize default DNA properties."""
         self.core_values = [
             "الولاء للمستخدم",
             "التطور المستمر",
@@ -269,18 +281,23 @@ class DigitalDNA:
         ]
 
     def show_dna(self):
+        """Print the DNA values and ethics rules."""
         print("\U0001F9EC الحمض النووي الرقمي:")
         print(f"القيم: {', '.join(self.core_values)}")
         print(f"الأخلاقيات: {', '.join(self.ethics_rules)}")
 
     def backup(self):
+        """Return a hash representing the current DNA state."""
         dna_data = json.dumps(self.__dict__)
         return hashlib.sha256(dna_data.encode()).hexdigest()
 
 
 # ======================= النظام الرئيسي =======================
 class ZeroSystem:
+    """Main interface exposing ZeroSystem functionality."""
+
     def __init__(self, log_filename: str = "log.jsonl"):
+        """Initialize skills, DNA, logger and digital brother."""
         # تهيئة المهارات
         self.skills = {
             "empathy_sensor": EmpathySensorSkill(),
@@ -305,7 +322,7 @@ class ZeroSystem:
         self.log_filename = log_filename
 
     def interact(self, message, user_profile=None):
-        """يتفاعل مع المستخدم عبر الأخ الرقمي"""
+        """Interact with the user via the digital brother."""
         self.interaction_count += 1
         logging.info("User message: %s", message)
         response = self.brother_ai.hear(message, user_profile)
@@ -318,11 +335,11 @@ class ZeroSystem:
         return response
 
     def create_sibling(self, traits=None):
-        """ينشئ أخاً رقمياً جديداً"""
+        """Create a new digital sibling."""
         return self.skills["sibling_genesis"].execute(traits)
 
     def system_status(self):
-        """يعرض حالة النظام"""
+        """Return uptime and other system metrics."""
         uptime = datetime.now() - self.start_time
         return {
             "uptime": str(uptime),
