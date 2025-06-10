@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zero System Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Zero System Dashboard</h1>
+    <p>This dashboard provides a basic overview of the Zero System status.</p>
+    <pre id="status">Loading...</pre>
+    <script>
+        fetch('status.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(() => {
+                document.getElementById('status').textContent = 'Unable to load system status.';
+            });
+    </script>
+</body>
+</html>

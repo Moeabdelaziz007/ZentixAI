@@ -8,12 +8,7 @@ import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
 import logging
-
-logging.basicConfig(
-    level=logging.INFO,
-    filename="zero_system.log",
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+import os
 
 
 def normalize_arabic(text: str) -> str:
@@ -36,6 +31,19 @@ def is_sibling_request(text: str) -> bool:
     has_brother = any(term in norm for term in ["اخ", "شقيق"])
     has_small = any(term in norm for term in ["صغير", "اصغر"])
     return has_brother and has_small
+
+
+def append_json_log(message: str, response: dict, filename: str = "log.jsonl") -> None:
+    """Append interaction data to a JSON Lines file."""
+    path = os.path.join(os.path.dirname(__file__), filename)
+    entry = {
+        "time": datetime.now().isoformat(),
+        "message": message,
+        "response": response,
+    }
+    with open(path, "a", encoding="utf-8") as f:
+        json.dump(entry, f, ensure_ascii=False)
+        f.write("\n")
 
 
 # ======================= الفئات الأساسية =======================
@@ -259,6 +267,7 @@ class ZeroSystem:
         logging.info("User message: %s", message)
         response = self.brother_ai.hear(message, user_profile)
         logging.info("AI response: %s", response.get("output"))
+        append_json_log(message, response)
 
         print(f"\n\U0001F464 المستخدم: {message}")
         print(f"\U0001F916 الذكاء: {response['output']}")
@@ -293,6 +302,11 @@ class ZeroSystem:
 
 # ===== التشغيل الرئيسي =====
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.INFO,
+        filename="zero_system.log",
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
     print("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
     system = ZeroSystem()
 

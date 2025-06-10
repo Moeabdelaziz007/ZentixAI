@@ -1,77 +1,77 @@
-# sss
+# Onlook Starter Template
 
-This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
+<p align="center">
+  <img src="app/favicon.ico" />
+</p>
 
-Requires **Python&nbsp;3.10 or later**. No additional dependencies beyond the standard library are needed.
+This is an [Onlook](https://onlook.com/) project set up with
+[Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and
+[ShadCN](https://ui.shadcn.com).
 
-Run the calculator plugin directly:
-```bash
-python plugin_example.py
-```
-This prints `{'result': 8}`.
+  <<<<<<< codex/document-python-cli-options-and-test-suite
+  Run the calculator plugin directly:
+  ```bash
+  python plugin_example.py
+  ```
+  This prints `{'result': 8}`.
 
-## Command Line Interface
+  ## Command Line Interface
 
-`cli.py` exposes a small interface for the main system. Choose one of the
-following modes:
+  `cli.py` exposes a small interface for the main system. Choose one of the
+  following modes:
 
-```bash
-python cli.py [interactive|status|dna|mood]
-```
+  ```bash
+  python cli.py [interactive|status|dna|mood]
+  ```
 
-- `interactive` – start an interactive chat session (default)
-- `status` – display basic system statistics
-- `dna` – print the digital DNA information
-- `mood` – show the current mood as detected by the embodiment skill
+  - `interactive` – start an interactive chat session (default)
+  - `status` – display basic system statistics
+  - `dna` – print the digital DNA information
+  - `mood` – show the current mood as detected by the embodiment skill
 
-## Web Dashboard
+  ## Web Dashboard
 
-A lightweight web dashboard provides a simple chat interface using Flask.
-Install the dependency and run the server:
+  A lightweight web dashboard provides a simple chat interface using Flask.
+  Install the dependency and run the server:
 
-```bash
-pip install flask
-python dashboard.py
-```
+  ```bash
+  pip install flask
+  python dashboard.py
+  ```
 
-Then open [http://localhost:5000](http://localhost:5000) in a browser to chat
-with the system.
+  Then open [http://localhost:5000](http://localhost:5000) in a browser to chat
+  with the system.
 
-## Usage Examples
+  ## Usage Examples
 
-Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
+  Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
+  =======
+  ## Getting Started
+  >>>>>>> main
 
-### التعليم
-```python
-system.interact("شرح لي نظرية الكم بطريقة بسيطة")
-# 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
-```
+  First, run the development server:
 
-### الصحة النفسية
-```python
-system.interact("أشعر بالقلق اليوم")
-# 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
-```
+  ```bash
+  <<<<<<< codex/document-python-cli-options-and-test-suite
+  pytest -v
+  ```
 
-### الإبداع التقني
-```python
-system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-# 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-```
+  The tests verify the calculator plugin and the digital sibling creation logic
+  and are implemented using the `unittest` framework, so `python -m unittest`
+  will also work.
 
-## Running Tests
+  ## License
 
-This repository includes a small test suite in the `tests/` directory. To run
-all tests, execute:
+  Distributed under the [MIT License](LICENSE).
+  =======
+  npm run dev
+  # or
+  yarn dev
+  # or
+  pnpm dev
+  # or
+  bun dev
+  ```
 
-```bash
-pytest -v
-```
-
-The tests verify the calculator plugin and the digital sibling creation logic
-and are implemented using the `unittest` framework, so `python -m unittest`
-will also work.
-
-## License
-
-Distributed under the [MIT License](LICENSE).
+  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+  >>>>>>> main
