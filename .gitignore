@@ -1,114 +1,121 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*$py.class
+  *.py[cod]
+  <<<<<<< codex/decide-on-rtf-document-usage
+  *.pyc
 
-# C extensions
-*.so
+  # RTF documents
+  *.rtf
+  =======
+  *$py.class
 
-# Distribution / packaging
-.Python
-build/
-dist/
-*.egg-info/
-*.egg
-*.manifest
-*.spec
+  # C extensions
+  *.so
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+  # Distribution / packaging
+  .Python
+  build/
+  dist/
+  *.egg-info/
+  *.egg
+  *.manifest
+  *.spec
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
+  # Installer logs
+  pip-log.txt
+  pip-delete-this-directory.txt
 
-# Translations
-*.mo
-*.pot
+  # Unit test / coverage reports
+  htmlcov/
+  .tox/
+  .nox/
+  .coverage
+  .coverage.*
+  .cache
+  nosetests.xml
+  coverage.xml
+  *.cover
+  *.py,cover
+  .hypothesis/
+  .pytest_cache/
+  cover/
 
-# Django/Flask/SQLite stuff
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-instance/
-.webassets-cache
+  # Translations
+  *.mo
+  *.pot
 
-# Scrapy stuff
-.scrapy
+  # Django/Flask/SQLite stuff
+  *.log
+  local_settings.py
+  db.sqlite3
+  db.sqlite3-journal
+  instance/
+  .webassets-cache
 
-# Sphinx documentation
-docs/_build/
+  # Scrapy stuff
+  .scrapy
 
-# PyBuilder
-.pybuilder/
-target/
+  # Sphinx documentation
+  docs/_build/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+  # PyBuilder
+  .pybuilder/
+  target/
 
-# IPython
-profile_default/
-ipython_config.py
+  # Jupyter Notebook
+  .ipynb_checkpoints
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+  # IPython
+  profile_default/
+  ipython_config.py
 
-# IDEs
-.vscode/
-.idea/
-.spyderproject
-.spyproject
+  # Environments
+  .env
+  .venv
+  env/
+  venv/
+  ENV/
+  env.bak/
+  venv.bak/
 
-# mypy, pytype, pyre, etc.
-.mypy_cache/
-.dmypy.json
-dmypy.json
-.pyre/
-.pytype/
+  # IDEs
+  .vscode/
+  .idea/
+  .spyderproject
+  .spyproject
 
-# Cython debug symbols
-cython_debug/
+  # mypy, pytype, pyre, etc.
+  .mypy_cache/
+  .dmypy.json
+  dmypy.json
+  .pyre/
+  .pytype/
 
-# Poetry, pipenv, pdm, etc.
-.pdm.toml
-.pdm-python
-.pdm-build/
-__pypackages__/
+  # Cython debug symbols
+  cython_debug/
 
-# Misc
-.DS_Store
-.ruff_cache/
-.pypirc
-.cursorignore
-.cursorindexingignore
+  # Poetry, pipenv, pdm, etc.
+  .pdm.toml
+  .pdm-python
+  .pdm-build/
+  __pypackages__/
 
-# Node.js
-node_modules/
-.next/
-out/
+  # Misc
+  .DS_Store
+  .ruff_cache/
+  .pypirc
+  .cursorignore
+  .cursorindexingignore
 
-# Project logs and cache
-log.jsonl
+  # Node.js
+  node_modules/
+  .next/
+  out/
 
-# Output
-dist/
-out/
+  # Project logs and cache
+  log.jsonl
+
+  # Output
+  dist/
+  out/
+  >>>>>>> main
