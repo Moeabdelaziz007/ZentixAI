@@ -1,9 +1,13 @@
   <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
     import os
   import sys
-  import pytest
+    import pytest
 
-  sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+  <<<<<<< codex/update-import-for-zero_system-module
+  from zero_system import ZeroSystem
+  =======
+    sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+  >>>>>>> main
 
   from zero_system import ZeroSystem, is_sibling_request
 
