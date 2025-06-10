@@ -1,70 +1,130 @@
-# Onlook Starter Template
+  <<<<<<< 8vhgv0-codex/add-examples-of-system.interact-usage
+  # sss
 
-<p align="center">
-  <img src="app/favicon.ico" />
-</p>
+  This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
 
-This is an [Onlook](https://onlook.com/) project set up with
-[Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and
-[ShadCN](https://ui.shadcn.com).
+  Run the calculator plugin directly:
+  ```bash
+  python plugin_example.py
+  ```
+  This prints `{'result': 8}`.
 
-## Getting Started
+  ## Usage Examples
 
-First, run the development server:
+  Run `python zero_system.py` to launch the demo and create a `system` object. Here are some example interactions:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  ### Education
+  ```python
+  system.interact("Explain quantum theory in simple terms")
+  # 🤖 Assistant: Sure! Imagine the world is made of tiny Lego blocks...
+  ```
 
-Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+  ### Mental health
+  ```python
+  system.interact("I feel anxious today")
+  # 🤖 Assistant: I understand. Let's take a deep breath together... 💆‍♂️
+  ```
 
-## Python Components
+  <<<<<<< codex/add-open-source-license
+  ### الإبداع التقني
+  ```python
+  system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+  ```
 
-Several utilities and a basic dashboard are written in Python. The examples below
-assume you are using a virtual environment:
+  ## License
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+  This project is licensed under the [MIT License](LICENSE).
+  =======
+    ### Technical creativity
+    ```python
+    system.interact("Design an AI system for an online store")
+    # 🤖 Assistant: I've drafted a system with the following features... Need any adjustments?
+    ```
 
-### CLI
+    For better results, pass a user profile dictionary with an `id` and `name` to
+    `interact()` so the assistant can remember you. You can run
+    `system.meta_loop()` to iterate through these examples automatically.
 
-Run the interactive command line interface:
+    =======
+    # Onlook Starter Template
 
-```bash
-python cli.py
-```
+    <p align="center">
+      <img src="app/favicon.ico" />
+    </p>
 
-### Flask dashboard
+    This is an [Onlook](https://onlook.com/) project set up with
+    [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and
+    [ShadCN](https://ui.shadcn.com).
 
-Start the login-protected chat dashboard with:
+    ## Getting Started
 
-```bash
-python dashboard.py
-```
+    First, run the development server:
 
-It will run on `http://localhost:5000` by default.
+      <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
+      * Requires **Python 3.8 or later**
+      * No additional dependencies beyond the standard library
 
-### HTTP dashboard server
+      Run the calculator plugin directly:
+      =======
+    >>> >>>> main
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
 
-To serve the static dashboard and expose `status.json`, run:
+    ## Deployment
 
-```bash
-python dashboard_server.py
-```
+    The Flask dashboard uses `FLASK_SECRET_KEY` to secure user sessions. Set this
+    variable before running `dashboard.py`:
 
-### Running tests
+    ```bash
+    export FLASK_SECRET_KEY="your-secret-key"
+    python dashboard.py
+    ```
 
-Execute the test suite using [`pytest`](https://docs.pytest.org/):
 
-```bash
-pytest
-```
+      <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
+      ### الإبداع التقني
+      ```python
+      system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+      # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+      ```
+
+      ## Command Line Interface
+
+      Use `cli.py` to interact with the system from the terminal. The script exposes a
+      few simple commands:
+
+      ```bash
+      # start an interactive chat session
+      python cli.py interactive
+
+      # display system status information
+      python cli.py status
+
+      # run the predefined demo interactions
+      python cli.py demo
+      ```
+
+      ## Running Tests
+
+      This repository uses `pytest` for unit testing. From the repository root run:
+
+      ```bash
+      pytest
+      ```
+
+      The tests in `tests/test_zero_system.py` verify that sibling requests are
+      detected correctly, that the system status includes expected fields, and that
+      creating siblings produces unique identifiers.
+      =======
+      Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+      >>>>>>> main
+    >>>>>>> main
+  >>>>>>> main

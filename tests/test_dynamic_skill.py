@@ -1,6 +1,6 @@
 import unittest
 
-from sss.zero_system import ZeroSystem
+from zero_system import ZeroSystem
 
   <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
   =======
