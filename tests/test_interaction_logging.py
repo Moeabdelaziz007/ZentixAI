@@ -18,5 +18,3 @@ class TestInteractionLogging(unittest.TestCase):
         self.assertEqual(entry['message'], 'اختبار التسجيل')
         self.assertIn('response', entry)
 
-if __name__ == '__main__':
-    unittest.main()
