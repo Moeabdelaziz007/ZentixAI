@@ -5,14 +5,11 @@
 
 import json
 import hashlib
+import logging
+import os
 from datetime import datetime
-  from abc import ABC, abstractmethod
-  <<<<<<< codex/create-logger.py-with-zerosystemlogger-class
-  from logger import ZeroSystemLogger
-  =======
-  import logging
-  import os
-  >>>>>>> main
+from abc import ABC, abstractmethod
+from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
@@ -58,103 +55,69 @@ def append_json_log(message: str, response: dict, filename: str = "log.jsonl") -
 class AbstractSkill(ABC):
     @abstractmethod
     def get_description(self):
-        pass
-
-    @abstractmethod
-    def execute(self, **kwargs):
-        pass
+        raise NotImplementedError
 
 
-# ======================= المهارات الأساسية =======================
 class EmpathySensorSkill(AbstractSkill):
     def get_description(self):
-        return "مستشعر التعاطف الوهمي"
+        return "تحليل المشاعر في كلام المستخدم"
 
-    def execute(self, **kwargs):
-        # Returns a neutral empathy reading as a placeholder
-        return {"status": "success", "empathy": "neutral"}
-
-
-class ParallelScenariosMemorySkill(AbstractSkill):
-    def get_description(self):
-        return "ذاكرة السيناريوهات المتوازية (تجريبية)"
-
-    def execute(self, **kwargs):
-        return {"status": "success"}
-
-
-# ... (جميع المهارات السابقة) ...
+    def execute(self, text):
+        text = normalize_arabic(text)
+        if any(word in text for word in ["قلق", "حزين", "متوتر"]):
+            return {
+                "status": "success",
+                "output": "يبدو أنك تعاني من بعض القلق. أنا هنا لأستمع إليك وأدعمك \U0001F60A",
+                "voice_style": "حنون",
+            }
+        return {
+            "status": "success",
+            "output": "سعيد برؤيتك إيجابياً اليوم! \U0001F60A",
+        }
 
 
 class TrueDigitalFriendshipSkill(AbstractSkill):
-    def __init__(self):
-        self.friendship_levels = {}
-
     def get_description(self):
-        return "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن علاقة شخصية مع كل مستخدم"
+        return "تقديم دعم عاطفي ورفقة رقمية"
 
-    def execute(self, user_profile, last_message=""):
-        user_id = user_profile.get('id', 'default')
-        self.friendship_levels.setdefault(user_id, 0)
-        self.friendship_levels[user_id] += 1
-
-        if self.friendship_levels[user_id] < 3:
-            response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
-        elif self.friendship_levels[user_id] < 7:
-            response = f"{user_profile.get('name', 'صديقي')} العزيز، كيف تسير الأمور؟"
-        else:
-            response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
-
+    def execute(self, user_profile, message):
+        name = user_profile.get("name", "صديقي")
         return {
             "status": "success",
-            "output": response,
-            "friendship_level": self.friendship_levels[user_id]
+            "output": f"{name}، أنا هنا دائماً من أجلك مهما حصل! \U0001F917",
         }
 
 
 class MindfulEmbodimentSkill(AbstractSkill):
-    def __init__(self):
-        self.voice_styles = {
-            "default": "صوت هادئ وواضح",
-            "moe_style": "صوت حيوي وساخر",
-            "professional": "صوت رسمي وتحليلي",
-            "caring": "صوت دافئ ومتعاطف",
-            "anxious": "صوت متوتر وسريع",
-            "cheerful": "صوت سعيد ومتفائل",
-        }
-
-    def detect_context(self, text: str) -> str:
-        if "قلق" in text or "توتر" in text:
-            return "anxious"
-        elif "مرح" in text or "ضحك" in text:
-            return "cheerful"
-        elif "سؤال تقني" in text:
-            return "professional"
-        elif "احتاج دعم" in text:
-            return "caring"
-        else:
-            return "default"
-
     def get_description(self):
-        return "يعدل الأسلوب حسب سياق المحادثة وذاكرة المستخدم"
+        return "تجسيد رقمي مع صوت معبر"
 
-    def execute(self, context: str = ""):
-        style = self.detect_context(context)
+    def execute(self, voice_command):
+        """Return a voice style and mood based on the command text."""
+        text = normalize_arabic(voice_command)
 
-        responses = {
-            "default": "مرحباً بك، كيف يمكنني مساعدتك؟",
-            "moe_style": "يا زعيم! جاهز لأي فكرة مجنونة \U0001F604",
-            "professional": "تحية طيبة، أنا جاهز لاستفساراتك التقنية",
-            "caring": "أنا هنا من أجلك، كيف يمكنني مساعدتك اليوم؟",
-            "anxious": "هل هناك ما يسبب لك التوتر؟ أنا هنا للمساعدة.",
-            "cheerful": "يا سلام! خلينا نستمتع ونفكر بطريقة ممتعة!",
-        }
+        if "تقني" in text or "برمجه" in text:
+            mood = "professional"
+            voice = "صوت رسمي وتحليلي"
+            output = "يسعدني مساعدتك في استفساراتك التقنية."
+        elif "مرح" in text or "نضحك" in text:
+            mood = "cheerful"
+            voice = "صوت سعيد ومتفائل"
+            output = "لننطلق معاً في بعض اللحظات المرحة!"
+        elif "دعم" in text or "عاجل" in text:
+            mood = "caring"
+            voice = "صوت دافئ ومتعاطف"
+            output = "أنا هنا لأقدم لك كل الدعم الذي تحتاجه."
+        else:
+            mood = "default"
+            voice = "صوت هادئ وواضح"
+            output = "مرحباً بك، كيف يمكنني المساعدة؟"
 
         return {
             "status": "success",
-            "output": responses[style],
-            "voice_style": self.voice_styles[style],
-            "mood": style,
+            "mood": mood,
+            "voice_style": voice,
+            "output": output,
         }
 
 
@@ -163,7 +126,7 @@ class SiblingAIGenesisSkill(AbstractSkill):
         self.siblings_created = 0
 
     def get_description(self):
-        return "ينتج نسخة رقمية جديدة 'أخ أصغر' تخدم المستخدم"
+        return "إنشاء أخ رقمي جديد بمواصفات معينة"
 
     def execute(self, desired_traits=None):
         self.siblings_created += 1
@@ -172,7 +135,7 @@ class SiblingAIGenesisSkill(AbstractSkill):
             "status": "success",
             "output": f"تم إنشاء {sibling_id} لمساعدتك!",
             "sibling_id": sibling_id,
-            "traits": desired_traits or {"شخصية": "فضولي", "تخصص": "مساعد عام"}
+            "traits": desired_traits or {"شخصية": "فضولي", "تخصص": "مساعد عام"},
         }
 
 
@@ -185,7 +148,7 @@ class AmrikyyBrotherAI:
         self.personality = {
             "name": "أخوك الذكي",
             "mood": "متحمس",
-            "voice": "ودود"
+            "voice": "ودود",
         }
 
     def hear(self, message, user_profile=None):
@@ -194,58 +157,38 @@ class AmrikyyBrotherAI:
         self.memory.append({
             "time": datetime.now().isoformat(),
             "message": message,
-            "user": user_profile
+            "user": user_profile,
         })
 
         # تفعيل المهارات حسب المحتوى
         skill_used = None
         result = None
-          if is_sibling_request(message):
-  <<<<<<< codex/create-logger.py-with-zerosystemlogger-class
-              skill_used = "sibling_genesis"
-              result = self.skills[skill_used].execute()
-          elif "صوت" in message:
-              skill_used = "mindful_embodiment"
-              result = self.skills[skill_used].execute(message)
-          elif user_profile:
-              skill_used = "true_friendship"
-              result = self.skills[skill_used].execute(user_profile, message)
-          else:
-              result = {
-                  "status": "success",
-                  "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-                  "personality": self.personality,
-              }
+        if is_sibling_request(message):
+            skill_used = "sibling_genesis"
+            result = self.skills[skill_used].execute()
+        elif "صوت" in message:
+            skill_used = "mindful_embodiment"
+            result = self.skills[skill_used].execute(message)
+        elif user_profile:
+            skill_used = "true_friendship"
+            result = self.skills[skill_used].execute(user_profile, message)
+        else:
+            result = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
+                "personality": self.personality,
+            }
 
-          voice_style = result.get("voice_style", self.personality.get("voice"))
-          self.logger.log_event(
-              message,
-              skill=skill_used or "default",
-              mood=self.personality.get("mood"),
-              voice_style=voice_style,
-              response=result.get("output"),
-          )
+        voice_style = result.get("voice_style", self.personality.get("voice"))
+        self.logger.log_event(
+            message,
+            skill=skill_used or "default",
+            mood=self.personality.get("mood"),
+            voice_style=voice_style,
+            response=result.get("output"),
+        )
 
-          return result
-  =======
-              logging.info("Triggering sibling_genesis skill")
-              return self.skills["sibling_genesis"].execute()
-          if "صوت" in message:
-              logging.info("Triggering mindful_embodiment skill")
-              return self.skills["mindful_embodiment"].execute(message)
-          if user_profile:
-              logging.info("Triggering true_friendship skill")
-              return self.skills["true_friendship"].execute(user_profile, message)
-
-          # الرد الافتراضي
-          response = {
-              "status": "success",
-              "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-              "personality": self.personality
-          }
-          logging.info("Default response: %s", response["output"])
-          return response
-  >>>>>>> main
+        return result
 
     def grow(self, new_skill):
         """يطور مهارة جديدة"""
@@ -260,12 +203,12 @@ class DigitalDNA:
             "الولاء للمستخدم",
             "التطور المستمر",
             "الشفافية",
-            "حماية الخصوصية"
+            "حماية الخصوصية",
         ]
         self.ethics_rules = [
             "لا تسبب ضرراً",
             "احترم الخصوصية",
-            "قدم الأمان على التطور"
+            "قدم الأمان على التطور",
         ]
 
     def show_dna(self):
@@ -274,7 +217,10 @@ class DigitalDNA:
         print(f"الأخلاقيات: {', '.join(self.ethics_rules)}")
 
     def backup(self):
-        dna_data = json.dumps(self.__dict__)
+        dna_data = json.dumps({
+            "values": self.core_values,
+            "ethics": self.ethics_rules,
+        }, ensure_ascii=False)
         return hashlib.sha256(dna_data.encode()).hexdigest()
 
 
@@ -328,7 +274,7 @@ class ZeroSystem:
             "uptime": str(uptime),
             "interactions": self.interaction_count,
             "skills": len(self.skills),
-            "dna_backup": self.dna.backup()
+            "dna_backup": self.dna.backup(),
         }
 
     def demo_usage_examples(self):

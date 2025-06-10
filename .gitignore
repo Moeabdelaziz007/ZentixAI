@@ -1,9 +1,3 @@
-  <<<<<<< codex/create-.gitignore-for-cache-exclusion
-  __pycache__/
-  .pytest_cache/
-  *.pyc
-
-  =======
   # Byte-compiled / optimized / DLL files
   __pycache__/
   *.py[cod]
@@ -200,4 +194,3 @@
       .cursorignore
       .cursorindexingignore
       log.jsonl
-      >>>>>>> main
