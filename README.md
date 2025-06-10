@@ -1,61 +1,61 @@
-# sss
+# Onlook Starter Template
 
-This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
+<p align="center">
+  <img src="app/favicon.ico" />
+</p>
 
-Requires **Python&nbsp;3.8 or later**. No additional dependencies beyond the standard library are needed.
+This is an [Onlook](https://onlook.com/) project set up with
+[Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and
+[ShadCN](https://ui.shadcn.com).
 
-Run the calculator plugin directly:
-```bash
-python plugin_example.py
-```
-This prints `{'result': 8}`.
+## Getting Started
 
-## Usage Examples
-
-Run `python zero_system.py` to launch the demo and create a `system` object. Below are sample interactions with the system:
-
-### التعليم
-```python
-system.interact("شرح لي نظرية الكم بطريقة بسيطة")
-# 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
-```
-
-### الصحة النفسية
-```python
-system.interact("أشعر بالقلق اليوم")
-# 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
-```
-
-### الإبداع التقني
-```python
-system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-# 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-```
-
-## Command Line Interface
-
-Use `cli.py` to interact with the system from the terminal. The script exposes a
-few simple commands:
+First, run the development server:
 
 ```bash
-# start an interactive chat session
-python cli.py interactive
-
-# display system status information
-python cli.py status
-
-# run the predefined demo interactions
-python cli.py demo
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Running Tests
+  <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
+  ### الإبداع التقني
+  ```python
+  system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+  ```
 
-This repository uses `pytest` for unit testing. From the repository root run:
+  ## Command Line Interface
 
-```bash
-pytest
-```
+  Use `cli.py` to interact with the system from the terminal. The script exposes a
+  few simple commands:
 
-The tests in `tests/test_zero_system.py` verify that sibling requests are
-detected correctly, that the system status includes expected fields, and that
-creating siblings produces unique identifiers.
+  ```bash
+  # start an interactive chat session
+  python cli.py interactive
+
+  # display system status information
+  python cli.py status
+
+  # run the predefined demo interactions
+  python cli.py demo
+  ```
+
+  ## Running Tests
+
+  This repository uses `pytest` for unit testing. From the repository root run:
+
+  ```bash
+  pytest
+  ```
+
+  The tests in `tests/test_zero_system.py` verify that sibling requests are
+  detected correctly, that the system status includes expected fields, and that
+  creating siblings produces unique identifiers.
+  =======
+  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+  >>>>>>> main

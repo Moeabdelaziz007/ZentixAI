@@ -1,11 +1,24 @@
-"""Simple command line interface for :mod:`zero_system`."""
+  <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
+  """Simple command line interface for :mod:`zero_system`."""
 
-import argparse
-from zero_system import ZeroSystem
+  import argparse
+  from zero_system import ZeroSystem
 
 
-def run_interactive(system: ZeroSystem) -> None:
-    """Launch an interactive chat loop."""
+  def run_interactive(system: ZeroSystem) -> None:
+      """Launch an interactive chat loop."""
+  =======
+  import logging
+  from zero_system import ZeroSystem
+
+
+  def main():
+      logging.basicConfig(
+          level=logging.INFO,
+          filename="zero_system.log",
+          format="%(asctime)s - %(levelname)s - %(message)s",
+      )
+  >>>>>>> main
     print("=== Zero System CLI ===")
     system.dna.show_dna()
     try:
