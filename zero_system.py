@@ -7,13 +7,7 @@ import json
 import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
-import logging
-
-logging.basicConfig(
-    level=logging.INFO,
-    filename="zero_system.log",
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
@@ -152,8 +146,9 @@ class SiblingAIGenesisSkill(AbstractSkill):
 
 # ======================= نواة الأخ الرقمي =======================
 class AmrikyyBrotherAI:
-    def __init__(self, skills):
+    def __init__(self, skills, logger=None):
         self.skills = skills
+        self.logger = logger or ZeroSystemLogger()
         self.memory = []
         self.personality = {
             "name": "أخوك الذكي",
@@ -170,19 +165,34 @@ class AmrikyyBrotherAI:
         })
 
         # تفعيل المهارات حسب المحتوى
+        skill_used = None
+        result = None
         if is_sibling_request(message):
-            return self.skills["sibling_genesis"].execute()
-        if "صوت" in message:
-            return self.skills["mindful_embodiment"].execute(message)
-        if user_profile:
-            return self.skills["true_friendship"].execute(user_profile, message)
+            skill_used = "sibling_genesis"
+            result = self.skills[skill_used].execute()
+        elif "صوت" in message:
+            skill_used = "mindful_embodiment"
+            result = self.skills[skill_used].execute(message)
+        elif user_profile:
+            skill_used = "true_friendship"
+            result = self.skills[skill_used].execute(user_profile, message)
+        else:
+            result = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
+                "personality": self.personality,
+            }
 
-        # الرد الافتراضي
-        return {
-            "status": "success",
-            "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-            "personality": self.personality
-        }
+        voice_style = result.get("voice_style", self.personality.get("voice"))
+        self.logger.log_event(
+            message,
+            skill=skill_used or "default",
+            mood=self.personality.get("mood"),
+            voice_style=voice_style,
+            response=result.get("output"),
+        )
+
+        return result
 
     def grow(self, new_skill):
         """يطور مهارة جديدة"""
@@ -230,8 +240,11 @@ class ZeroSystem:
         # إنشاء الحمض النووي
         self.dna = DigitalDNA()
 
+        # مسجل الأحداث
+        self.logger = ZeroSystemLogger()
+
         # تهيئة الأخ الرقمي
-        self.brother_ai = AmrikyyBrotherAI(self.skills)
+        self.brother_ai = AmrikyyBrotherAI(self.skills, self.logger)
 
         # إحصائيات النظام
         self.start_time = datetime.now()
