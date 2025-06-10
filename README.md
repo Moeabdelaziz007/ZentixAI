@@ -4,7 +4,13 @@ This repository demonstrates a minimal plugin-based system in Python. See `plugi
 
 ## Usage Examples
 
-Below are sample interactions with the system:
+Below are sample interactions with the system. To run the calculator plugin
+directly, execute:
+
+```bash
+python plugin_example.py
+```
+This prints `{'result': 8}`.
 
 ### التعليم
 ```python
