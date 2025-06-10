@@ -1,6 +1,6 @@
 import unittest
 
-from zero_system import ZeroSystem
+from sss.zero_system import ZeroSystem
 
 
 class TestDynamicSkill(unittest.TestCase):
