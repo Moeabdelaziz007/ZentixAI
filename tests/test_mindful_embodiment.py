@@ -27,11 +27,14 @@ class TestMindfulEmbodimentSkill(unittest.TestCase):
         self.assertEqual(result["mood"], "cheerful")
         self.assertEqual(result["voice_style"], "صوت سعيد ومتفائل")
 
-    def test_support_context(self):
-        result = self.skill.execute("انا احتاج دعم عاجل")
-        self.assertEqual(result["mood"], "caring")
-        self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+      def test_support_context(self):
+          result = self.skill.execute("انا احتاج دعم عاجل")
+          self.assertEqual(result["mood"], "caring")
+          self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+   codex/standardize-imports-in-tests-directory
+  
 
 
-if __name__ == "__main__":
-    unittest.main()
+  if __name__ == "__main__":
+      unittest.main()
+   main
