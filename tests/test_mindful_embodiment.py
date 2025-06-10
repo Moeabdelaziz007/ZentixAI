@@ -1,8 +1,11 @@
   <<<<<<< codex/add-logging-to-zerosystem.interact
   import unittest
 
+ codex/update-.gitignore-and-remove-log-files
+class TestMindfulEmbodiment(unittest.TestCase):
+
   from sss.zero_system import MindfulEmbodimentSkill
-  =======
+  
   import os, sys
 
   sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
@@ -15,6 +18,7 @@
 class TestMindfulEmbodimentSkill(unittest.TestCase):
     def setUp(self):
         self.skill = MindfulEmbodimentSkill()
+ main
 
     def test_default_context(self):
         result = self.skill.execute("اهلا")
