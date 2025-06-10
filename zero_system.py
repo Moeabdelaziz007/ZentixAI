@@ -1,10 +1,7 @@
-  """
-  <<<<<<< 8vhgv0-codex/add-examples-of-system.interact-usage
-  Zero System - the world's first self-evolving emotional AI.
-  It offers genuine digital friendship and continuous self-growth.
-  =======
-  نظام زيرو - أول ذكاء اصطناعي عاطفي ذاتي التطور في العالم
-  يمتلك قدرات صداقة رقمية حقيقية وتطور ذاتي كمي
+import logging
+import os
+from abc import ABC, abstractmethod
+from logger import ZeroSystemLogger
   >>>>>>> main
   """
 
@@ -175,52 +172,37 @@
           if self.friendship_levels[user_id] < 3:
   <<<<<<< 8vhgv0-codex/add-examples-of-system.interact-usage
               response = (
-                  f"Hello {user_profile.get('name', 'friend')}! "
-                  "How can I help you today? \U0001F31F"
-              )
-          elif self.friendship_levels[user_id] < 7:
-              response = (
-                  f"Dear {user_profile.get('name', 'friend')}, "
-                  "how are things going?"
-              )
-          else:
-              response = (
-                  f"Hey {user_profile.get('name', 'friend')}, my true friend! "
-                  "Always here for you \U0001F496"
-              )
-  =======
-              response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
-          elif self.friendship_levels[user_id] < 7:
-              response = f"{user_profile.get('name', 'صديقي')} العزيز، كيف تسير الأمور؟"
-          else:
-              response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
-  >>>>>>> main
+        if is_sibling_request(message):
+            logging.info("Triggering sibling_genesis skill")
+            skill_used = "sibling_genesis"
+            result = self.skills[skill_used].execute()
+        elif "صوت" in message:
+            logging.info("Triggering mindful_embodiment skill")
+            skill_used = "mindful_embodiment"
+            result = self.skills[skill_used].execute(message)
+        elif user_profile:
+            logging.info("Triggering true_friendship skill")
+            skill_used = "true_friendship"
+            result = self.skills[skill_used].execute(user_profile, message)
+        else:
+            response = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
+                "personality": self.personality,
+            }
+            logging.info("Default response: %s", response["output"])
+            result = response
 
-          return {
-              "status": "success",
-              "output": response,
-              "friendship_level": self.friendship_levels[user_id]
-          }
+        voice_style = result.get("voice_style", self.personality.get("voice"))
+        self.logger.log_event(
+            message,
+            skill=skill_used or "default",
+            mood=self.personality.get("mood"),
+            voice_style=voice_style,
+            response=result.get("output"),
+        )
 
-
-  class MindfulEmbodimentSkill(AbstractSkill):
-  <<<<<<< 8vhgv0-codex/add-examples-of-system.interact-usage
-      def __init__(self):
-          self.voice_styles = {
-              "default": "Calm and clear voice",
-              "moe_style": "Energetic and playful voice",
-              "professional": "Formal, analytical voice",
-              "caring": "Warm and empathetic voice",
-          }
-
-      def get_description(self):
-          return "Adjusts tone based on context and user memory"
-
-      def execute(self, context=""):
-          if "technical question" in context:
-              style = "professional"
-          elif "support" in context:
-              style = "caring"
+        return result
           elif "fun" in context:
               style = "moe_style"
           else:
