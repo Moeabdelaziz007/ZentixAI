@@ -1,5 +1,6 @@
 """Simple chat dashboard with user login."""
 
+import os
 from flask import (
     Flask,
     render_template,
@@ -21,7 +22,7 @@ from zero_system import ZeroSystem
 
 
 app = Flask(__name__)
-app.secret_key = "change-me"
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-me")
 
 
 login_manager = LoginManager(app)
