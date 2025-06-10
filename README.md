@@ -22,6 +22,17 @@ pnpm dev
 bun dev
 ```
 
+## Deployment
+
+The Flask dashboard uses `FLASK_SECRET_KEY` to secure user sessions. Set this
+variable before running `dashboard.py`:
+
+```bash
+export FLASK_SECRET_KEY="your-secret-key"
+python dashboard.py
+```
+
+
   <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
   ### الإبداع التقني
   ```python
