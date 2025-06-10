@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Amrikyy BabyAgi</title>
+  <title>Login - Amrikyy BabyAgi</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -11,13 +11,10 @@
     <header class="header">
       <h1>Amrikyy BabyAgi</h1>
     </header>
-    <main class="chat">
-      <div class="bubble ai">Hello! I'm here to assist you.</div>
-      <div class="bubble user">Great, thanks!</div>
-    </main>
-    <form class="input-area">
-      <input type="text" placeholder="Send a message...">
-      <button type="submit">Send</button>
+    <form class="input-area" action="{{ url_for('login') }}" method="post">
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <button type="submit">Login</button>
     </form>
   </div>
 </body>
