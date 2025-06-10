@@ -1,10 +1,6 @@
-import logging
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
-
-  from sss.zero_system import is_sibling_request, ZeroSystem
-  =======
-  >>>>>>> main
-
+import io
+import contextlib
+import unittest
 
 from sss.zero_system import is_sibling_request, ZeroSystem
 
@@ -13,10 +9,8 @@ class TestRequest(unittest.TestCase):
     def test_is_sibling_request_true(self):
         self.assertTrue(is_sibling_request("اريد اخ صغير يساعدني"))
 
-
     def test_is_sibling_request_false(self):
         self.assertFalse(is_sibling_request("اريد صديق جديد"))
-
 
     def test_interact_logs_and_output(self):
         system = ZeroSystem()
@@ -34,6 +28,3 @@ class TestRequest(unittest.TestCase):
         self.assertIn(f"User message: {message}", log_text)
         self.assertTrue(any("AI response:" in record for record in log.output))
 
-
-if __name__ == "__main__":
-    unittest.main()
