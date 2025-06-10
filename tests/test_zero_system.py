@@ -11,5 +11,3 @@ class TestZeroSystem(unittest.TestCase):
         after = genesis_skill.siblings_created
         self.assertEqual(after, before + 1)
 
-if __name__ == "__main__":
-    unittest.main()
