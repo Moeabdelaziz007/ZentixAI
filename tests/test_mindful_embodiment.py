@@ -1,13 +1,12 @@
+import os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
 
 from zero_system import MindfulEmbodimentSkill
 
 
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
-  class TestMindfulEmbodimentSkill(unittest.TestCase):
-  =======
-  class TestMindfulEmbodiment(unittest.TestCase):
-  >>>>>>> main
+class TestMindfulEmbodimentSkill(unittest.TestCase):
     def setUp(self):
         self.skill = MindfulEmbodimentSkill()
 
@@ -34,8 +33,5 @@ from zero_system import MindfulEmbodimentSkill
         self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
 
 
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
-  if __name__ == "__main__":
-      unittest.main()
-  =======
-  >>>>>>> main
+if __name__ == "__main__":
+    unittest.main()
