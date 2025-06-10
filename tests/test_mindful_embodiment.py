@@ -1,6 +1,9 @@
+import os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
 
-from sss.zero_system import MindfulEmbodimentSkill
+from zero_system import MindfulEmbodimentSkill
 
 
 class TestMindfulEmbodimentSkill(unittest.TestCase):
@@ -24,7 +27,14 @@ class TestMindfulEmbodimentSkill(unittest.TestCase):
         self.assertEqual(result["mood"], "cheerful")
         self.assertEqual(result["voice_style"], "صوت سعيد ومتفائل")
 
-    def test_support_context(self):
-        result = self.skill.execute("انا احتاج دعم عاجل")
-        self.assertEqual(result["mood"], "caring")
-        self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+      def test_support_context(self):
+          result = self.skill.execute("انا احتاج دعم عاجل")
+          self.assertEqual(result["mood"], "caring")
+          self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+   codex/standardize-imports-in-tests-directory
+  
+
+
+  if __name__ == "__main__":
+      unittest.main()
+   main
