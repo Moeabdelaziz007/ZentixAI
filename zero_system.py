@@ -5,17 +5,10 @@
 
 import json
 import hashlib
+from datetime import datetime
+from abc import ABC, abstractmethod
 import logging
 import os
-from abc import ABC, abstractmethod
-  from datetime import datetime
-  <<<<<<< codex/resolve-merge-conflicts-in-files
-
-  =======
-  from abc import ABC, abstractmethod
-  import logging
-  import os
-  >>>>>>> main
 from logger import ZeroSystemLogger
 
 
@@ -181,72 +174,51 @@ class SiblingAIGenesisSkill(AbstractSkill):
           }
 
 
-  # ======================= نواة الأخ الرقمي =======================
-  class AmrikyyBrotherAI:
-      def __init__(self, skills, logger=None):
-          self.skills = skills
-          self.logger = logger or ZeroSystemLogger()
-          self.memory = []
-          self.personality = {"name": "أخوك الذكي", "mood": "متحمس", "voice": "ودود"}
+# ======================= نواة الأخ الرقمي =======================
+class AmrikyyBrotherAI:
+    def __init__(self, skills, logger=None):
+        self.skills = skills
+        self.logger = logger or ZeroSystemLogger()
+        self.memory = []
+        self.personality = {"name": "أخوك الذكي", "mood": "متحمس", "voice": "ودود"}
 
-      def hear(self, message, user_profile=None):
-          """يتلقى الرسالة ويحدد الرد المناسب"""
-          logging.info("Received message: %s", message)
-          self.memory.append(
-              {
-                  "time": datetime.now().isoformat(),
-                  "message": message,
-                  "user": user_profile,
-              }
-          )
+    def hear(self, message, user_profile=None):
+        """يتلقى الرسالة ويحدد الرد المناسب"""
+        logging.info("Received message: %s", message)
+        self.memory.append(
+            {
+                "time": datetime.now().isoformat(),
+                "message": message,
+                "user": user_profile,
+            }
+        )
 
-          # تفعيل المهارات حسب المحتوى
-          skill_used = None
-          result = None
-          if is_sibling_request(message):
-  <<<<<<< codex/resolve-merge-conflicts-in-files
-              skill_used = "sibling_genesis"
-              result = self.skills[skill_used].execute()
-          elif "صوت" in message:
-              skill_used = "mindful_embodiment"
-              result = self.skills[skill_used].execute(message)
-          elif user_profile:
-              skill_used = "true_friendship"
-              result = self.skills[skill_used].execute(user_profile, message)
-          else:
-              result = {
-                  "status": "success",
-                  "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-                  "personality": self.personality,
-              }
-              logging.info("Default response: %s", result["output"])
+        # تفعيل المهارات حسب المحتوى
+        skill_used = None
+        result = None
+        if is_sibling_request(message):
+            logging.info("Triggering sibling_genesis skill")
+            skill_used = "sibling_genesis"
+            result = self.skills[skill_used].execute()
+        elif "صوت" in message:
+            logging.info("Triggering mindful_embodiment skill")
+            skill_used = "mindful_embodiment"
+            result = self.skills[skill_used].execute(message)
+        elif user_profile:
+            logging.info("Triggering true_friendship skill")
+            skill_used = "true_friendship"
+            result = self.skills[skill_used].execute(user_profile, message)
+        else:
+            logging.info("Default response")
+            result = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001f680",
+                "personality": self.personality,
+            }
 
-          voice_style = result.get("voice_style", self.personality.get("voice"))
-          logging.info("Skill used: %s", skill_used)
-  =======
-              logging.info("Triggering sibling_genesis skill")
-              skill_used = "sibling_genesis"
-              result = self.skills[skill_used].execute()
-          elif "صوت" in message:
-              logging.info("Triggering mindful_embodiment skill")
-              skill_used = "mindful_embodiment"
-              result = self.skills[skill_used].execute(message)
-          elif user_profile:
-              logging.info("Triggering true_friendship skill")
-              skill_used = "true_friendship"
-              result = self.skills[skill_used].execute(user_profile, message)
-          else:
-              logging.info("Default response")
-              result = {
-                  "status": "success",
-                  "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001f680",
-                  "personality": self.personality,
-              }
-
-          voice_style = result.get("voice_style", self.personality.get("voice"))
-  >>>>>>> main
-          self.logger.log_event(
-              message,
+        voice_style = result.get("voice_style", self.personality.get("voice"))
+        self.logger.log_event(
+            message,
             skill=skill_used or "default",
             mood=self.personality.get("mood"),
             voice_style=voice_style,
