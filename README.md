@@ -1,205 +1,61 @@
-  <<<<<<< 8vhgv0-codex/add-examples-of-system.interact-usage
-  # sss
+# ZentixAI
 
-    This repository demonstrates a minimal plugin-based system in Python. See `plugin_example.py` for a simple calculator plugin and how to invoke it. The `zero_system.py` script contains a larger Arabic demo that implements a friendly digital assistant.
+This repository demonstrates a minimal plugin-based system in Python along with a small web dashboard. The `plugin_example.py` file shows how to register and execute a calculator plugin, while `zero_system.py` contains an Arabic demo implementing a friendly digital assistant.
 
-  <<<<<<< codex/remove-merge-markers-and-refactor-logging-setup
-  This is an [Onlook](https://onlook.com/) project set up with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [ShadCN](https://ui.shadcn.com).
-  =======
-    Run the calculator plugin directly:
-    ```bash
-    python plugin_example.py
-    ```
-    This prints `{'result': 8}`.
-  >>>>>>> main
+## Requirements
 
-  ## Usage Examples
+* Python 3.8 or later
+* Only standard library modules are required
 
-  Run `python zero_system.py` to launch the demo and create a `system` object. Here are some example interactions:
+## Usage
 
-  <<<<<<< codex/remove-merge-markers-and-refactor-logging-setup
-  ```bash
-  npm run dev
-  # or
-  yarn dev
-  # or
-  pnpm dev
-  # or
-  bun dev
-  ```
+Run the calculator plugin:
 
-  <<<<<<< codex/resolve-merge-conflicts-in-files
-  ### الإبداع التقني
-  ```python
-  system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-  ```
-  =======
-    ### الإبداع التقني
-    ```python
-    system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-    # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-    ```
-  >>>>>>> main
+```bash
+python plugin_example.py
+# {'result': 8}
+```
 
-  ## Command Line Interface
+Launch the demo assistant:
 
-  <<<<<<< codex/resolve-merge-conflicts-in-files
-  Use `cli.py` to interact with the system from the terminal. The script exposes a
-  few simple commands:
+```bash
+python zero_system.py
+```
 
-  ```bash
-  # start an interactive chat session
-  python cli.py interactive
+Use the command line interface:
 
-  # display system status information
-  python cli.py status
+```bash
+python cli.py interactive   # start an interactive chat session
+python cli.py status        # display system status information
+python cli.py demo          # run the predefined demo interactions
+```
 
-  # run the predefined demo interactions
-  python cli.py demo
-  ```
-  =======
-    Use `cli.py` to interact with the system from the terminal. The script exposes a few simple commands:
+## Running Tests
 
-    ```bash
-    python cli.py interactive   # start an interactive chat session
-    python cli.py status        # display system status information
-    python cli.py demo          # run the predefined demo interactions
-    ```
-  >>>>>>> main
+Install `pytest` and execute:
 
-  ## Running Tests
+```bash
+pytest
+```
 
-  This repository uses `pytest` for unit testing. From the repository root run:
+The tests verify plugin behaviour and key `ZeroSystem` features.
 
-  ```bash
-  pytest
-  ```
+## Web Dashboard
 
-  <<<<<<< codex/resolve-merge-conflicts-in-files
-  The tests in `tests/test_zero_system.py` verify that sibling requests are
-  detected correctly, that the system status includes expected fields, and that
-  creating siblings produces unique identifiers.
-  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
-  =======
-    The tests in `tests/test_zero_system.py` verify that sibling requests are detected correctly, that the system status includes expected fields, and that creating siblings produces unique identifiers.
+The provided Next.js template can be started with:
 
-    Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
-    =======
-      ### Education
-      ```python
-      system.interact("Explain quantum theory in simple terms")
-      # 🤖 Assistant: Sure! Imagine the world is made of tiny Lego blocks...
-      ```
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-      ### Mental health
-      ```python
-      system.interact("I feel anxious today")
-      # 🤖 Assistant: I understand. Let's take a deep breath together... 💆‍♂️
-      ```
+Open <http://localhost:3000> in Onlook to view the dashboard.
 
-      <<<<<<< codex/add-open-source-license
-      ### الإبداع التقني
-      ```python
-      system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-      # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-      ```
+## License
 
-      ## License
-
-      This project is licensed under the [MIT License](LICENSE).
-      =======
-        ### Technical creativity
-        ```python
-        system.interact("Design an AI system for an online store")
-        # 🤖 Assistant: I've drafted a system with the following features... Need any adjustments?
-        ```
-
-        For better results, pass a user profile dictionary with an `id` and `name` to
-        `interact()` so the assistant can remember you. You can run
-        `system.meta_loop()` to iterate through these examples automatically.
-
-        =======
-        # Onlook Starter Template
-
-        <p align="center">
-          <img src="app/favicon.ico" />
-        </p>
-
-        This is an [Onlook](https://onlook.com/) project set up with
-        [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and
-        [ShadCN](https://ui.shadcn.com).
-
-        ## Getting Started
-
-        First, run the development server:
-
-          <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
-          * Requires **Python 3.8 or later**
-          * No additional dependencies beyond the standard library
-
-          Run the calculator plugin directly:
-          =======
-        >>> >>>> main
-        ```bash
-        npm run dev
-        # or
-        yarn dev
-        # or
-        pnpm dev
-        # or
-        bun dev
-        ```
-
-        ## Deployment
-
-        The Flask dashboard uses `FLASK_SECRET_KEY` to secure user sessions. Set this
-        variable before running `dashboard.py`:
-
-        ```bash
-        export FLASK_SECRET_KEY="your-secret-key"
-        python dashboard.py
-        ```
-
-
-          <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
-          ### الإبداع التقني
-          ```python
-          system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-          # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-          ```
-
-          ## Command Line Interface
-
-          Use `cli.py` to interact with the system from the terminal. The script exposes a
-          few simple commands:
-
-          ```bash
-          # start an interactive chat session
-          python cli.py interactive
-
-          # display system status information
-          python cli.py status
-
-          # run the predefined demo interactions
-          python cli.py demo
-          ```
-
-          ## Running Tests
-
-          This repository uses `pytest` for unit testing. From the repository root run:
-
-          ```bash
-          pytest
-          ```
-
-          The tests in `tests/test_zero_system.py` verify that sibling requests are
-          detected correctly, that the system status includes expected fields, and that
-          creating siblings produces unique identifiers.
-          =======
-          Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
-          >>>>>>> main
-        >>>>>>> main
-      >>>>>>> main
-    >>>>>>> main
-  >>>>>>> main
+This project is licensed under the [MIT License](LICENSE).

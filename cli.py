@@ -1,8 +1,4 @@
-  <<<<<<< codex/resolve-merge-conflicts-in-files
-  """Simple command line interface for :mod:`zero_system`."""
-  =======
-  """Command line interface for interacting with ZeroSystem."""
-  >>>>>>> main
+"""Command line interface for interacting with ZeroSystem."""
 
 import argparse
 import logging
