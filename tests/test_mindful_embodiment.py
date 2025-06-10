@@ -1,6 +1,6 @@
 import unittest
 
-from zero_system import MindfulEmbodimentSkill
+from sss.zero_system import MindfulEmbodimentSkill
 
 
 class TestMindfulEmbodiment(unittest.TestCase):
