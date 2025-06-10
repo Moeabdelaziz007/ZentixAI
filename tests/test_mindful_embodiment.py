@@ -1,6 +1,24 @@
-import unittest
+  <<<<<<< codex/add-logging-to-zerosystem.interact
+  import unittest
 
+ codex/update-.gitignore-and-remove-log-files
 class TestMindfulEmbodiment(unittest.TestCase):
+
+  from sss.zero_system import MindfulEmbodimentSkill
+  
+  import os, sys
+
+  sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+  import unittest
+
+  from zero_system import MindfulEmbodimentSkill
+  >>>>>>> main
+
+
+class TestMindfulEmbodimentSkill(unittest.TestCase):
+    def setUp(self):
+        self.skill = MindfulEmbodimentSkill()
+ main
 
     def test_default_context(self):
         result = self.skill.execute("اهلا")
@@ -19,14 +37,25 @@ class TestMindfulEmbodiment(unittest.TestCase):
         self.assertEqual(result["mood"], "cheerful")
         self.assertEqual(result["voice_style"], "صوت سعيد ومتفائل")
 
-    def test_support_context(self):
-        result = self.skill.execute("انا احتاج دعم عاجل")
-        self.assertEqual(result["mood"], "caring")
-        self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+  <<<<<<< codex/add-logging-to-zerosystem.interact
+      def test_support_context(self):
+          result = self.skill.execute("انا احتاج دعم عاجل")
+          self.assertEqual(result["mood"], "caring")
+          self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
 
 
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
   if __name__ == "__main__":
       unittest.main()
   =======
+        def test_support_context(self):
+            result = self.skill.execute("انا احتاج دعم عاجل")
+            self.assertEqual(result["mood"], "caring")
+            self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
+     codex/standardize-imports-in-tests-directory
+
+
+
+    if __name__ == "__main__":
+        unittest.main()
+     main
   >>>>>>> main
