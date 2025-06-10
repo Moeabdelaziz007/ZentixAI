@@ -1,10 +1,7 @@
 import logging
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
-
-  from sss.zero_system import is_sibling_request, ZeroSystem
-  =======
-  >>>>>>> main
-
+import unittest
+import io
+import contextlib
 
 from sss.zero_system import is_sibling_request, ZeroSystem
 
