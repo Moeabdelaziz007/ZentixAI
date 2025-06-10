@@ -10,15 +10,10 @@ This is an [Onlook](https://onlook.com/) project set up with
 
 ## Getting Started
 
-First, run the development server:
+### Next.js development server
 
-  <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
-  * Requires **Python 3.8 or later**
-  * No additional dependencies beyond the standard library
+Run the development server:
 
-  Run the calculator plugin directly:
-  =======
->>> >>>> main
 ```bash
 npm run dev
 # or
@@ -29,40 +24,35 @@ pnpm dev
 bun dev
 ```
 
-  <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
-  ### الإبداع التقني
-  ```python
-  system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-  ```
+Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
 
-  ## Command Line Interface
+### Command Line Interface
 
-  Use `cli.py` to interact with the system from the terminal. The script exposes a
-  few simple commands:
+This project also includes a simple command-line interface for the `ZeroSystem`.
+It requires **Python 3.10+** as union type syntax is used in `cli.py` and
+`plugin_example.py`.
 
-  ```bash
-  # start an interactive chat session
-  python cli.py interactive
+Use `cli.py` to interact with the system from the terminal:
 
-  # display system status information
-  python cli.py status
+```bash
+# start an interactive chat session
+python cli.py interactive
 
-  # run the predefined demo interactions
-  python cli.py demo
-  ```
+# display system status information
+python cli.py status
 
-  ## Running Tests
+# run the predefined demo interactions
+python cli.py demo
+```
 
-  This repository uses `pytest` for unit testing. From the repository root run:
+## Running Tests
 
-  ```bash
-  pytest
-  ```
+This repository uses `pytest` for unit testing. From the repository root run:
 
-  The tests in `tests/test_zero_system.py` verify that sibling requests are
-  detected correctly, that the system status includes expected fields, and that
-  creating siblings produces unique identifiers.
-  =======
-  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
-  >>>>>>> main
+```bash
+pytest
+```
+
+The tests in `tests/test_zero_system.py` verify that sibling requests are
+detected correctly, that the system status includes expected fields, and that
+creating siblings produces unique identifiers.
