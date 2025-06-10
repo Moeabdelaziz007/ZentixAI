@@ -56,9 +56,7 @@ history = {}
 @app.route("/")
 def index():
     if current_user.is_authenticated:
-        return render_template(
-            "chat.html", history=history.get(current_user.id, [])
-        )
+        return render_template("chat.html", history=history.get(current_user.id, []))
     return render_template("login.html")
 
 
