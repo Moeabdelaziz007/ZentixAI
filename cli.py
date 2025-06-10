@@ -1,29 +1,17 @@
-  <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
-  """Simple command line interface for :mod:`zero_system`."""
+"""Command line interface for interacting with ZeroSystem."""
 
-  import argparse
-  from zero_system import ZeroSystem
-
-
-  def run_interactive(system: ZeroSystem) -> None:
-      """Launch an interactive chat loop."""
-  =======
-  import logging
-  from zero_system import ZeroSystem
+import argparse
+import logging
+from zero_system import ZeroSystem
 
 
-  def main():
-      logging.basicConfig(
-          level=logging.INFO,
-          filename="zero_system.log",
-          format="%(asctime)s - %(levelname)s - %(message)s",
-      )
-  >>>>>>> main
+def run_interactive(system: ZeroSystem) -> None:
+    """Launch an interactive chat loop."""
     print("=== Zero System CLI ===")
     system.dna.show_dna()
     try:
         while True:
-            message = input("\U0001F464 المستخدم: ")
+            message = input("\U0001f464 المستخدم: ")
             if message.lower() in {"exit", "quit"}:
                 break
             system.interact(message)
@@ -33,13 +21,19 @@
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Zero System command line interface")
+    parser.add_argument("--log", default="zero_system.log", help="path to log file")
     sub = parser.add_subparsers(dest="command", required=True)
-
     sub.add_parser("interactive", help="start interactive session")
     sub.add_parser("status", help="print system status")
     sub.add_parser("demo", help="run predefined usage examples")
 
     args = parser.parse_args(argv)
+
+    logging.basicConfig(
+        level=logging.INFO,
+        filename=args.log,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
 
     system = ZeroSystem()
 
