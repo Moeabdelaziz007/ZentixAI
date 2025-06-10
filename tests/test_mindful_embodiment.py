@@ -3,7 +3,11 @@ import unittest
 from zero_system import MindfulEmbodimentSkill
 
 
-class TestMindfulEmbodiment(unittest.TestCase):
+  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
+  class TestMindfulEmbodimentSkill(unittest.TestCase):
+  =======
+  class TestMindfulEmbodiment(unittest.TestCase):
+  >>>>>>> main
     def setUp(self):
         self.skill = MindfulEmbodimentSkill()
 
@@ -30,3 +34,8 @@ class TestMindfulEmbodiment(unittest.TestCase):
         self.assertEqual(result["voice_style"], "صوت دافئ ومتعاطف")
 
 
+  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
+  if __name__ == "__main__":
+      unittest.main()
+  =======
+  >>>>>>> main
