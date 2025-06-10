@@ -1,7 +1,7 @@
 import os
 import json
 import unittest
-import sss.zero_system as zs
+import zero_system as zs
 
 class TestInteractionLogging(unittest.TestCase):
     def test_interact_creates_log_file(self):
