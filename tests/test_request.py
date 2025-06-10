@@ -1,15 +1,21 @@
-  <<<<<<< codex/update-.gitignore-and-remove-log-files
-  import io
-  import contextlib
-  import unittest
+  <<<<<<< codex/rewrite-tests-to-use-unittest
+  import logging
 
-      from sss.zero_system import is_sibling_request, ZeroSystem
+  from sss.zero_system import is_sibling_request, ZeroSystem
   =======
-    <<<<<<< codex/standardize-imports-in-tests-directory
-    import logging
+    <<<<<<< codex/update-.gitignore-and-remove-log-files
     import io
     import contextlib
     import unittest
+  >>>>>>> main
+
+        from sss.zero_system import is_sibling_request, ZeroSystem
+    =======
+      <<<<<<< codex/standardize-imports-in-tests-directory
+      import logging
+      import io
+      import contextlib
+      import unittest
     =======
       <<<<<<< codex/resolve-merge-conflicts-in-files
       import io
