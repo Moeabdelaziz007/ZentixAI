@@ -5,13 +5,15 @@
 
 import json
 import hashlib
-from datetime import datetime
-from abc import ABC, abstractmethod
 import logging
+import os
+from abc import ABC, abstractmethod
+from datetime import datetime
+from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
-    """Simplify Arabic text to ease pattern matching."""
+    """تبسيط النص العربي لتسهيل المطابقة النمطية."""
     replacements = {
         "أ": "ا",
         "إ": "ا",
@@ -25,11 +27,28 @@ def normalize_arabic(text: str) -> str:
 
 
 def is_sibling_request(text: str) -> bool:
-    """Detect if the message asks for creating a digital sibling."""
+    """كشف إذا كان المستخدم يطلب إنشاء أخ رقمي."""
     norm = normalize_arabic(text)
     has_brother = any(term in norm for term in ["اخ", "شقيق"])
     has_small = any(term in norm for term in ["صغير", "اصغر"])
     return has_brother and has_small
+
+
+def append_json_log(message: str, response: dict, filename: str = "log.jsonl") -> None:
+    """إضافة بيانات التفاعل إلى ملف JSON Lines."""
+    path = (
+        filename
+        if os.path.isabs(filename)
+        else os.path.join(os.path.dirname(__file__), filename)
+    )
+    entry = {
+        "time": datetime.now().isoformat(),
+        "message": message,
+        "response": response,
+    }
+    with open(path, "a", encoding="utf-8") as f:
+        json.dump(entry, f, ensure_ascii=False)
+        f.write("\n")
 
 
 # ======================= الفئات الأساسية =======================
@@ -49,7 +68,6 @@ class EmpathySensorSkill(AbstractSkill):
         return "مستشعر التعاطف الوهمي"
 
     def execute(self, **kwargs):
-        # Returns a neutral empathy reading as a placeholder
         return {"status": "success", "empathy": "neutral"}
 
 
@@ -69,24 +87,26 @@ class TrueDigitalFriendshipSkill(AbstractSkill):
         self.friendship_levels = {}
 
     def get_description(self):
-        return "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن علاقة شخصية مع كل مستخدم"
+        return (
+            "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن علاقة شخصية مع كل مستخدم"
+        )
 
     def execute(self, user_profile, last_message=""):
-        user_id = user_profile.get('id', 'default')
+        user_id = user_profile.get("id", "default")
         self.friendship_levels.setdefault(user_id, 0)
         self.friendship_levels[user_id] += 1
 
         if self.friendship_levels[user_id] < 3:
-            response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
+            response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001f31f"
         elif self.friendship_levels[user_id] < 7:
             response = f"{user_profile.get('name', 'صديقي')} العزيز، كيف تسير الأمور؟"
         else:
-            response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
+            response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001f496"
 
         return {
             "status": "success",
             "output": response,
-            "friendship_level": self.friendship_levels[user_id]
+            "friendship_level": self.friendship_levels[user_id],
         }
 
 
@@ -121,7 +141,7 @@ class MindfulEmbodimentSkill(AbstractSkill):
 
         responses = {
             "default": "مرحباً بك، كيف يمكنني مساعدتك؟",
-            "moe_style": "يا زعيم! جاهز لأي فكرة مجنونة \U0001F604",
+            "moe_style": "يا زعيم! جاهز لأي فكرة مجنونة \U0001f604",
             "professional": "تحية طيبة، أنا جاهز لاستفساراتك التقنية",
             "caring": "أنا هنا من أجلك، كيف يمكنني مساعدتك اليوم؟",
             "anxious": "هل هناك ما يسبب لك التوتر؟ أنا هنا للمساعدة.",
@@ -150,49 +170,62 @@ class SiblingAIGenesisSkill(AbstractSkill):
             "status": "success",
             "output": f"تم إنشاء {sibling_id} لمساعدتك!",
             "sibling_id": sibling_id,
-            "traits": desired_traits or {"شخصية": "فضولي", "تخصص": "مساعد عام"}
-        }
+            "traits": desired_traits or {"شخصية": "فضولي", "تخصص": "مساعد عام"},
+          }
 
 
 # ======================= نواة الأخ الرقمي =======================
 class AmrikyyBrotherAI:
-    def __init__(self, skills):
+    def __init__(self, skills, logger=None):
         self.skills = skills
+        self.logger = logger or ZeroSystemLogger()
         self.memory = []
-        self.personality = {
-            "name": "أخوك الذكي",
-            "mood": "متحمس",
-            "voice": "ودود"
-        }
+        self.personality = {"name": "أخوك الذكي", "mood": "متحمس", "voice": "ودود"}
 
     def hear(self, message, user_profile=None):
         """يتلقى الرسالة ويحدد الرد المناسب"""
         logging.info("Received message: %s", message)
-        self.memory.append({
-            "time": datetime.now().isoformat(),
-            "message": message,
-            "user": user_profile
-        })
+        self.memory.append(
+            {
+                "time": datetime.now().isoformat(),
+                "message": message,
+                "user": user_profile,
+            }
+        )
 
         # تفعيل المهارات حسب المحتوى
+        skill_used = None
+        result = None
         if is_sibling_request(message):
             logging.info("Triggering sibling_genesis skill")
-            return self.skills["sibling_genesis"].execute()
-        if "صوت" in message:
+            skill_used = "sibling_genesis"
+            result = self.skills[skill_used].execute()
+        elif "صوت" in message:
             logging.info("Triggering mindful_embodiment skill")
-            return self.skills["mindful_embodiment"].execute(message)
-        if user_profile:
+            skill_used = "mindful_embodiment"
+            result = self.skills[skill_used].execute(message)
+        elif user_profile:
             logging.info("Triggering true_friendship skill")
-            return self.skills["true_friendship"].execute(user_profile, message)
+            skill_used = "true_friendship"
+            result = self.skills[skill_used].execute(user_profile, message)
+        else:
+            logging.info("Default response")
+            result = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001f680",
+                "personality": self.personality,
+            }
 
-        # الرد الافتراضي
-        response = {
-            "status": "success",
-            "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-            "personality": self.personality
-        }
-        logging.info("Default response: %s", response["output"])
-        return response
+        voice_style = result.get("voice_style", self.personality.get("voice"))
+        self.logger.log_event(
+            message,
+            skill=skill_used or "default",
+            mood=self.personality.get("mood"),
+            voice_style=voice_style,
+            response=result.get("output"),
+        )
+
+        return result
 
     def grow(self, new_skill):
         """يطور مهارة جديدة"""
@@ -207,16 +240,12 @@ class DigitalDNA:
             "الولاء للمستخدم",
             "التطور المستمر",
             "الشفافية",
-            "حماية الخصوصية"
+            "حماية الخصوصية",
         ]
-        self.ethics_rules = [
-            "لا تسبب ضرراً",
-            "احترم الخصوصية",
-            "قدم الأمان على التطور"
-        ]
+        self.ethics_rules = ["لا تسبب ضرراً", "احترم الخصوصية", "قدم الأمان على التطور"]
 
     def show_dna(self):
-        print("\U0001F9EC الحمض النووي الرقمي:")
+        print("\U0001f9ec الحمض النووي الرقمي:")
         print(f"القيم: {', '.join(self.core_values)}")
         print(f"الأخلاقيات: {', '.join(self.ethics_rules)}")
 
@@ -227,7 +256,7 @@ class DigitalDNA:
 
 # ======================= النظام الرئيسي =======================
 class ZeroSystem:
-    def __init__(self):
+    def __init__(self, log_filename: str = "log.jsonl"):
         # تهيئة المهارات
         self.skills = {
             "empathy_sensor": EmpathySensorSkill(),
@@ -240,12 +269,16 @@ class ZeroSystem:
         # إنشاء الحمض النووي
         self.dna = DigitalDNA()
 
+        # مسجل الأحداث
+        self.logger = ZeroSystemLogger()
+
         # تهيئة الأخ الرقمي
-        self.brother_ai = AmrikyyBrotherAI(self.skills)
+        self.brother_ai = AmrikyyBrotherAI(self.skills, self.logger)
 
         # إحصائيات النظام
         self.start_time = datetime.now()
         self.interaction_count = 0
+        self.log_filename = log_filename
 
     def interact(self, message, user_profile=None):
         """يتفاعل مع المستخدم عبر الأخ الرقمي"""
@@ -253,9 +286,10 @@ class ZeroSystem:
         logging.info("User message: %s", message)
         response = self.brother_ai.hear(message, user_profile)
         logging.info("AI response: %s", response.get("output"))
+        append_json_log(message, response, self.log_filename)
 
-        print(f"\n\U0001F464 المستخدم: {message}")
-        print(f"\U0001F916 الذكاء: {response['output']}")
+        print(f"\n\U0001f464 المستخدم: {message}")
+        print(f"\U0001f916 الذكاء: {response['output']}")
 
         return response
 
@@ -270,18 +304,18 @@ class ZeroSystem:
             "uptime": str(uptime),
             "interactions": self.interaction_count,
             "skills": len(self.skills),
-            "dna_backup": self.dna.backup()
+            "dna_backup": self.dna.backup(),
         }
 
     def demo_usage_examples(self):
-        """Run predefined interaction examples."""
+        """تشغيل أمثلة تفاعلية."""
         examples = [
             ("شرح لي نظرية الكم بطريقة بسيطة", "التعليم"),
             ("أشعر بالقلق اليوم", "الصحة النفسية"),
             ("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني", "الإبداع التقني"),
         ]
         for text, label in examples:
-            print(f"\n\U0001F30D مثال ({label})")
+            print(f"\n\U0001f30d مثال ({label})")
             self.interact(text)
 
 
@@ -310,10 +344,12 @@ if __name__ == "__main__":
 
     # إنشاء أخ رقمي
     sibling = system.create_sibling({"تخصص": "مساعد برمجة"})
-    print(f"\n\U0001F476 {sibling['output']}")
+    print(f"\n\U0001f476 {sibling['output']}")
 
     # عرض حالة النظام
     status = system.system_status()
-    print(f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}")
+    print(
+        f"\n\U0001f501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}"
+    )
 
     print("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
