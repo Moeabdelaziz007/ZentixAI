@@ -1,13 +1,7 @@
-  <<<<<<< codex/create-.gitignore-for-cache-exclusion
-  __pycache__/
-  .pytest_cache/
-  *.pyc
-
-  =======
-  # Byte-compiled / optimized / DLL files
-  __pycache__/
-  *.py[cod]
-  *$py.class
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
   # C extensions
   *.so
@@ -198,6 +192,5 @@
       #  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
       #  refer to https://docs.cursor.com/context/ignore-files
       .cursorignore
-      .cursorindexingignore
-      log.jsonl
-      >>>>>>> main
+.cursorindexingignore
+log.jsonl
