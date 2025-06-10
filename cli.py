@@ -1,4 +1,8 @@
-"""Simple command line interface for :mod:`zero_system`."""
+  <<<<<<< codex/resolve-merge-conflicts-in-files
+  """Simple command line interface for :mod:`zero_system`."""
+  =======
+  """Command line interface for interacting with ZeroSystem."""
+  >>>>>>> main
 
 import argparse
 import logging
@@ -11,7 +15,7 @@ def run_interactive(system: ZeroSystem) -> None:
     system.dna.show_dna()
     try:
         while True:
-            message = input("\U0001F464 المستخدم: ")
+            message = input("\U0001f464 المستخدم: ")
             if message.lower() in {"exit", "quit"}:
                 break
             system.interact(message)
@@ -27,13 +31,19 @@ def main(argv: list[str] | None = None) -> None:
     )
 
     parser = argparse.ArgumentParser(description="Zero System command line interface")
+    parser.add_argument("--log", default="zero_system.log", help="path to log file")
     sub = parser.add_subparsers(dest="command", required=True)
-
     sub.add_parser("interactive", help="start interactive session")
     sub.add_parser("status", help="print system status")
     sub.add_parser("demo", help="run predefined usage examples")
 
     args = parser.parse_args(argv)
+
+    logging.basicConfig(
+        level=logging.INFO,
+        filename=args.log,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
 
     system = ZeroSystem()
 
