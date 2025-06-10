@@ -3,7 +3,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
 
-from sss.zero_system import MindfulEmbodimentSkill
+from zero_system import MindfulEmbodimentSkill
 
 
 class TestMindfulEmbodimentSkill(unittest.TestCase):

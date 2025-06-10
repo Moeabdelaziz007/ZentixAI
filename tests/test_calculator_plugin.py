@@ -3,7 +3,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
 
-from sss.plugin_example import CalculatorPlugin
+from plugin_example import CalculatorPlugin
 
 
 class TestCalculatorPlugin(unittest.TestCase):

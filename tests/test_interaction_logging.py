@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import tempfile
 import json
 import unittest
-import sss.zero_system as zs
+import zero_system as zs
 
 
 class TestInteractionLogging(unittest.TestCase):

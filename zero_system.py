@@ -13,7 +13,7 @@ from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
-    """Simplify Arabic text to ease pattern matching."""
+    """تبسيط النص العربي لتسهيل المطابقة النمطية."""
     replacements = {
         "أ": "ا",
         "إ": "ا",
@@ -27,7 +27,7 @@ def normalize_arabic(text: str) -> str:
 
 
 def is_sibling_request(text: str) -> bool:
-    """Detect if the message asks for creating a digital sibling."""
+    """كشف إذا كان المستخدم يطلب إنشاء أخ رقمي."""
     norm = normalize_arabic(text)
     has_brother = any(term in norm for term in ["اخ", "شقيق"])
     has_small = any(term in norm for term in ["صغير", "اصغر"])
@@ -35,11 +35,7 @@ def is_sibling_request(text: str) -> bool:
 
 
 def append_json_log(message: str, response: dict, filename: str = "log.jsonl") -> None:
-    """Append interaction data to a JSON Lines file.
-
-    ``filename`` may be an absolute path or just a file name relative to this
-    module's directory.
-    """
+    """إضافة بيانات التفاعل إلى ملف JSON Lines."""
     path = (
         filename
         if os.path.isabs(filename)
@@ -72,7 +68,6 @@ class EmpathySensorSkill(AbstractSkill):
         return "مستشعر التعاطف الوهمي"
 
     def execute(self, **kwargs):
-        # Returns a neutral empathy reading as a placeholder
         return {"status": "success", "empathy": "neutral"}
 
 
@@ -313,7 +308,7 @@ class ZeroSystem:
         }
 
     def demo_usage_examples(self):
-        """Run predefined interaction examples."""
+        """تشغيل أمثلة تفاعلية."""
         examples = [
             ("شرح لي نظرية الكم بطريقة بسيطة", "التعليم"),
             ("أشعر بالقلق اليوم", "الصحة النفسية"),
