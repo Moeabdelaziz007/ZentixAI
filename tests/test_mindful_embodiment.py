@@ -1,15 +1,6 @@
 import unittest
 
-from zero_system import MindfulEmbodimentSkill
-
-
-  <<<<<<< fmzv63-codex/rewrite-tests-to-use-unittest
-  class TestMindfulEmbodimentSkill(unittest.TestCase):
-  =======
-  class TestMindfulEmbodiment(unittest.TestCase):
-  >>>>>>> main
-    def setUp(self):
-        self.skill = MindfulEmbodimentSkill()
+class TestMindfulEmbodiment(unittest.TestCase):
 
     def test_default_context(self):
         result = self.skill.execute("اهلا")
