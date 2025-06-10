@@ -5,7 +5,7 @@ This repository demonstrates a minimal plugin-based system in Python. See `plugi
 ## Setup
 
 The core examples run on **Python&nbsp;3.8 or later** and rely only on the standard library.
-To use the optional Flask dashboard you will need to install the `flask` package.
+To use the optional Flask dashboard you will need to install the `flask` and `flask-login` packages.
 
 1. Clone this repository.
 2. *(Optional)* Create and activate a virtual environment.
@@ -19,6 +19,9 @@ To use the optional Flask dashboard you will need to install the `flask` package
    ```bash
    python dashboard.py
    ```
+   The app now supports user logins using `Flask-Login` and stores chat
+   history in memory. Visit `http://localhost:5000/` and log in with the
+   demo account `demo/demo` to start chatting with the model.
    The templates directory and the `static/` folder with CSS should be
    placed beside `dashboard.py`.
    The default stylesheet uses neon green and medium gray on a dark
