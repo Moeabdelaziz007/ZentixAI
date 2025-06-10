@@ -23,3 +23,12 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+
+## Running Tests
+
+Install the Python requirements and execute the test suite with [pytest](https://pytest.org/):
+
+```bash
+pip install -r requirements.txt
+pytest
+```

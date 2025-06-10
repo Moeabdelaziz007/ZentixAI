@@ -1,8 +1,7 @@
-  <<<<<<< codex/add-teardown-method-to-remove-log.jsonl
-  import importlib, sys
+"""Compatibility package exposing core modules under the 'sss' namespace."""
 
-  sys.modules[__name__ + ".zero_system"] = importlib.import_module('zero_system')
-  sys.modules[__name__ + ".plugin_example"] = importlib.import_module('plugin_example')
-  =======
-  """Compatibility package exposing core modules under the 'sss' namespace."""
-  >>>>>>> main
+import importlib
+import sys
+
+sys.modules[__name__ + ".zero_system"] = importlib.import_module("zero_system")
+sys.modules[__name__ + ".plugin_example"] = importlib.import_module("plugin_example")
