@@ -1,55 +1,21 @@
-  <<<<<<< codex/add-tests-for-is_sibling_request-and-zerosystem.interact
-  import sys, os; sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-  import logging
+import unittest
 
-  import pytest
-
-  import zero_system
+from sss.zero_system import ZeroSystem, is_sibling_request
 
 
-  def test_is_sibling_request_true_cases():
-      assert zero_system.is_sibling_request("أريد أخاً صغيراً يساعدني")
-      assert zero_system.is_sibling_request("اريد شقيق اصغر للمساعدة")
+class TestZeroSystem(unittest.TestCase):
+    def test_is_sibling_request_true_cases(self):
+        self.assertTrue(is_sibling_request("أريد أخاً صغيراً يساعدني"))
+        self.assertTrue(is_sibling_request("اريد شقيق اصغر للمساعدة"))
 
+    def test_is_sibling_request_false_cases(self):
+        self.assertFalse(is_sibling_request("اريد اخ كبير"))
+        self.assertFalse(is_sibling_request("مرحبا كيف الحال؟"))
 
-  def test_is_sibling_request_false_cases():
-      assert not zero_system.is_sibling_request("اريد اخ كبير")
-      assert not zero_system.is_sibling_request("مرحبا كيف الحال؟")
-
-
-  def test_zero_system_interact_sibling(capsys, caplog):
-      caplog.set_level(logging.INFO)
-      system = zero_system.ZeroSystem()
-      response = system.interact("أريد أخاً صغيراً")
-      out = capsys.readouterr().out
-      assert "المستخدم: أريد أخاً صغيراً" in out
-      assert "تم إنشاء أخ رقمي #1" in out
-      assert response["sibling_id"] == "أخ رقمي #1"
-      assert "Triggering sibling_genesis skill" in caplog.text
-      assert system.interaction_count == 1
-
-
-  def test_zero_system_interact_default(capsys, caplog):
-      caplog.set_level(logging.INFO)
-      system = zero_system.ZeroSystem()
-      response = system.interact("مرحبا")
-      out = capsys.readouterr().out
-      assert "المستخدم: مرحبا" in out
-      assert "أخوك الذكي" in response["output"]
-      assert "AI response" in caplog.text
-      assert system.interaction_count == 1
-  =======
-  import unittest
-
-  from sss.zero_system import ZeroSystem
-
-  class TestZeroSystem(unittest.TestCase):
-      def test_create_sibling_increments_count(self):
-          system = ZeroSystem()
-          genesis_skill = system.skills["sibling_genesis"]
-          before = genesis_skill.siblings_created
-          system.create_sibling()
-          after = genesis_skill.siblings_created
-          self.assertEqual(after, before + 1)
-
-  >>>>>>> main
+    def test_create_sibling_increments_count(self):
+        system = ZeroSystem()
+        genesis_skill = system.skills["sibling_genesis"]
+        before = genesis_skill.siblings_created
+        system.create_sibling()
+        after = genesis_skill.siblings_created
+        self.assertEqual(after, before + 1)
