@@ -1,0 +1,22 @@
+[project]
+name = "amrikyyai"
+version = "0.1.0"
+description = "Zero System AI package"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{name = "Mohamed Abdelaziz"}]
+dependencies = [
+    "flask",
+    "flask-login",
+]
+
+[project.scripts]
+amrikyyai-cli = "amrikyyai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["amrikyyai*"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

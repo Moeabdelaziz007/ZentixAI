@@ -1,7 +1,7 @@
 import json
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
-from zero_system import ZeroSystem
+from .zero_system import ZeroSystem
 
 
 system = ZeroSystem()

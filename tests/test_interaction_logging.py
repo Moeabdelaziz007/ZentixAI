@@ -1,7 +1,7 @@
 import os
 import json
 import unittest
-import sss.zero_system as zs
+import amrikyyai.zero_system as zs
 
 class TestInteractionLogging(unittest.TestCase):
     def tearDown(self):

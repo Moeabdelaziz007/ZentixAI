@@ -17,7 +17,7 @@ from flask_login import (
     current_user,
 )
 
-from zero_system import ZeroSystem
+from .zero_system import ZeroSystem
 
 
 app = Flask(__name__)

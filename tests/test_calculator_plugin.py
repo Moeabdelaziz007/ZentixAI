@@ -1,6 +1,6 @@
 import unittest
 
-from sss.plugin_example import CalculatorPlugin
+from amrikyyai import CalculatorPlugin
 
 class TestCalculatorPlugin(unittest.TestCase):
     def test_addition(self):

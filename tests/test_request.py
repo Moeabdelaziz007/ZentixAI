@@ -3,7 +3,7 @@ import io
 import contextlib
 import unittest
 
-from sss.zero_system import is_sibling_request, ZeroSystem
+from amrikyyai import is_sibling_request, ZeroSystem
 
 
 class TestRequest(unittest.TestCase):

@@ -1,5 +1,5 @@
 import logging
-from zero_system import ZeroSystem
+from .zero_system import ZeroSystem
 
 
 def main():

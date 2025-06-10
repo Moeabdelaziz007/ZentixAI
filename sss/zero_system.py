@@ -2,7 +2,7 @@
 
 from importlib import import_module
 
-_module = import_module("zero_system")
+_module = import_module("amrikyyai.zero_system")
 
 # Re-export all public attributes from the real module
 globals().update({k: getattr(_module, k) for k in dir(_module) if not k.startswith("_")})

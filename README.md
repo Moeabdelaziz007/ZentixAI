@@ -23,3 +23,12 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+
+## Python Package
+
+The core AI components live in the `amrikyyai` Python package. Install in editable mode and run the tests using:
+
+```bash
+pip install -e .
+pytest
+```
