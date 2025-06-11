@@ -1,3 +1,9 @@
+ niih5v-codex/standardize-imports-in-tests-directory
+import logging
+import io
+import contextlib
+import unittest
+=======
   <<<<<<< codex/clean-up-test-files-and-standardize-tests
   import logging
   import unittest
@@ -11,6 +17,7 @@
 
    sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
   import os, sys
+ main
 
    main
   sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
@@ -29,19 +36,31 @@
        main
       from sss.zero_system import is_sibling_request, ZeroSystem
 
-       codex/verify-readme-for-correctness
-      import io
-      import contextlib
-      import logging
-      import os
-      import sys
-      import unittest
+  <<<<<<< niih5v-codex/standardize-imports-in-tests-directory
+  =======
+         codex/verify-readme-for-correctness
+        import io
+        import contextlib
+        import logging
+        import os
+        import sys
+        import unittest
 
- codex/clean-up-test-files-and-standardize-tests
-    def test_is_sibling_request_false(self):
+   codex/clean-up-test-files-and-standardize-tests
+  >>>>>>> main
+      def test_is_sibling_request_false(self):
         self.assertFalse(is_sibling_request("اريد صديق جديد"))
 
     def test_interact_logs_and_output(self):
+ niih5v-codex/standardize-imports-in-tests-directory
+        system = ZeroSystem()
+        message = "مرحبا"
+        user = {"id": "u", "name": "Test"}
+        buf = io.StringIO()
+        with self.assertLogs(level="INFO") as log, contextlib.redirect_stdout(buf):
+            response = system.interact(message, user)
+        captured = buf.getvalue()
+=======
 =======
       sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -97,18 +116,21 @@
           message = "مرحبا"
           user = {"id": "u", "name": "Test"}
           buf = io.StringIO()
-  <<<<<<< codex/clean-up-test-files-and-standardize-tests
-          with self.assertLogs(level="INFO") as log, contextlib.redirect_stdout(buf):
-              response = system.interact(message, user)
-          captured = buf.getvalue()
-        self.assertIn(f"\U0001F464 المستخدم: {message}", captured)
-        self.assertIn("\U0001F916 الذكاء:", captured)
+    <<<<<<< codex/clean-up-test-files-and-standardize-tests
+            with self.assertLogs(level="INFO") as log, contextlib.redirect_stdout(buf):
+                response = system.interact(message, user)
+            captured = buf.getvalue()
+  >>>>>>> main
+          self.assertIn(f"\U0001F464 المستخدم: {message}", captured)
+          self.assertIn("\U0001F916 الذكاء:", captured)
         self.assertEqual(response["status"], "success")
         log_text = "\n".join(log.output)
-        self.assertIn(f"User message: {message}", log_text)
-        self.assertTrue(any("AI response:" in record for record in log.output))
-=======
-        with caplog.at_level(logging.INFO), contextlib.redirect_stdout(buf):
+          self.assertIn(f"User message: {message}", log_text)
+          self.assertTrue(any("AI response:" in record for record in log.output))
+  <<<<<<< niih5v-codex/standardize-imports-in-tests-directory
+  =======
+  =======
+          with caplog.at_level(logging.INFO), contextlib.redirect_stdout(buf):
             response = system.interact(message, user)
         captured = buf.getvalue()
         assert f"\U0001F464 المستخدم: {message}" in captured
@@ -386,4 +408,5 @@
      main
      main
      main
+ main
  main

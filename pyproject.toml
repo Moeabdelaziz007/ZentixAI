@@ -7,7 +7,11 @@ name = "amrikyyai"
 version = "0.1.0"
 description = "Zero System AI framework"
 readme = "README.md"
+ niih5v-codex/standardize-imports-in-tests-directory
+requires-python = ">=3.8"
+=======
 requires-python = ">=3.9"
+ main
 
 [tool.setuptools]
 packages = ["sss"]
