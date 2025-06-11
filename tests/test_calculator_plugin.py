@@ -1,3 +1,4 @@
+ codex/expand-tests-for-calculator-plugin-and-zerosystem
 import math
 import pytest
 
@@ -56,3 +57,29 @@ def test_infinite_input(plugin):
 def test_nan_input(plugin):
     with pytest.raises(ValueError):
         plugin.execute({"a": float("nan"), "b": 1})
+=======
+ codex/convert-unittest-to-pytest
+from sss.plugin_example import CalculatorPlugin
+
+
+def test_addition():
+    plugin = CalculatorPlugin()
+    result = plugin.execute({'a': 5, 'b': 3})
+    assert result == {'result': 8}
+
+=======
+import os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import unittest
+
+from plugin_example import CalculatorPlugin
+
+
+class TestCalculatorPlugin(unittest.TestCase):
+    def test_addition(self):
+        plugin = CalculatorPlugin()
+        result = plugin.execute({"a": 5, "b": 3})
+        self.assertEqual(result, {"result": 8})
+ main
+  >>>>>> main

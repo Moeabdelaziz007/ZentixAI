@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Plugin:
     """Base class for all plugins."""
 
@@ -15,7 +18,7 @@ class PluginRegistry:
         cls._plugins[name] = plugin
 
     @classmethod
-    def get(cls, name: str) -> "Plugin | None":
+    def get(cls, name: str) -> Optional["Plugin"]:
         return cls._plugins.get(name)
 
 
