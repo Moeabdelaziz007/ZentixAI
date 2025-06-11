@@ -348,14 +348,15 @@
 
   ## Running Tests
 
-  This repository uses `pytest` for unit testing. From the repository root run:
+  This repository uses `pytest` for unit testing. To avoid `ModuleNotFoundError`
+  when importing project modules, run the tests with the repository root on the
+  `PYTHONPATH`:
 
   ```bash
-  pytest
+  PYTHONPATH=. pytest -q
   ```
 
   The tests in `tests/test_zero_system.py` verify that sibling requests are
   detected correctly, that the system status includes expected fields, and that
   creating siblings produces unique identifiers.
-  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
   >>>>>>> codex/debug-pull-issue
