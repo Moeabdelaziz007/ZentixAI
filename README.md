@@ -1,107 +1,17 @@
- sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
-# Onlook Starter Template
+   codex/update-img-tag-to-use-favicon.ico
+  # Onlook Starter Template
 
-<p align="center">
-  <img src="app/favicon.ico" />
-</p>
+  <p align="center">
+    <img src="favicon.ico" />
+  </p>
 
-This is an [Onlook](https://onlook.com/) project set up with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [ShadCN](https://ui.shadcn.com).
+  This is an [Onlook](https://onlook.com/) project set up with
+  [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and
+  [ShadCN](https://ui.shadcn.com).
 
-Run the calculator plugin directly:
-```bash
-python plugin_example.py
-```
-This prints `{'result': 8}`.
+  ## Getting Started
 
-## Usage Examples
-
-Run `python zero_system.py` to launch the demo and create a `system` object. Here are some example interactions:
-
-### الإبداع التقني
-```python
-system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-# 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-```
-
-## Command Line Interface
-
-Use `cli.py` to interact with the system from the terminal. The script exposes a few simple commands:
-
-```bash
-python cli.py interactive   # start an interactive chat session
-python cli.py status        # display system status information
-python cli.py demo          # run the predefined demo interactions
-```
-
-## Running Tests
-
-This repository uses `pytest` for unit testing. From the repository root run:
-
-```bash
-pytest
-```
-
-The tests in `tests/test_zero_system.py` verify that sibling requests are detected correctly, that the system status includes expected fields, and that creating siblings produces unique identifiers.
-
-Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
- codex/convert-unittest-to-pytest
-
-## Running Tests
-
-Install the Python requirements and execute the test suite with [pytest](https://pytest.org/):
-
-```bash
-pip install -r requirements.txt
-pytest
-
-=======
-
-  <<<<<<< codex/verify-readme-for-correctness
-  # ZentixAI
-
-  This repository demonstrates a minimal plugin-based system in Python along with a small web dashboard. The `plugin_example.py` file shows how to register and execute a calculator plugin, while `zero_system.py` contains an Arabic demo implementing a friendly digital assistant.
-
-  ## Requirements
-
-  * Python 3.8 or later
-  * Only standard library modules are required
-
-  ## Usage
-
-  Run the calculator plugin:
-
-  ```bash
-  python plugin_example.py
-  # {'result': 8}
-  ```
-
-  Launch the demo assistant:
-
-  ```bash
-  python zero_system.py
-  ```
-
-  Use the command line interface:
-
-  ```bash
-  python cli.py interactive   # start an interactive chat session
-  python cli.py status        # display system status information
-  python cli.py demo          # run the predefined demo interactions
-  ```
-
-  ## Running Tests
-
-  Install `pytest` and execute:
-
-  ```bash
-  pytest
-  ```
-
-  The tests verify plugin behaviour and key `ZeroSystem` features.
-
-  ## Web Dashboard
-
-  The provided Next.js template can be started with:
+  First, run the development server:
 
   ```bash
   npm run dev
@@ -112,89 +22,233 @@ pytest
   # or
   bun dev
   ```
-
-  Open <http://localhost:3000> in Onlook to view the dashboard.
-
-  ## License
-
-  This project is licensed under the [MIT License](LICENSE).
   =======
-    # Onlook Starter Template
+   sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+  # Onlook Starter Template
 
-    <p align="center">
-      <img src="app/favicon.ico" />
-    </p>
+  <p align="center">
+    <img src="app/favicon.ico" />
+  </p>
 
-    <<<<<<< main
-       codex/mention-purpose-in-readme
-      The repository also includes `AGI.rtf`, which stores design notes and brainstorming ideas for the "Digital DNA" concept used in `zero_system.py`.
-    rectly, execute:
+  This is an [Onlook](https://onlook.com/) project set up with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [ShadCN](https://ui.shadcn.com).
 
-      ```bash
-      python plugin_example.py
-      ```
-      This prints `{'result': 8}`.
-      =======
-        Run the calculator plugin directly:
+  Run the calculator plugin directly:
+  ```bash
+  python plugin_example.py
+  ```
+  This prints `{'result': 8}`.
+
+  ## Usage Examples
+
+  Run `python zero_system.py` to launch the demo and create a `system` object. Here are some example interactions:
+  >>>>>>> main
+
+  ### الإبداع التقني
+  ```python
+  system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+  ```
+
+  ## Command Line Interface
+
+   codex/update-img-tag-to-use-favicon.ico
+  Use `cli.py` to interact with the system from the terminal. The script exposes a
+  few simple commands:
+
+  ```bash
+  # start an interactive chat session
+  python cli.py interactive
+
+  # display system status information
+  python cli.py status
+
+  # run the predefined demo interactions
+  python cli.py demo
+  ```
+
+  ## Running Tests
+
+  This repository uses `pytest` for unit testing. From the repository root run:
+
+  ```bash
+  pytest
+  ```
+
+  The tests in `tests/test_zero_system.py` verify that sibling requests are
+  detected correctly, that the system status includes expected fields, and that
+  creating siblings produces unique identifiers.
+  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+  =======
+  Use `cli.py` to interact with the system from the terminal. The script exposes a few simple commands:
+
+  ```bash
+  python cli.py interactive   # start an interactive chat session
+  python cli.py status        # display system status information
+  python cli.py demo          # run the predefined demo interactions
+  ```
+
+  ## Running Tests
+
+  This repository uses `pytest` for unit testing. From the repository root run:
+
+  ```bash
+  pytest
+  ```
+
+  The tests in `tests/test_zero_system.py` verify that sibling requests are detected correctly, that the system status includes expected fields, and that creating siblings produces unique identifiers.
+
+  Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+   codex/convert-unittest-to-pytest
+
+  ## Running Tests
+
+  Install the Python requirements and execute the test suite with [pytest](https://pytest.org/):
+
+  ```bash
+  pip install -r requirements.txt
+  pytest
+
+  =======
+
+    <<<<<<< codex/verify-readme-for-correctness
+    # ZentixAI
+
+    This repository demonstrates a minimal plugin-based system in Python along with a small web dashboard. The `plugin_example.py` file shows how to register and execute a calculator plugin, while `zero_system.py` contains an Arabic demo implementing a friendly digital assistant.
+
+    ## Requirements
+
+    * Python 3.8 or later
+    * Only standard library modules are required
+
+    ## Usage
+
+    Run the calculator plugin:
+
+    ```bash
+    python plugin_example.py
+    # {'result': 8}
+    ```
+
+    Launch the demo assistant:
+
+    ```bash
+    python zero_system.py
+    ```
+
+    Use the command line interface:
+
+    ```bash
+    python cli.py interactive   # start an interactive chat session
+    python cli.py status        # display system status information
+    python cli.py demo          # run the predefined demo interactions
+    ```
+
+    ## Running Tests
+
+    Install `pytest` and execute:
+
+    ```bash
+    pytest
+    ```
+
+    The tests verify plugin behaviour and key `ZeroSystem` features.
+
+    ## Web Dashboard
+
+    The provided Next.js template can be started with:
+
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
+
+    Open <http://localhost:3000> in Onlook to view the dashboard.
+
+    ## License
+
+    This project is licensed under the [MIT License](LICENSE).
+    =======
+      # Onlook Starter Template
+
+      <p align="center">
+        <img src="app/favicon.ico" />
+      </p>
+
+      <<<<<<< main
+         codex/mention-purpose-in-readme
+        The repository also includes `AGI.rtf`, which stores design notes and brainstorming ideas for the "Digital DNA" concept used in `zero_system.py`.
+      rectly, execute:
+
         ```bash
         python plugin_example.py
         ```
-          This prints `{'result': 8}`.
-        >>>>>>> main
-      <<<<<<< codex/add-usage-example-in-readme
-      Below are sample interactions with the system. To run the calculator plugin
-            di
-
-            <<<<<<< codex/add-logging-to-zerosystem.interact
-            ## Usage Examples
-
-          Run `python zero_system.py` to launch the demo. The script starts a simple
-          interactive text interface where you can chat with the assistant. To use the
-          system programmatically, instantiate `ZeroSystem` in your own code:
-
-          ```python
-          from zero_system import ZeroSystem
-
-          system = ZeroSystem()
-          ```
-
-          Each call to `system.interact` also appends an entry to `log.jsonl` containing
-          the time, message and response. The file uses UTF-8 encoding and grows with
-          every interaction.
-
-          Below are sample interactions, retrieving the `"output"` field from each
-          response:
-
-          ### التعليم
-          ```python
-          resp = system.interact("شرح لي نظرية الكم بطريقة بسيطة")
-          resp["output"]
-          # 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
-          ```
-
-          ### الصحة النفسية
-          ```python
-          resp = system.interact("أشعر بالقلق اليوم")
-          resp["output"]
-          # 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
-          ```
-
-          ### الإبداع التقني
-          ```python
-          resp = system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-          resp["output"]
-          # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-          ```
-
-          ## Running Tests
-
-          This repository includes a small test suite in the `tests/` directory. To run
-          all tests, execute the command from the parent directory (one level above the
-          repository root):
-
+        This prints `{'result': 8}`.
+        =======
+          Run the calculator plugin directly:
           ```bash
-          python -m unittest discover -v sss/tests
+          python plugin_example.py
           ```
+            This prints `{'result': 8}`.
+          >>>>>>> main
+        <<<<<<< codex/add-usage-example-in-readme
+        Below are sample interactions with the system. To run the calculator plugin
+              di
+
+              <<<<<<< codex/add-logging-to-zerosystem.interact
+              ## Usage Examples
+
+            Run `python zero_system.py` to launch the demo. The script starts a simple
+            interactive text interface where you can chat with the assistant. To use the
+            system programmatically, instantiate `ZeroSystem` in your own code:
+
+            ```python
+            from zero_system import ZeroSystem
+
+            system = ZeroSystem()
+            ```
+
+            Each call to `system.interact` also appends an entry to `log.jsonl` containing
+            the time, message and response. The file uses UTF-8 encoding and grows with
+            every interaction.
+
+            Below are sample interactions, retrieving the `"output"` field from each
+            response:
+
+            ### التعليم
+            ```python
+            resp = system.interact("شرح لي نظرية الكم بطريقة بسيطة")
+            resp["output"]
+            # 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
+            ```
+
+            ### الصحة النفسية
+            ```python
+            resp = system.interact("أشعر بالقلق اليوم")
+            resp["output"]
+            # 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
+            ```
+
+            ### الإبداع التقني
+            ```python
+            resp = system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+            resp["output"]
+            # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+            ```
+
+            ## Running Tests
+
+            This repository includes a small test suite in the `tests/` directory. To run
+            all tests, execute the command from the parent directory (one level above the
+            repository root):
+
+            ```bash
+            python -m unittest discover -v sss/tests
+            ```
 
           Running `unittest` from the repository root will fail because the tests import
           modules via the `sss` package name. The suite verifies the calculator plugin and
@@ -487,5 +541,6 @@ pytest
     Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
     >>>>>>> codex/debug-pull-issue
    main
+ main
  main
  main
