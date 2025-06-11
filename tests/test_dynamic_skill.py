@@ -7,6 +7,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
 from sss.zero_system import ZeroSystem
 
+ codex/clean-up-test-files-and-standardize-tests
+=======
 
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
@@ -14,6 +16,7 @@ import unittest
 
  main
 from sss.zero_system import ZeroSystem
+ main
  main
 
 class TestDynamicSkill(unittest.TestCase):
@@ -24,6 +27,8 @@ class TestDynamicSkill(unittest.TestCase):
         self.assertIn("test_skill", system.brother_ai.skills)
         self.assertTrue(callable(system.brother_ai.skills["test_skill"]))
         self.assertEqual(system.brother_ai.skills["test_skill"](), {"status": "under_development"})
+ codex/clean-up-test-files-and-standardize-tests
+=======
 
  codex/decide-python-version-support-and-adjust-code
 
@@ -42,4 +47,5 @@ def test_dynamic_skill_registration():
 if __name__ == "__main__":
     unittest.main()
 
+ main
  main

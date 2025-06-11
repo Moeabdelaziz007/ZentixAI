@@ -1,16 +1,23 @@
- codex/decide-python-version-support-and-adjust-code
- codex/decide-python-version-support-and-adjust-code
-import os
-import sys
-
- sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
-import os, sys
-
- main
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-import io
+  <<<<<<< codex/clean-up-test-files-and-standardize-tests
+  import logging
+  import unittest
+  import io
   import contextlib
-  <<<<<<< codex/convert-unittest-to-pytest
+  =======
+   codex/decide-python-version-support-and-adjust-code
+   codex/decide-python-version-support-and-adjust-code
+  import os
+  import sys
+
+   sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+  import os, sys
+
+   main
+  sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+  import io
+    import contextlib
+    <<<<<<< codex/convert-unittest-to-pytest
+  >>>>>>> main
 
       import pytest
       =======
@@ -30,6 +37,12 @@ import io
       import sys
       import unittest
 
+ codex/clean-up-test-files-and-standardize-tests
+    def test_is_sibling_request_false(self):
+        self.assertFalse(is_sibling_request("اريد صديق جديد"))
+
+    def test_interact_logs_and_output(self):
+=======
       sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
       from zero_system import is_sibling_request, ZeroSystem
@@ -78,11 +91,23 @@ import io
 
 
      codex/convert-unittest-to-pytest
-    def test_interact_logs_and_output(caplog):
-        system = ZeroSystem()
-        message = "مرحبا"
-        user = {"id": "u", "name": "Test"}
-        buf = io.StringIO()
+      def test_interact_logs_and_output(caplog):
+  >>>>>>> main
+          system = ZeroSystem()
+          message = "مرحبا"
+          user = {"id": "u", "name": "Test"}
+          buf = io.StringIO()
+  <<<<<<< codex/clean-up-test-files-and-standardize-tests
+          with self.assertLogs(level="INFO") as log, contextlib.redirect_stdout(buf):
+              response = system.interact(message, user)
+          captured = buf.getvalue()
+        self.assertIn(f"\U0001F464 المستخدم: {message}", captured)
+        self.assertIn("\U0001F916 الذكاء:", captured)
+        self.assertEqual(response["status"], "success")
+        log_text = "\n".join(log.output)
+        self.assertIn(f"User message: {message}", log_text)
+        self.assertTrue(any("AI response:" in record for record in log.output))
+=======
         with caplog.at_level(logging.INFO), contextlib.redirect_stdout(buf):
             response = system.interact(message, user)
         captured = buf.getvalue()
@@ -361,3 +386,4 @@ import io
      main
      main
      main
+ main
