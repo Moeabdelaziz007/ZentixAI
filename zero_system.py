@@ -75,10 +75,23 @@ class AbstractSkill(ABC):
 # ======================= المهارات الأساسية =======================
 class EmpathySensorSkill(AbstractSkill):
     def get_description(self):
+ codex/remove-importlib-import-from-test-file
+        return "مستشعر تعاطف بسيط يقرأ المشاعر من الكلمات"
+
+    def execute(self, message: str = ""):
+        """Return a basic empathy reading based on Arabic keywords."""
+        if "قلق" in message or "توتر" in message:
+            return {"status": "success", "empathy": "قلق"}
+        elif "سعيد" in message or "فرحان" in message:
+            return {"status": "success", "empathy": "سعادة"}
+        else:
+            return {"status": "success", "empathy": "محايد"}
+
         return "مستشعر التعاطف الوهمي"
 
     def execute(self, **kwargs):
         return {"status": "success", "empathy": "neutral"}
+ main
 
 
 class ParallelScenariosMemorySkill(AbstractSkill):
