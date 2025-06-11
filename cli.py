@@ -2,8 +2,11 @@
 
 import argparse
 import logging
+from pathlib import Path
 from typing import Optional
+
 from zero_system import ZeroSystem
+from zero_system.plugins import load_plugins
 
 
 def run_interactive(system: ZeroSystem) -> None:
@@ -46,6 +49,7 @@ def main(argv: list[str] | None = None) -> None:
         format="%(asctime)s - %(levelname)s - %(message)s",
     )
 
+    load_plugins(Path(__file__).parent / "plugins")
     system = ZeroSystem()
 
     if args.command == "interactive":

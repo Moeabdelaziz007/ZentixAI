@@ -1,4 +1,6 @@
 from typing import Optional
+from decimal import Decimal
+import math
 
 
 class Plugin:
@@ -22,22 +24,15 @@ class PluginRegistry:
         return cls._plugins.get(name)
 
 
-import math
-
-
 class CalculatorPlugin(Plugin):
     """Simple plugin that adds two numbers with basic validation."""
 
     def execute(self, inputs: dict) -> dict:
-        from decimal import Decimal
-        import math
-
         a = inputs.get("a")
         b = inputs.get("b")
         if a is None or b is None:
             raise ValueError("CalculatorPlugin requires 'a' and 'b'.")
 
- codex/update-input-validation-in-calculatorplugin.execute
         numeric_types = (int, float, Decimal)
         if not isinstance(a, numeric_types) or not isinstance(b, numeric_types):
             raise TypeError("CalculatorPlugin inputs must be numeric.")
@@ -62,19 +57,12 @@ class CalculatorPlugin(Plugin):
             b = Decimal(str(b))
 
         return {"result": a + b}
-=======
-        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
-            raise TypeError("Inputs must be numeric.")
 
-        result = a + b
 
-        if isinstance(result, float) and math.isinf(result):
-            raise OverflowError("Result is infinite")
-        if isinstance(result, float) and math.isnan(result):
-            raise ValueError("Result is NaN")
+def register() -> None:
+    """Register built-in plugins with the registry."""
 
-        return {"result": result}
- main
+    PluginRegistry.register("calculator", CalculatorPlugin())
 
 
 class Agent:
@@ -88,9 +76,7 @@ class Agent:
 
 
 if __name__ == "__main__":
-    # Register the calculator plugin
-    PluginRegistry.register("calculator", CalculatorPlugin())
-
+    register()
     agent = Agent()
     output = agent.execute_plugin("calculator", {"a": 5, "b": 3})
-    print(output)  # {'result': 8}
+    print(output)
