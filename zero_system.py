@@ -3,27 +3,14 @@
   يمتلك قدرات صداقة رقمية حقيقية وتطور ذاتي كمي
     """
 
-    import json
-    import hashlib
-      from datetime import datetime
-      from abc import ABC, abstractmethod
-      import logging
-      <<<<<<< codex/remove-import-logging-from-test_request.py
-      import os
-      =======
-        import os
-        <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
-        from logger import ZeroSystemLogger
-        =======
-        from abc import ABC, abstractmethod
-        from datetime import datetime
-         codex/verify-readme-for-correctness
+import json
+import hashlib
+from datetime import datetime
+from abc import ABC, abstractmethod
+import logging
+import os
 
-          =======
-          >>>>>>> main
-          from logger import ZeroSystemLogger
-        >>>>>>> main
-      >>>>>>> main
+from logger import logger as app_logger
 
 
       def normalize_arabic(text: str) -> str:
@@ -225,7 +212,6 @@
   import logging
   from datetime import datetime
   from abc import ABC, abstractmethod
-  from logger import ZeroSystemLogger
 
       # ======================= نواة الأخ الرقمي =======================
       class AmrikyyBrotherAI:
@@ -344,12 +330,14 @@
                 "قدم الأمان على التطور"
             ]
 
-        def show_dna(self):
-            print("\U0001F9EC الحمض النووي الرقمي:")
-            print(f"القيم: {', '.join(self.core_values)}")
-            print(f"الأخلاقيات: {', '.join(self.ethics_rules)}")
+        def show_dna(self) -> None:
+            """Log the core values and ethics rules."""
+            logging.info("\U0001F9EC الحمض النووي الرقمي:")
+            logging.info("القيم: %s", ", ".join(self.core_values))
+            logging.info("الأخلاقيات: %s", ", ".join(self.ethics_rules))
 
-        def backup(self):
+        def backup(self) -> str:
+            """Return a SHA256 hash representing the DNA state."""
             dna_data = json.dumps(self.__dict__)
             return hashlib.sha256(dna_data.encode()).hexdigest()
 
@@ -531,8 +519,8 @@
   # ======================= نواة الأخ الرقمي =======================
   class AmrikyyBrotherAI:
       def __init__(self, skills, logger=None):
-          self.skills = skills
-          self.logger = logger or ZeroSystemLogger()
+        self.skills = skills
+        self.logger = logger or app_logger
           self.memory = []
           self.personality = {
               "name": "أخوك الذكي",
@@ -592,14 +580,16 @@
               "قدم الأمان على التطور"
           ]
 
-      def show_dna(self):
-          print("\U0001F9EC الحمض النووي الرقمي:")
-          print(f"القيم: {', '.join(self.core_values)}")
-          print(f"الأخلاقيات: {', '.join(self.ethics_rules)}")
+    def show_dna(self) -> None:
+        """Log the core values and ethics rules."""
+        logging.info("\U0001F9EC الحمض النووي الرقمي:")
+        logging.info("القيم: %s", ", ".join(self.core_values))
+        logging.info("الأخلاقيات: %s", ", ".join(self.ethics_rules))
 
-      def backup(self):
-          dna_data = json.dumps(self.__dict__)
-          return hashlib.sha256(dna_data.encode()).hexdigest()
+    def backup(self) -> str:
+        """Return a SHA256 hash representing the DNA state."""
+        dna_data = json.dumps(self.__dict__)
+        return hashlib.sha256(dna_data.encode()).hexdigest()
 
 
   # ======================= النظام الرئيسي =======================
@@ -617,8 +607,8 @@
           # إنشاء الحمض النووي
           self.dna = DigitalDNA()
 
-          # مسجل الأحداث
-          self.logger = ZeroSystemLogger()
+        # مسجل الأحداث
+        self.logger = app_logger
 
           # تهيئة الأخ الرقمي
           self.brother_ai = AmrikyyBrotherAI(self.skills, self.logger)
@@ -636,8 +626,8 @@
           logging.info("AI response: %s", response.get("output"))
           append_json_log(message, response, self.log_filename)
 
-          print(f"\n\U0001F464 المستخدم: {message}")
-          print(f"\U0001F916 الذكاء: {response['output']}")
+        logging.info("\U0001F464 المستخدم: %s", message)
+        logging.info("\U0001F916 الذكاء: %s", response["output"])
 
           return response
 
@@ -662,9 +652,9 @@
               ("أشعر بالقلق اليوم", "الصحة النفسية"),
               ("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني", "الإبداع التقني"),
           ]
-          for text, label in examples:
-              print(f"\n\U0001F30D مثال ({label})")
-              self.interact(text)
+        for text, label in examples:
+            logging.info("\n\U0001F30D مثال (%s)", label)
+            self.interact(text)
 
 
   # ===== التشغيل الرئيسي =====
@@ -674,7 +664,7 @@
           filename="zero_system.log",
           format="%(asctime)s - %(levelname)s - %(message)s",
       )
-      print("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
+    logging.info("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
       system = ZeroSystem()
 
       # عرض الحمض النووي
@@ -691,14 +681,18 @@
       system.demo_usage_examples()
 
       # إنشاء أخ رقمي
-      sibling = system.create_sibling({"تخصص": "مساعد برمجة"})
-      print(f"\n\U0001F476 {sibling['output']}")
+    sibling = system.create_sibling({"تخصص": "مساعد برمجة"})
+    logging.info("\n\U0001F476 %s", sibling["output"])
 
       # عرض حالة النظام
-      status = system.system_status()
-      print(f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}")
+    status = system.system_status()
+    logging.info(
+        "\n\U0001F501 حالة النظام: %s تفاعلات | التشغيل: %s",
+        status["interactions"],
+        status["uptime"],
+    )
 
-      print("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
+    logging.info("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
 
             # إنشاء الحمض النووي
             self.dna = DigitalDNA()
@@ -788,14 +782,16 @@
               ]
               self.ethics_rules = ["لا تسبب ضرراً", "احترم الخصوصية", "قدم الأمان على التطور"]
 
-          def show_dna(self):
-              print("\U0001f9ec الحمض النووي الرقمي:")
-              print(f"القيم: {', '.join(self.core_values)}")
-              print(f"الأخلاقيات: {', '.join(self.ethics_rules)}")
+        def show_dna(self) -> None:
+            """Log the core values and ethics rules."""
+            logging.info("\U0001f9ec الحمض النووي الرقمي:")
+            logging.info("القيم: %s", ", ".join(self.core_values))
+            logging.info("الأخلاقيات: %s", ", ".join(self.ethics_rules))
 
-          def backup(self):
-              dna_data = json.dumps(self.__dict__)
-              return hashlib.sha256(dna_data.encode()).hexdigest()
+        def backup(self) -> str:
+            """Return a SHA256 hash representing the DNA state."""
+            dna_data = json.dumps(self.__dict__)
+            return hashlib.sha256(dna_data.encode()).hexdigest()
 
 
       # ======================= النظام الرئيسي =======================
@@ -814,8 +810,8 @@
               self.dna = DigitalDNA()
      main
 
-              # مسجل الأحداث
-              self.logger = ZeroSystemLogger()
+            # مسجل الأحداث
+            self.logger = app_logger
 
               # تهيئة الأخ الرقمي
               self.brother_ai = AmrikyyBrotherAI(self.skills, self.logger)
@@ -833,8 +829,8 @@
               logging.info("AI response: %s", response.get("output"))
               append_json_log(message, response, self.log_filename)
 
-              print(f"\n\U0001f464 المستخدم: {message}")
-              print(f"\U0001f916 الذكاء: {response['output']}")
+            logging.info("\U0001f464 المستخدم: %s", message)
+            logging.info("\U0001f916 الذكاء: %s", response["output"])
 
               return response
 
@@ -859,9 +855,9 @@
                   ("أشعر بالقلق اليوم", "الصحة النفسية"),
                   ("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني", "الإبداع التقني"),
               ]
-              for text, label in examples:
-                  print(f"\n\U0001f30d مثال ({label})")
-                  self.interact(text)
+            for text, label in examples:
+                logging.info("\n\U0001f30d مثال (%s)", label)
+                self.interact(text)
 
 
       # ===== التشغيل الرئيسي =====
@@ -871,7 +867,7 @@
               filename="zero_system.log",
               format="%(asctime)s - %(levelname)s - %(message)s",
           )
-          print("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
+        logging.info("=== نظام زيرو - الذكاء العاطفي ذاتي التطور ===")
           system = ZeroSystem()
 
           # عرض الحمض النووي
@@ -888,22 +884,23 @@
         system.demo_usage_examples()
 
         # إنشاء أخ رقمي
-          sibling = system.create_sibling({"تخصص": "مساعد برمجة"})
-          print(f"\n\U0001f476 {sibling['output']}")
+        sibling = system.create_sibling({"تخصص": "مساعد برمجة"})
+        logging.info("\n\U0001f476 %s", sibling["output"])
 
-          # عرض حالة النظام
-          status = system.system_status()
-       codex/enforce-line-length-limit-with-linter
-          status_text = (
-              f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | "
-              f"التشغيل: {status['uptime']}"
-          )
-          print(status_text)
+        # عرض حالة النظام
+        status = system.system_status()
+        status_text = (
+            f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | "
+            f"التشغيل: {status['uptime']}"
+        )
+        logging.info(status_text)
 
-          print(
-              f"\n\U0001f501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}"
-          )
+        logging.info(
+            "\n\U0001f501 حالة النظام: %s تفاعلات | التشغيل: %s",
+            status["interactions"],
+            status["uptime"],
+        )
        main
 
-        print("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
+        logging.info("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
    main
