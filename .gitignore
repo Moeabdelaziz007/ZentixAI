@@ -1,3 +1,6 @@
+ codex/decide-on-rtf-document-usage
+*.rtf
+=======
  codex/create-.gitignore-with-common-patterns
 __pycache__/
 *.pyc
@@ -214,4 +217,5 @@ out/
 .cache/
 dist/
 
+ main
  main
