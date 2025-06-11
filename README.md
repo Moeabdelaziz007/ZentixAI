@@ -44,7 +44,18 @@ pytest
 The tests in `tests/test_zero_system.py` verify that sibling requests are detected correctly, that the system status includes expected fields, and that creating siblings produces unique identifiers.
 
 Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+ codex/convert-unittest-to-pytest
+
+## Running Tests
+
+Install the Python requirements and execute the test suite with [pytest](https://pytest.org/):
+
+```bash
+pip install -r requirements.txt
+pytest
+
 =======
+
   <<<<<<< codex/verify-readme-for-correctness
   # ZentixAI
 
@@ -476,4 +487,5 @@ Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
     Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
     >>>>>>> codex/debug-pull-issue
    main
+ main
  main
