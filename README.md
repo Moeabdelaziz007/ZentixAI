@@ -30,6 +30,20 @@
     <img src="app/favicon.ico" />
   </p>
 
+ codex/add-unit-tests-and-update-readme
+### الإبداع التقني
+```python
+system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+# 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+```
+
+## Running Tests
+
+Run the test suite with:
+```bash
+python -m unittest discover -s tests
+```
+=======
   This is an [Onlook](https://onlook.com/) project set up with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [ShadCN](https://ui.shadcn.com).
 
   Run the calculator plugin directly:
@@ -541,6 +555,7 @@
     Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
     >>>>>>> codex/debug-pull-issue
    main
+ main
  main
  main
  main
