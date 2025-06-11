@@ -1,6 +1,10 @@
 import os
 import sys
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if ROOT not in sys.path:
-    sys.path.insert(0, ROOT)
+  <<<<<<< codex/remove-conflict-markers-and-refactor-tests
+  ROOT = os.path.dirname(os.path.dirname(__file__))
+  =======
+  ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+  >>>>>>> main
+  if ROOT not in sys.path:
+      sys.path.insert(0, ROOT)
