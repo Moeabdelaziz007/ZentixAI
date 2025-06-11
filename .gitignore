@@ -1,3 +1,15 @@
+ codex/create-.gitignore-with-common-patterns
+__pycache__/
+*.pyc
+# Editors
+.vscode/
+.idea/
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -202,3 +214,4 @@ out/
 .cache/
 dist/
 
+ main

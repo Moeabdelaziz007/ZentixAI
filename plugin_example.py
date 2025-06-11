@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Plugin:
     """Base class for all plugins."""
 
@@ -15,19 +18,33 @@ class PluginRegistry:
         cls._plugins[name] = plugin
 
     @classmethod
-    def get(cls, name: str) -> "Plugin | None":
+    def get(cls, name: str) -> Optional["Plugin"]:
         return cls._plugins.get(name)
 
 
+import math
+
+
 class CalculatorPlugin(Plugin):
-    """Simple plugin that adds two numbers."""
+    """Simple plugin that adds two numbers with basic validation."""
 
     def execute(self, inputs: dict) -> dict:
         a = inputs.get("a")
         b = inputs.get("b")
         if a is None or b is None:
             raise ValueError("CalculatorPlugin requires 'a' and 'b'.")
-        return {"result": a + b}
+
+        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+            raise TypeError("Inputs must be numeric.")
+
+        result = a + b
+
+        if isinstance(result, float) and math.isinf(result):
+            raise OverflowError("Result is infinite")
+        if isinstance(result, float) and math.isnan(result):
+            raise ValueError("Result is NaN")
+
+        return {"result": result}
 
 
 class Agent:
