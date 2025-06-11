@@ -1,7 +1,23 @@
+ codex/convert-unittest-to-pytest
+=======
+ codex/decide-python-version-support-and-adjust-code
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
-
 from sss.zero_system import ZeroSystem
 
+ codex/clean-up-test-files-and-standardize-tests
+=======
+
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import unittest
+
+ main
+from sss.zero_system import ZeroSystem
+ main
+ main
 
 class TestDynamicSkill(unittest.TestCase):
     def test_dynamic_skill_registration(self):
@@ -11,3 +27,25 @@ class TestDynamicSkill(unittest.TestCase):
         self.assertIn("test_skill", system.brother_ai.skills)
         self.assertTrue(callable(system.brother_ai.skills["test_skill"]))
         self.assertEqual(system.brother_ai.skills["test_skill"](), {"status": "under_development"})
+ codex/clean-up-test-files-and-standardize-tests
+=======
+
+ codex/decide-python-version-support-and-adjust-code
+
+if __name__ == "__main__":
+    unittest.main()
+
+def test_dynamic_skill_registration():
+    system = ZeroSystem()
+    message = system.brother_ai.grow("test_skill")
+    assert message == "تم تطوير مهارة جديدة: test_skill"
+    assert "test_skill" in system.brother_ai.skills
+    assert callable(system.brother_ai.skills["test_skill"])
+    assert system.brother_ai.skills["test_skill"]() == {"status": "under_development"}
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+ main
+ main

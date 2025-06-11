@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amrikyyai"
+version = "0.1.0"
+description = "Zero System AI framework"
+readme = "README.md"
+requires-python = ">=3.9"
+
+[tool.setuptools]
+packages = ["sss"]
+py-modules = ["zero_system", "plugin_example"]
