@@ -1,25 +1,6 @@
+"""Example plugin using ZeroSystem plugin registry."""
 from typing import Optional
-
-
-class Plugin:
-    """Base class for all plugins."""
-
-    def execute(self, inputs: dict) -> dict:
-        raise NotImplementedError
-
-
-class PluginRegistry:
-    """Registry to keep track of available plugins."""
-
-    _plugins = {}
-
-    @classmethod
-    def register(cls, name: str, plugin: "Plugin") -> None:
-        cls._plugins[name] = plugin
-
-    @classmethod
-    def get(cls, name: str) -> Optional["Plugin"]:
-        return cls._plugins.get(name)
+from zero_system.plugins.registry import Plugin, PluginRegistry
 
 
 class CalculatorPlugin(Plugin):
@@ -33,6 +14,10 @@ class CalculatorPlugin(Plugin):
         return {"result": a + b}
 
 
+# Register plugin on import
+PluginRegistry.register("calculator", CalculatorPlugin())
+
+
 class Agent:
     """Agent that invokes registered plugins by name."""
 
@@ -44,9 +29,5 @@ class Agent:
 
 
 if __name__ == "__main__":
-    # Register the calculator plugin
-    PluginRegistry.register("calculator", CalculatorPlugin())
-
     agent = Agent()
-    output = agent.execute_plugin("calculator", {"a": 5, "b": 3})
-    print(output)  # {'result': 8}
+    print(agent.execute_plugin("calculator", {"a": 5, "b": 3}))
