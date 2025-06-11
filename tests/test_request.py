@@ -1,12 +1,21 @@
+ codex/decide-python-version-support-and-adjust-code
+ codex/decide-python-version-support-and-adjust-code
+import os
+import sys
+
  sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
 import os, sys
 
+ main
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import io
 import contextlib
 import logging
 import unittest
+ codex/decide-python-version-support-and-adjust-code
+=======
 
+ main
 from sss.zero_system import is_sibling_request, ZeroSystem
 
  codex/verify-readme-for-correctness
@@ -38,17 +47,30 @@ class TestRequest(unittest.TestCase):
         with self.assertLogs(level="INFO") as log, contextlib.redirect_stdout(buf):
             response = system.interact(message, user)
         captured = buf.getvalue()
+ codex/decide-python-version-support-and-adjust-code
+        self.assertIn(f"\U0001F464 المستخدم: {message}", captured)
+        self.assertIn("\U0001F916 الذكاء:", captured)
+        self.assertEqual(response["status"], "success")
+        log_text = "\n".join(log.output)
+        self.assertIn(f"User message: {message}", log_text)
+        self.assertTrue(any("AI response:" in record for record in log.output))
+
         self.assertIn(f"\U0001f464 المستخدم: {message}", captured)
         self.assertIn("\U0001f916 الذكاء:", captured)
         self.assertEqual(response["status"], "success")
         log_text = "\n".join(log.output)
         self.assertIn(f"User message: {message}", log_text)
         self.assertTrue(any("AI response" in record for record in log.output))
+ main
 
 
 if __name__ == "__main__":
     unittest.main()
+ codex/decide-python-version-support-and-adjust-code
+ codex/decide-python-version-support-and-adjust-code
+
  sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+ main
 
 
  codex/update-logging-configuration-after-argument-parsing

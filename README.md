@@ -283,9 +283,15 @@ Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
 
         This repository uses `pytest` for unit testing. From the repository root run:
 
+ codex/decide-python-version-support-and-adjust-code
+              <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
+              * Requires **Python 3.9 or later**
+              * No additional dependencies beyond the standard library
+
         ```bash
         pytest
         ```
+ main
 
         <<<<<<< codex/resolve-merge-conflicts-in-files
         The tests in `tests/test_zero_system.py` verify that sibling requests are
