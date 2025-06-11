@@ -5,92 +5,102 @@
 
    codex/mention-purpose-in-readme
   The repository also includes `AGI.rtf`, which stores design notes and brainstorming ideas for the "Digital DNA" concept used in `zero_system.py`.
+rectly, execute:
 
-  Run the calculator plugin directly:
   ```bash
   python plugin_example.py
   ```
   This prints `{'result': 8}`.
-
-  <<<<<<< codex/add-logging-to-zerosystem.interact
-  ## Usage Examples
-
-  Run `python zero_system.py` to launch the demo. The script starts a simple
-  interactive text interface where you can chat with the assistant. To use the
-  system programmatically, instantiate `ZeroSystem` in your own code:
-
-  ```python
-  from zero_system import ZeroSystem
-
-  system = ZeroSystem()
-  ```
-
-  Each call to `system.interact` also appends an entry to `log.jsonl` containing
-  the time, message and response. The file uses UTF-8 encoding and grows with
-  every interaction.
-
-  Below are sample interactions, retrieving the `"output"` field from each
-  response:
-
-  ### التعليم
-  ```python
-  resp = system.interact("شرح لي نظرية الكم بطريقة بسيطة")
-  resp["output"]
-  # 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
-  ```
-
-  ### الصحة النفسية
-  ```python
-  resp = system.interact("أشعر بالقلق اليوم")
-  resp["output"]
-  # 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
-  ```
-
-  ### الإبداع التقني
-  ```python
-  resp = system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
-  resp["output"]
-  # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
-  ```
-
-  ## Running Tests
-
-  This repository includes a small test suite in the `tests/` directory. To run
-  all tests, execute the command from the parent directory (one level above the
-  repository root):
-
-  ```bash
-  python -m unittest discover -v sss/tests
-  ```
-
-  Running `unittest` from the repository root will fail because the tests import
-  modules via the `sss` package name. The suite verifies the calculator plugin and
-  the digital sibling creation logic.
-
-  ## License
-
-  MIT License
-
-  Copyright (c) 2025 Mohamed H Abdelaziz
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
   =======
+    Run the calculator plugin directly:
+    ```bash
+    python plugin_example.py
+    ```
+      This prints `{'result': 8}`.
+    >>>>>>> main
+  <<<<<<< codex/add-usage-example-in-readme
+  Below are sample interactions with the system. To run the calculator plugin
+        di
+
+        <<<<<<< codex/add-logging-to-zerosystem.interact
+        ## Usage Examples
+
+      Run `python zero_system.py` to launch the demo. The script starts a simple
+      interactive text interface where you can chat with the assistant. To use the
+      system programmatically, instantiate `ZeroSystem` in your own code:
+
+      ```python
+      from zero_system import ZeroSystem
+
+      system = ZeroSystem()
+      ```
+
+      Each call to `system.interact` also appends an entry to `log.jsonl` containing
+      the time, message and response. The file uses UTF-8 encoding and grows with
+      every interaction.
+
+      Below are sample interactions, retrieving the `"output"` field from each
+      response:
+
+      ### التعليم
+      ```python
+      resp = system.interact("شرح لي نظرية الكم بطريقة بسيطة")
+      resp["output"]
+      # 🤖 الذكاء: بالطبع! تخيل أن العالم مكون من قطع ليغو صغيرة...
+      ```
+
+      ### الصحة النفسية
+      ```python
+      resp = system.interact("أشعر بالقلق اليوم")
+      resp["output"]
+      # 🤖 الذكاء: أتفهم شعورك، دعنا نتنفس معاً... 💆‍♂️
+      ```
+
+      ### الإبداع التقني
+      ```python
+      resp = system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
+      resp["output"]
+      # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
+      ```
+
+      ## Running Tests
+
+      This repository includes a small test suite in the `tests/` directory. To run
+      all tests, execute the command from the parent directory (one level above the
+      repository root):
+
+      ```bash
+      python -m unittest discover -v sss/tests
+      ```
+
+      Running `unittest` from the repository root will fail because the tests import
+      modules via the `sss` package name. The suite verifies the calculator plugin and
+      the digital sibling creation logic.
+
+      ## License
+
+      MIT License
+
+      Copyright (c) 2025 Mohamed H Abdelaziz
+
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+      of this software and associated documentation files (the "Software"), to deal
+      in the Software without restriction, including without limitation the rights
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+      copies of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions:
+
+      The above copyright notice and this permission notice shall be included in all
+      copies or substantial portions of the Software.
+
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+      SOFTWARE.
+      =======
     <<<<<<< codex/remove-merge-markers-and-refactor-logging-setup
     This is an [Onlook](https://onlook.com/) project set up with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [ShadCN](https://ui.shadcn.com).
 
