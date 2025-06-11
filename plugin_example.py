@@ -1,4 +1,7 @@
-from typing import Optional
+from importlib import import_module
+from typing import Optional, Type
+import math
+from decimal import Decimal
 
 
 class Plugin:
@@ -21,23 +24,34 @@ class PluginRegistry:
     def get(cls, name: str) -> Optional["Plugin"]:
         return cls._plugins.get(name)
 
+    @classmethod
+    def clear(cls) -> None:
+        cls._plugins.clear()
 
-import math
+
+def load_plugins(*module_names: str) -> None:
+    """Dynamically import modules and register all ``Plugin`` subclasses."""
+    for module_name in module_names:
+        module = import_module(module_name)
+        for attr_name in dir(module):
+            attr = getattr(module, attr_name)
+            if (
+                isinstance(attr, type)
+                and issubclass(attr, Plugin)
+                and attr is not Plugin
+            ):
+                PluginRegistry.register(attr_name.lower(), attr())
 
 
 class CalculatorPlugin(Plugin):
     """Simple plugin that adds two numbers with basic validation."""
 
     def execute(self, inputs: dict) -> dict:
-        from decimal import Decimal
-        import math
-
         a = inputs.get("a")
         b = inputs.get("b")
         if a is None or b is None:
             raise ValueError("CalculatorPlugin requires 'a' and 'b'.")
 
- codex/update-input-validation-in-calculatorplugin.execute
         numeric_types = (int, float, Decimal)
         if not isinstance(a, numeric_types) or not isinstance(b, numeric_types):
             raise TypeError("CalculatorPlugin inputs must be numeric.")
@@ -62,19 +76,6 @@ class CalculatorPlugin(Plugin):
             b = Decimal(str(b))
 
         return {"result": a + b}
-=======
-        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
-            raise TypeError("Inputs must be numeric.")
-
-        result = a + b
-
-        if isinstance(result, float) and math.isinf(result):
-            raise OverflowError("Result is infinite")
-        if isinstance(result, float) and math.isnan(result):
-            raise ValueError("Result is NaN")
-
-        return {"result": result}
- main
 
 
 class Agent:
@@ -88,9 +89,7 @@ class Agent:
 
 
 if __name__ == "__main__":
-    # Register the calculator plugin
     PluginRegistry.register("calculator", CalculatorPlugin())
-
     agent = Agent()
     output = agent.execute_plugin("calculator", {"a": 5, "b": 3})
-    print(output)  # {'result': 8}
+    print(output)
