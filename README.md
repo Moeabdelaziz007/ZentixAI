@@ -542,21 +542,25 @@ python -m unittest discover -s tests
     python cli.py demo
     ```
 
-    ## Running Tests
+## Running Tests
 
-    This repository uses `pytest` for unit testing. From the repository root run:
+Install the Python requirements and execute the test suite with:
 
-    ```bash
-    pytest
-    ```
+```bash
+pip install -r requirements.txt
+pytest
+```
 
-    The tests in `tests/test_zero_system.py` verify that sibling requests are
-    detected correctly, that the system status includes expected fields, and that
-    creating siblings produces unique identifiers.
-    Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
-    >>>>>>> codex/debug-pull-issue
-   main
- main
- main
- main
- main
+## Q-learning
+
+`ZeroSystem` stores a simple Q-table in `qtable.json` using the `QLearner` class.
+After each call to `interact` the chosen skill and reward are recorded so that
+`get_best_action` returns the highest valued skill for a state.
+
+```python
+from zero_system import ZeroSystem
+
+system = ZeroSystem()
+system.interact("مرحبا", {"name": "أحمد"})
+print(system.learner.get_best_action("مرحبا"))
+```
