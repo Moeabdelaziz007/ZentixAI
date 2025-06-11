@@ -68,19 +68,26 @@ class TrueDigitalFriendshipSkill(AbstractSkill):
         self.friendship_levels = {}
 
     def get_description(self):
-        return "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن علاقة شخصية مع كل مستخدم"
+        return (
+            "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن "
+            "علاقة شخصية مع كل مستخدم"
+        )
 
     def execute(self, user_profile, last_message=""):
         user_id = user_profile.get('id', 'default')
         self.friendship_levels.setdefault(user_id, 0)
         self.friendship_levels[user_id] += 1
 
+        name = user_profile.get('name', 'صديقي')
+
         if self.friendship_levels[user_id] < 3:
-            response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
+            response = f"مرحباً {name}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
         elif self.friendship_levels[user_id] < 7:
-            response = f"{user_profile.get('name', 'صديقي')} العزيز، كيف تسير الأمور؟"
+            response = f"{name} العزيز، كيف تسير الأمور؟"
         else:
-            response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
+            response = (
+                f"يا {name}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
+            )
 
         return {
             "status": "success",
@@ -168,13 +175,17 @@ class AmrikyyBrotherAI:
         if "صوت" in message:
             return self.skills["mindful_embodiment"].execute(message)
         if user_profile:
-            return self.skills["true_friendship"].execute(user_profile, message)
+            friendship = self.skills["true_friendship"]
+            return friendship.execute(user_profile, message)
 
         # الرد الافتراضي
         return {
             "status": "success",
-            "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-            "personality": self.personality
+            "output": (
+                "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء "
+                "\U0001F680"
+            ),
+            "personality": self.personality,
         }
 
     def grow(self, new_skill):
@@ -290,6 +301,10 @@ if __name__ == "__main__":
 
     # عرض حالة النظام
     status = system.system_status()
-    print(f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}")
+    status_text = (
+        f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | "
+        f"التشغيل: {status['uptime']}"
+    )
+    print(status_text)
 
     print("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
