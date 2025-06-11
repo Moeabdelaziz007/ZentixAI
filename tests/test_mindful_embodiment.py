@@ -1,9 +1,8 @@
 import os, sys
-
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import unittest
 
-from zero_system import MindfulEmbodimentSkill
+from sss.zero_system import MindfulEmbodimentSkill
 
 
 class TestMindfulEmbodimentSkill(unittest.TestCase):
@@ -35,3 +34,4 @@ class TestMindfulEmbodimentSkill(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

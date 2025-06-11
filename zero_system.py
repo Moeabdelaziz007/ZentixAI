@@ -8,8 +8,18 @@ import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
 import logging
-import os
-from logger import ZeroSystemLogger
+  import os
+  <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+  from logger import ZeroSystemLogger
+  =======
+  from abc import ABC, abstractmethod
+  from datetime import datetime
+   codex/verify-readme-for-correctness
+
+    =======
+    >>>>>>> main
+    from logger import ZeroSystemLogger
+  >>>>>>> main
 
 
 def normalize_arabic(text: str) -> str:
@@ -216,9 +226,21 @@ class AmrikyyBrotherAI:
                 "personality": self.personality,
             }
 
-        voice_style = result.get("voice_style", self.personality.get("voice"))
-        self.logger.log_event(
-            message,
+  <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+          voice_style = result.get("voice_style", self.personality.get("voice"))
+          self.logger.log_event(
+  =======
+            voice_style = result.get("voice_style", self.personality.get("voice"))
+    <<<<<<< codex/verify-readme-for-correctness
+    =======
+     codex/normalize-indentation-in-zero_system.py
+            logging.info("Skill used: %s", skill_used)
+
+     main
+    >>>>>>> main
+            self.logger.log_event(
+  >>>>>>> main
+              message,
             skill=skill_used or "default",
             mood=self.personality.get("mood"),
             voice_style=voice_style,
