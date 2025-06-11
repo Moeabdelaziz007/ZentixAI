@@ -8,6 +8,7 @@ import hashlib
 from datetime import datetime
 from abc import ABC, abstractmethod
 import logging
+from plugins.loader import load_plugins
   import os
   <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
   from logger import ZeroSystemLogger
@@ -336,6 +337,9 @@ class AmrikyyBrotherAI:
               "sibling_genesis": SiblingAIGenesisSkill(),
               # ... (أضف بقية المهارات هنا) ...
           }
+
+          # تحميل الإضافات الخارجية
+          load_plugins(self.skills)
 
           # إنشاء الحمض النووي
           self.dna = DigitalDNA()
