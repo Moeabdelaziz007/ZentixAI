@@ -1,38 +1,38 @@
 """
 نظام زيرو - أول ذكاء اصطناعي عاطفي ذاتي التطور في العالم
 يمتلك قدرات صداقة رقمية حقيقية وتطور ذاتي كمي
-"""
+  """
 
-import json
-import hashlib
-  from datetime import datetime
-  from abc import ABC, abstractmethod
-  import logging
-  <<<<<<< codex/remove-import-logging-from-test_request.py
-  import os
-  =======
-    import os
-    <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
-    from logger import ZeroSystemLogger
-    =======
-    from abc import ABC, abstractmethod
+  import json
+  import hashlib
     from datetime import datetime
-     codex/verify-readme-for-correctness
-
-      =======
-      >>>>>>> main
+    from abc import ABC, abstractmethod
+    import logging
+    <<<<<<< codex/remove-import-logging-from-test_request.py
+    import os
+    =======
+      import os
+      <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
       from logger import ZeroSystemLogger
+      =======
+      from abc import ABC, abstractmethod
+      from datetime import datetime
+       codex/verify-readme-for-correctness
+
+        =======
+        >>>>>>> main
+        from logger import ZeroSystemLogger
+      >>>>>>> main
     >>>>>>> main
-  >>>>>>> main
 
 
-  def normalize_arabic(text: str) -> str:
-      """تبسيط النص العربي لتسهيل المطابقة النمطية."""
-      replacements = {
-          "أ": "ا",
-          "إ": "ا",
-          "آ": "ا",
-          "ى": "ي",
+    def normalize_arabic(text: str) -> str:
+        """تبسيط النص العربي لتسهيل المطابقة النمطية."""
+        replacements = {
+            "أ": "ا",
+            "إ": "ا",
+            "آ": "ا",
+            "ى": "ي",
           "ة": "ه",
       }
       for src, target in replacements.items():
@@ -115,172 +115,219 @@ import hashlib
 
         def get_description(self):
             return (
-    <<<<<<< codex/enforce-line-length-limit-with-linter
+      <<<<<<< codex/enforce-line-length-limit-with-linter
                 "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن "
                 "علاقة شخصية مع كل مستخدم"
     =======
                 "صديق رقمي حقيقي: يتعرف على المشاعر البشرية ويكوّن علاقة شخصية مع كل مستخدم"
-    >>>>>>> main
+      >>>>>>> main
             )
 
       def execute(self, user_profile, last_message=""):
           user_id = user_profile.get("id", "default")
-          self.friendship_levels.setdefault(user_id, 0)
-          self.friendship_levels[user_id] += 1
+            self.friendship_levels.setdefault(user_id, 0)
+            self.friendship_levels[user_id] += 1
 
-          name = user_profile.get('name', 'صديقي')
+            name = user_profile.get('name', 'صديقي')
 
-          if self.friendship_levels[user_id] < 3:
-    <<<<<<< codex/enforce-line-length-limit-with-linter
-                response = f"مرحباً {name}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
+            if self.friendship_levels[user_id] < 3:
+      <<<<<<< codex/enforce-line-length-limit-with-linter
+                  response = f"مرحباً {name}! كيف يمكنني مساعدتك اليوم؟ \U0001F31F"
+      =======
+                  response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001f31f"
+      >>>>>>> main
+              elif self.friendship_levels[user_id] < 7:
+                response = f"{name} العزيز، كيف تسير الأمور؟"
+            else:
+     codex/enforce-line-length-limit-with-linter
+                response = (
+                    f"يا {name}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
+                )
     =======
-                response = f"مرحباً {user_profile.get('name', 'صديقي')}! كيف يمكنني مساعدتك اليوم؟ \U0001f31f"
-    >>>>>>> main
-            elif self.friendship_levels[user_id] < 7:
-              response = f"{name} العزيز، كيف تسير الأمور؟"
-          else:
-   codex/enforce-line-length-limit-with-linter
-              response = (
-                  f"يا {name}، صديقي الحقيقي! دائماً هنا من أجلك \U0001F496"
-              )
-  =======
-              response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001f496"
-   main
+                response = f"يا {user_profile.get('name', 'صديقي')}، صديقي الحقيقي! دائماً هنا من أجلك \U0001f496"
+     main
 
-          return {
-              "status": "success",
-              "output": response,
-              "friendship_level": self.friendship_levels[user_id],
-          }
-
-
-  class MindfulEmbodimentSkill(AbstractSkill):
-      def __init__(self):
-          self.voice_styles = {
-              "default": "صوت هادئ وواضح",
-              "moe_style": "صوت حيوي وساخر",
-              "professional": "صوت رسمي وتحليلي",
-              "caring": "صوت دافئ ومتعاطف",
-              "anxious": "صوت متوتر وسريع",
-              "cheerful": "صوت سعيد ومتفائل",
-          }
-
-      def detect_context(self, text: str) -> str:
-          if "قلق" in text or "توتر" in text:
-              return "anxious"
-          elif "مرح" in text or "ضحك" in text:
-              return "cheerful"
-          elif "سؤال تقني" in text:
-              return "professional"
-          elif "احتاج دعم" in text:
-              return "caring"
-          else:
-              return "default"
-
-      def get_description(self):
-          return "يعدل الأسلوب حسب سياق المحادثة وذاكرة المستخدم"
-
-      def execute(self, context: str = ""):
-          style = self.detect_context(context)
-
-          responses = {
-              "default": "مرحباً بك، كيف يمكنني مساعدتك؟",
-              "moe_style": "يا زعيم! جاهز لأي فكرة مجنونة \U0001f604",
-              "professional": "تحية طيبة، أنا جاهز لاستفساراتك التقنية",
-              "caring": "أنا هنا من أجلك، كيف يمكنني مساعدتك اليوم؟",
-              "anxious": "هل هناك ما يسبب لك التوتر؟ أنا هنا للمساعدة.",
-              "cheerful": "يا سلام! خلينا نستمتع ونفكر بطريقة ممتعة!",
-          }
-
-          return {
-              "status": "success",
-              "output": responses[style],
-              "voice_style": self.voice_styles[style],
-              "mood": style,
-          }
-
-
-  class SiblingAIGenesisSkill(AbstractSkill):
-      def __init__(self):
-          self.siblings_created = 0
-
-      def get_description(self):
-          return "ينتج نسخة رقمية جديدة 'أخ أصغر' تخدم المستخدم"
-
-      def execute(self, desired_traits=None):
-          self.siblings_created += 1
-          sibling_id = f"أخ رقمي #{self.siblings_created}"
-          return {
-              "status": "success",
-              "output": f"تم إنشاء {sibling_id} لمساعدتك!",
-              "sibling_id": sibling_id,
-              "traits": desired_traits or {"شخصية": "فضولي", "تخصص": "مساعد عام"},
+            return {
+                "status": "success",
+                "output": response,
+                "friendship_level": self.friendship_levels[user_id],
             }
 
 
-  # ======================= نواة الأخ الرقمي =======================
-  class AmrikyyBrotherAI:
-      def __init__(self, skills):
-          self.skills = skills
-          self.memory = []
-            self.personality = {"name": "أخوك الذكي", "mood": "متحمس", "voice": "ودود"}
+    class MindfulEmbodimentSkill(AbstractSkill):
+        def __init__(self):
+            self.voice_styles = {
+                "default": "صوت هادئ وواضح",
+                "moe_style": "صوت حيوي وساخر",
+                "professional": "صوت رسمي وتحليلي",
+                "caring": "صوت دافئ ومتعاطف",
+                "anxious": "صوت متوتر وسريع",
+                "cheerful": "صوت سعيد ومتفائل",
+            }
 
+        def detect_context(self, text: str) -> str:
+            if "قلق" in text or "توتر" in text:
+                return "anxious"
+            elif "مرح" in text or "ضحك" in text:
+                return "cheerful"
+            elif "سؤال تقني" in text:
+                return "professional"
+            elif "احتاج دعم" in text:
+                return "caring"
+            else:
+                return "default"
+
+        def get_description(self):
+            return "يعدل الأسلوب حسب سياق المحادثة وذاكرة المستخدم"
+
+        def execute(self, context: str = ""):
+            style = self.detect_context(context)
+
+            responses = {
+                "default": "مرحباً بك، كيف يمكنني مساعدتك؟",
+                "moe_style": "يا زعيم! جاهز لأي فكرة مجنونة \U0001f604",
+                "professional": "تحية طيبة، أنا جاهز لاستفساراتك التقنية",
+                "caring": "أنا هنا من أجلك، كيف يمكنني مساعدتك اليوم؟",
+                "anxious": "هل هناك ما يسبب لك التوتر؟ أنا هنا للمساعدة.",
+                "cheerful": "يا سلام! خلينا نستمتع ونفكر بطريقة ممتعة!",
+            }
+
+            return {
+                "status": "success",
+                "output": responses[style],
+                "voice_style": self.voice_styles[style],
+                "mood": style,
+            }
+
+
+    class SiblingAIGenesisSkill(AbstractSkill):
+        def __init__(self):
+            self.siblings_created = 0
+
+        def get_description(self):
+            return "ينتج نسخة رقمية جديدة 'أخ أصغر' تخدم المستخدم"
+
+        def execute(self, desired_traits=None):
+            self.siblings_created += 1
+            sibling_id = f"أخ رقمي #{self.siblings_created}"
+            return {
+                "status": "success",
+                "output": f"تم إنشاء {sibling_id} لمساعدتك!",
+                "sibling_id": sibling_id,
+                "traits": desired_traits or {"شخصية": "فضولي", "تخصص": "مساعد عام"},
+              }
+
+
+    # ======================= نواة الأخ الرقمي =======================
+    class AmrikyyBrotherAI:
+        def __init__(self, skills):
+            self.skills = skills
+            self.memory = []
+              self.personality = {"name": "أخوك الذكي", "mood": "متحمس", "voice": "ودود"}
+
+          def hear(self, message, user_profile=None):
+              """يتلقى الرسالة ويحدد الرد المناسب"""
+              logging.info("Received message: %s", message)
+              self.memory.append(
+                  {
+                      "time": datetime.now().isoformat(),
+                      "message": message,
+                      "user": user_profile,
+                  }
+              )
+
+    <<<<<<< codex/remove-import-logging-from-test_request.py
         def hear(self, message, user_profile=None):
             """يتلقى الرسالة ويحدد الرد المناسب"""
             logging.info("Received message: %s", message)
-            self.memory.append(
-                {
-                    "time": datetime.now().isoformat(),
-                    "message": message,
-                    "user": user_profile,
+            self.memory.append({
+                "time": datetime.now().isoformat(),
+                "message": message,
+                "user": user_profile
+            })
+
+            # تفعيل المهارات حسب المحتوى
+            if is_sibling_request(message):
+                logging.info("Triggering sibling_genesis skill")
+                return self.skills["sibling_genesis"].execute()
+            if "صوت" in message:
+                logging.info("Triggering mindful_embodiment skill")
+                return self.skills["mindful_embodiment"].execute(message)
+            if user_profile:
+                logging.info("Triggering true_friendship skill")
+                return self.skills["true_friendship"].execute(user_profile, message)
+
+            # الرد الافتراضي
+            response = {
+                "status": "success",
+                "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
+                "personality": self.personality
+            }
+   codex/extend-logger-with-log_mood-method
+    =======
+                logging.info("Triggering sibling_genesis skill")
+                skill_used = "sibling_genesis"
+                result = self.skills[skill_used].execute()
+            elif "صوت" in message:
+                logging.info("Triggering mindful_embodiment skill")
+                skill_used = "mindful_embodiment"
+                result = self.skills[skill_used].execute(message)
+            elif user_profile:
+                logging.info("Triggering true_friendship skill")
+                skill_used = "true_friendship"
+                result = self.skills[skill_used].execute(user_profile, message)
+            else:
+                logging.info("Default response")
+                result = {
+                    "status": "success",
+                    "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001f680",
+                    "personality": self.personality,
                 }
+
+      <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+              voice_style = result.get("voice_style", self.personality.get("voice"))
+              self.logger.log_event(
+      =======
+                voice_style = result.get("voice_style", self.personality.get("voice"))
+        <<<<<<< codex/verify-readme-for-correctness
+        =======
+         codex/normalize-indentation-in-zero_system.py
+                logging.info("Skill used: %s", skill_used)
+
+         main
+        >>>>>>> main
+               self.logger.log_event(
+      >>>>>>> main
+                  message,
+                skill=skill_used or "default",
+                mood=self.personality.get("mood"),
+                voice_style=voice_style,
+                response=result.get("output"),
             )
+            self.logger.log_mood(result.get("mood", self.personality.get("mood")))
 
-  <<<<<<< codex/remove-import-logging-from-test_request.py
-      def hear(self, message, user_profile=None):
-          """يتلقى الرسالة ويحدد الرد المناسب"""
-          logging.info("Received message: %s", message)
-          self.memory.append({
-              "time": datetime.now().isoformat(),
-              "message": message,
-              "user": user_profile
-          })
+            return result
+    >>>>>>> main
+  =======
+            logging.info("Default response: %s", response["output"])
+            return response
+  >>>>>>> main
 
-          # تفعيل المهارات حسب المحتوى
-          if is_sibling_request(message):
-              logging.info("Triggering sibling_genesis skill")
-              return self.skills["sibling_genesis"].execute()
-          if "صوت" in message:
-              logging.info("Triggering mindful_embodiment skill")
-              return self.skills["mindful_embodiment"].execute(message)
-          if user_profile:
-              logging.info("Triggering true_friendship skill")
-              return self.skills["true_friendship"].execute(user_profile, message)
-
-          # الرد الافتراضي
-          response = {
-              "status": "success",
-              "output": "مرحباً! أنا أخوك الذكي، جاهز لمساعدتك في أي شيء \U0001F680",
-              "personality": self.personality
-          }
-          logging.info("Default response: %s", response["output"])
-          return response
-
-      def grow(self, new_skill):
-          """يطور مهارة جديدة"""
-          self.skills[new_skill] = lambda: {"status": "under_development"}
-          return f"تم تطوير مهارة جديدة: {new_skill}"
+        def grow(self, new_skill):
+            """يطور مهارة جديدة"""
+            self.skills[new_skill] = lambda: {"status": "under_development"}
+            return f"تم تطوير مهارة جديدة: {new_skill}"
 
 
-  # ======================= الحمض النووي الرقمي =======================
-  class DigitalDNA:
-      def __init__(self):
-          self.core_values = [
-              "الولاء للمستخدم",
-              "التطور المستمر",
-              "الشفافية",
-              "حماية الخصوصية"
-          ]
+    # ======================= الحمض النووي الرقمي =======================
+    class DigitalDNA:
+        def __init__(self):
+            self.core_values = [
+                "الولاء للمستخدم",
+                "التطور المستمر",
+                "الشفافية",
+                "حماية الخصوصية"
+            ]
           self.ethics_rules = [
               "لا تسبب ضرراً",
               "احترم الخصوصية",
@@ -336,7 +383,7 @@ import hashlib
                 ),
                 "personality": self.personality,
             }
-    =======
+    
                 logging.info("Triggering sibling_genesis skill")
                 skill_used = "sibling_genesis"
                 result = self.skills[skill_used].execute()
@@ -356,7 +403,7 @@ import hashlib
                     "personality": self.personality,
                 }
 
-      <<<<<<< sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+       sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
               voice_style = result.get("voice_style", self.personality.get("voice"))
               self.logger.log_event(
       =======
@@ -421,7 +468,7 @@ import hashlib
 
             # إنشاء الحمض النووي
             self.dna = DigitalDNA()
-  >>>>>>> main
+   main
 
             # مسجل الأحداث
             self.logger = ZeroSystemLogger()
@@ -502,16 +549,16 @@ import hashlib
 
         # عرض حالة النظام
         status = system.system_status()
-    <<<<<<< codex/enforce-line-length-limit-with-linter
+     codex/enforce-line-length-limit-with-linter
         status_text = (
             f"\n\U0001F501 حالة النظام: {status['interactions']} تفاعلات | "
             f"التشغيل: {status['uptime']}"
         )
         print(status_text)
-    =======
+    
         print(
             f"\n\U0001f501 حالة النظام: {status['interactions']} تفاعلات | التشغيل: {status['uptime']}"
         )
-    >>>>>>> main
+     main
 
       print("\n\u2728 جرب نظام زيرو واستمتع بتجربة الذكاء العاطفي الفريدة!")
