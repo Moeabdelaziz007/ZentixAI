@@ -1,11 +1,21 @@
  codex/decide-python-version-support-and-adjust-code
+ codex/decide-python-version-support-and-adjust-code
 import os
 import sys
+
+ sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+import os, sys
+
+ main
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import io
 import contextlib
 import logging
 import unittest
+ codex/decide-python-version-support-and-adjust-code
+=======
+
+ main
 from sss.zero_system import is_sibling_request, ZeroSystem
 
  codex/verify-readme-for-correctness
@@ -57,6 +67,10 @@ class TestRequest(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
  codex/decide-python-version-support-and-adjust-code
+ codex/decide-python-version-support-and-adjust-code
+
+ sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+ main
 
 
  codex/update-logging-configuration-after-argument-parsing
