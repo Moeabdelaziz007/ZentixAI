@@ -29,3 +29,16 @@ system.interact("أشعر بالقلق اليوم")
 system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
 # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
 ```
+
+## Running Tests
+
+Install `pytest` if it is not already available:
+```bash
+pip install pytest
+```
+
+Execute the test suite from the repository root:
+```bash
+pytest -q
+```
+This runs all tests under the `tests/` directory.
