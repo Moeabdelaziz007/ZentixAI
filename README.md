@@ -214,7 +214,8 @@
 
             Each call to `system.interact` also appends an entry to `log.jsonl` containing
             the time, message and response. The file uses UTF-8 encoding and grows with
-            every interaction.
+            every interaction. The current mood after each skill execution is written to
+            `mood.jsonl` in the same directory.
 
             Below are sample interactions, retrieving the `"output"` field from each
             response:

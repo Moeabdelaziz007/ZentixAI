@@ -286,7 +286,7 @@ class AmrikyyBrotherAI:
 
        main
       >>>>>>> main
-              self.logger.log_event(
+             self.logger.log_event(
     >>>>>>> main
                 message,
               skill=skill_used or "default",
@@ -294,6 +294,7 @@ class AmrikyyBrotherAI:
               voice_style=voice_style,
               response=result.get("output"),
           )
+          self.logger.log_mood(result.get("mood", self.personality.get("mood")))
 
           return result
   >>>>>>> main
