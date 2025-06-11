@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 from datetime import datetime
 from typing import Optional
 
@@ -15,7 +16,7 @@ class ZeroSystemLogger:
             formatter = logging.Formatter("%(asctime)s - %(message)s")
             handler.setFormatter(formatter)
             self._logger.addHandler(handler)
-            self._logger.setLevel(logging.INFO)
+        self._logger.setLevel(logging.INFO)
 
     def log_event(
         self,
@@ -36,3 +37,10 @@ class ZeroSystemLogger:
         }
         self._logger.info(json.dumps(data, ensure_ascii=False))
 
+    def log_mood(self, mood: str) -> None:
+        """Append the mood value to ``mood.jsonl`` as a JSON line."""
+        path = os.path.join(os.path.dirname(__file__), "mood.jsonl")
+        entry = {"time": datetime.now().isoformat(), "mood": mood}
+        with open(path, "a", encoding="utf-8") as f:
+            json.dump(entry, f, ensure_ascii=False)
+            f.write("\n")
