@@ -236,7 +236,7 @@
             First, run the development server:
 
               <<<<<<< 0ue415-codex/add-python-version-note-and-optional-dependencies
-              * Requires **Python 3.8 or later**
+              * Requires **Python 3.9 or later**
               * No additional dependencies beyond the standard library
 
               Run the calculator plugin directly:

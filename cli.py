@@ -2,6 +2,7 @@
 
 import argparse
 import logging
+from typing import Optional
 from zero_system import ZeroSystem
 
 
@@ -19,7 +20,7 @@ def run_interactive(system: ZeroSystem) -> None:
         pass
 
 
-def main(argv: list[str] | None = None) -> None:
+def main(argv: Optional[list[str]] = None) -> None:
     logging.basicConfig(
         level=logging.INFO,
         filename="zero_system.log",
