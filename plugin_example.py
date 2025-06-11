@@ -27,6 +27,33 @@ class CalculatorPlugin(Plugin):
         b = inputs.get("b")
         if a is None or b is None:
             raise ValueError("CalculatorPlugin requires 'a' and 'b'.")
+ codex/resolve-merge-conflicts-in-files
+=======
+
+        numeric_types = (int, float, Decimal)
+        if not isinstance(a, numeric_types) or not isinstance(b, numeric_types):
+            raise TypeError("CalculatorPlugin inputs must be numeric.")
+
+        def check_finite(value, name):
+            if isinstance(value, float):
+                if math.isinf(value):
+                    raise OverflowError(f"Input {name} is infinite.")
+                if math.isnan(value):
+                    raise ValueError(f"Input {name} is NaN.")
+            elif isinstance(value, Decimal):
+                if value.is_infinite():
+                    raise OverflowError(f"Input {name} is infinite.")
+                if value.is_nan():
+                    raise ValueError(f"Input {name} is NaN.")
+
+        check_finite(a, "a")
+        check_finite(b, "b")
+
+        if inputs.get("high_precision"):
+            a = Decimal(str(a))
+            b = Decimal(str(b))
+
+ main
         return {"result": a + b}
 
 
