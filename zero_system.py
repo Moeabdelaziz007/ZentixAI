@@ -217,7 +217,10 @@ class AmrikyyBrotherAI:
             }
 
         voice_style = result.get("voice_style", self.personality.get("voice"))
+ codex/normalize-indentation-in-zero_system.py
         logging.info("Skill used: %s", skill_used)
+
+ main
         self.logger.log_event(
             message,
             skill=skill_used or "default",
