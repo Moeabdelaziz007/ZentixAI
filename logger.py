@@ -35,4 +35,3 @@ class ZeroSystemLogger:
             "response": response,
         }
         self._logger.info(json.dumps(data, ensure_ascii=False))
-

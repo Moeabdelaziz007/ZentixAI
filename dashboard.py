@@ -1,5 +1,6 @@
 """Simple chat dashboard with user login."""
 
+import os
 from flask import (
     Flask,
     render_template,
@@ -21,7 +22,7 @@ from zero_system import ZeroSystem
 
 
 app = Flask(__name__)
-app.secret_key = "change-me"
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-me")
 
 
 login_manager = LoginManager(app)
@@ -56,9 +57,7 @@ history = {}
 @app.route("/")
 def index():
     if current_user.is_authenticated:
-        return render_template(
-            "chat.html", history=history.get(current_user.id, [])
-        )
+        return render_template("chat.html", history=history.get(current_user.id, []))
     return render_template("login.html")
 
 
