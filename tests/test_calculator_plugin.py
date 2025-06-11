@@ -1,3 +1,8 @@
+ codex/remove-conflict-markers-and-refactor-tests
+import unittest
+
+from sss.plugin_example import CalculatorPlugin
+
   <<<<<<< codex/add-unit-tests-and-update-readme
    codex/add-unit-tests-and-update-readme
   import unittest
@@ -22,11 +27,23 @@
 
   from plugin_example import CalculatorPlugin
 
+ main
 
   @pytest.fixture
   def plugin():
       return CalculatorPlugin()
 
+ codex/remove-conflict-markers-and-refactor-tests
+class TestCalculatorPlugin(unittest.TestCase):
+    def test_addition(self):
+        plugin = CalculatorPlugin()
+        result = plugin.execute({"a": 5, "b": 3})
+        self.assertEqual(result, {"result": 8})
+
+
+if __name__ == "__main__":
+    unittest.main()
+=======
 
   def test_addition_integers(plugin):
       assert plugin.execute({"a": 2, "b": 3})["result"] == 5
@@ -106,3 +123,4 @@
   =======
     >>>>>> main
   >>>>>>> main
+ main

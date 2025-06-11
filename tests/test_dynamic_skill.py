@@ -1,4 +1,7 @@
+ codex/remove-conflict-markers-and-refactor-tests
+=======
  codex/remove-duplicated-testdynamicskill-class
+ main
 import unittest
 
 from sss.zero_system import ZeroSystem
@@ -19,6 +22,10 @@ from sss.zero_system import ZeroSystem
   =======
 
 
+ codex/remove-conflict-markers-and-refactor-tests
+if __name__ == "__main__":
+    unittest.main()
+=======
   if __name__ == "__main__":
       unittest.main()
   =======
@@ -121,3 +128,4 @@ from sss.zero_system import ZeroSystem
      main
    main
   >>>>>>> main
+ main
