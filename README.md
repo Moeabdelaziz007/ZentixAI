@@ -27,7 +27,7 @@
   # Onlook Starter Template
 
   <p align="center">
-    <img src="app/favicon.ico" />
+    <img src="favicon.ico" />
   </p>
 
  codex/add-unit-tests-and-update-readme
@@ -64,6 +64,10 @@ python -m unittest discover -s tests
   ```
 
   ## Command Line Interface
+Install the Python requirements first:
+```bash
+pip install -r requirements.txt
+```
 
    codex/update-img-tag-to-use-favicon.ico
   Use `cli.py` to interact with the system from the terminal. The script exposes a
@@ -81,6 +85,10 @@ python -m unittest discover -s tests
   ```
 
   ## Running Tests
+Install the Python requirements first:
+```bash
+pip install -r requirements.txt
+```
 
   This repository uses `pytest` for unit testing. From the repository root run:
 
@@ -190,7 +198,7 @@ python -m unittest discover -s tests
       # Onlook Starter Template
 
       <p align="center">
-        <img src="app/favicon.ico" />
+        <img src="favicon.ico" />
       </p>
 
       <<<<<<< main
@@ -333,6 +341,10 @@ python -m unittest discover -s tests
         >>>>>>> main
 
         ## Command Line Interface
+Install the Python requirements first:
+```bash
+pip install -r requirements.txt
+```
 
         <<<<<<< codex/resolve-merge-conflicts-in-files
         Use `cli.py` to interact with the system from the terminal. The script exposes a
@@ -419,7 +431,7 @@ python -m unittest discover -s tests
               # Onlook Starter Template
 
               <p align="center">
-                <img src="app/favicon.ico" />
+                <img src="favicon.ico" />
               </p>
 
               This is an [Onlook](https://onlook.com/) project set up with
@@ -460,12 +472,20 @@ python -m unittest discover -s tests
 
                 <<<<<<< codex/add-instructions-for-running-cli.py-and-pytest
                 ### الإبداع التقني
+Run the simple dashboard server:
+```bash
+python dashboard_server.py
+```
                 ```python
                 system.interact("صمم لي نظام ذكاء اصطناعي لمتجر إلكتروني")
                 # 🤖 الذكاء: أنشأت لك نظاماً بمواصفات: [التفاصيل]... هل تريد تعديلاً؟
                 ```
 
                 ## Command Line Interface
+Install the Python requirements first:
+```bash
+pip install -r requirements.txt
+```
 
                 Use `cli.py` to interact with the system from the terminal. The script exposes a
                 few simple commands:
@@ -526,6 +546,10 @@ python -m unittest discover -s tests
     ```
 
     ## Command Line Interface
+Install the Python requirements first:
+```bash
+pip install -r requirements.txt
+```
 
     Use `cli.py` to interact with the system from the terminal. The script exposes a
     few simple commands:
