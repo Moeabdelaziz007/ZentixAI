@@ -1,16 +1,26 @@
-  <<<<<<< codex/verify-readme-for-correctness
+ sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+import os
+import sys
   import logging
-  import os
-  import sys
   import unittest
 
   sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
   =======
-   codex/normalize-indentation-in-zero_system.py
-  import unittest
+    <<<<<<< codex/verify-readme-for-correctness
+    import logging
+    import os
+    import sys
+    import unittest
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+    =======
+     codex/normalize-indentation-in-zero_system.py
+    import unittest
+    >>>>>>> main
   >>>>>>> main
-from zero_system import ZeroSystem, is_sibling_request
+  from zero_system import ZeroSystem, is_sibling_request
 
 
 class TestZeroSystem(unittest.TestCase):
@@ -37,6 +47,21 @@ class TestZeroSystem(unittest.TestCase):
     def test_interact_sibling(self):
         system = ZeroSystem()
         with self.assertLogs(level="INFO") as log:
+ sqnpwt-codex/remove-merge-conflict-markers-and-reconcile-code
+            response = system.interact("أريد أخاً صغيراً")
+        self.assertEqual(response["sibling_id"], "أخ رقمي #1")
+        self.assertIn("Triggering sibling_genesis skill", "\n".join(log.output))
+
+    def test_interact_default(self):
+        system = ZeroSystem()
+        with self.assertLogs(level="INFO") as log:
+            response = system.interact("مرحبا")
+        self.assertIn("أخوك الذكي", response["output"])
+        self.assertTrue(any("AI response" in record for record in log.output))
+
+
+if __name__ == "__main__":
+=======
    codex/verify-readme-for-correctness
               response = system.interact("أريد أخاً صغيراً")
           self.assertEqual(response["sibling_id"], "أخ رقمي #1")
@@ -118,8 +143,9 @@ class TestZeroSystem(unittest.TestCase):
           after = genesis_skill.siblings_created
           self.assertEqual(after, before + 1)
    main
-  >>>>>>> main
+   main
 
 
   if __name__ == "__main__":
+ main
     unittest.main()
