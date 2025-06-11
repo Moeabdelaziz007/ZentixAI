@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class Plugin:
     """Base class for all plugins."""
 
@@ -18,21 +15,20 @@ class PluginRegistry:
         cls._plugins[name] = plugin
 
     @classmethod
-    def get(cls, name: str) -> Optional["Plugin"]:
+    def get(cls, name: str) -> "Plugin | None":
         return cls._plugins.get(name)
 
 
 class CalculatorPlugin(Plugin):
-    """Simple plugin that adds two numbers with basic validation."""
+    """Simple plugin that adds two numbers."""
 
     def execute(self, inputs: dict) -> dict:
-        from decimal import Decimal
-        import math
-
         a = inputs.get("a")
         b = inputs.get("b")
         if a is None or b is None:
             raise ValueError("CalculatorPlugin requires 'a' and 'b'.")
+ codex/resolve-merge-conflicts-in-files
+=======
 
         numeric_types = (int, float, Decimal)
         if not isinstance(a, numeric_types) or not isinstance(b, numeric_types):
@@ -57,6 +53,7 @@ class CalculatorPlugin(Plugin):
             a = Decimal(str(a))
             b = Decimal(str(b))
 
+ main
         return {"result": a + b}
 
 

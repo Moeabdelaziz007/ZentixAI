@@ -1,16 +1,15 @@
- codex/remove-conflict-markers-and-refactor-tests
-=======
- codex/remove-duplicated-testdynamicskill-class
+  <<<<<<< codex/resolve-merge-conflicts-in-files
+  =======
+   codex/remove-conflict-markers-and-refactor-tests
+  =======
+   codex/remove-duplicated-testdynamicskill-class
+   main
  main
 import unittest
 
 from sss.zero_system import ZeroSystem
 
-  <<<<<<< codex/add-imports-at-the-top-of-tests/test_request.py
-  =======
-
-  >>>>>>> main
-  class TestDynamicSkill(unittest.TestCase):
+class TestDynamicSkill(unittest.TestCase):
     def test_dynamic_skill_registration(self):
         system = ZeroSystem()
         message = system.brother_ai.grow("test_skill")
@@ -18,6 +17,8 @@ from sss.zero_system import ZeroSystem
         self.assertIn("test_skill", system.brother_ai.skills)
         self.assertTrue(callable(system.brother_ai.skills["test_skill"]))
         self.assertEqual(system.brother_ai.skills["test_skill"](), {"status": "under_development"})
+   codex/resolve-merge-conflicts-in-files
+=======
   <<<<<<< codex/add-imports-at-the-top-of-tests/test_request.py
   =======
 
@@ -128,4 +129,5 @@ if __name__ == "__main__":
      main
    main
   >>>>>>> main
+ main
  main

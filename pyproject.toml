@@ -7,6 +7,9 @@ name = "amrikyyai"
 version = "0.1.0"
 description = "Zero System AI framework"
 readme = "README.md"
+ codex/resolve-merge-conflicts-in-files
+requires-python = ">=3.9"
+=======
  codex/remove-conflict-markers-and-refactor-tests
 requires-python = ">=3.8"
 =======
@@ -20,6 +23,7 @@ dependencies = [
 ]
 =======
 requires-python = ">=3.8"
+ main
  main
  main
 
