@@ -177,7 +177,7 @@ class SiblingAIGenesisSkill(AbstractSkill):
 
 
 # ======================= نواة الأخ الرقمي =======================
-class AmrikyyBrotherAI:
+class ZentixBrotherAI:
     def __init__(self, skills, logger=None):
         self.skills = skills
         self.logger = logger or ZeroSystemLogger()
@@ -297,7 +297,7 @@ class ZeroSystem:
         self.logger = ZeroSystemLogger()
 
         # تهيئة الأخ الرقمي
-        self.brother_ai = AmrikyyBrotherAI(self.skills, self.logger)
+        self.brother_ai = ZentixBrotherAI(self.skills, self.logger)
 
         # إحصائيات النظام
         self.start_time = datetime.now()
