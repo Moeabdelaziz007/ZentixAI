@@ -1,3 +1,9 @@
+ 2dz5na-codex/add-.gitignore,-license,-and-update-agi.rtf
+# Byte-compiled / optimized / dynamic Python files
+__pycache__/
+*.py[cod]
+*$py.class
+=======
  codex/decide-on-rtf-document-usage
 *.rtf
 =======
@@ -218,4 +224,5 @@ out/
 dist/
 
  main
- main
+   main
+  >>>>>>> main
