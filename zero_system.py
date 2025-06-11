@@ -9,8 +9,11 @@ import logging
 import os
 from abc import ABC, abstractmethod
 from datetime import datetime
+ codex/verify-readme-for-correctness
 
-from logger import ZeroSystemLogger
+  =======
+  >>>>>>> main
+  from logger import ZeroSystemLogger
 
 
 def normalize_arabic(text: str) -> str:
@@ -217,8 +220,15 @@ class AmrikyyBrotherAI:
                 "personality": self.personality,
             }
 
-        voice_style = result.get("voice_style", self.personality.get("voice"))
-        self.logger.log_event(
+          voice_style = result.get("voice_style", self.personality.get("voice"))
+  <<<<<<< codex/verify-readme-for-correctness
+  =======
+   codex/normalize-indentation-in-zero_system.py
+          logging.info("Skill used: %s", skill_used)
+
+   main
+  >>>>>>> main
+          self.logger.log_event(
             message,
             skill=skill_used or "default",
             mood=self.personality.get("mood"),

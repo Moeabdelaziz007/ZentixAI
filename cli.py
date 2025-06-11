@@ -20,11 +20,6 @@ def run_interactive(system: ZeroSystem) -> None:
 
 
 def main(argv: list[str] | None = None) -> None:
-    logging.basicConfig(
-        level=logging.INFO,
-        filename="zero_system.log",
-        format="%(asctime)s - %(levelname)s - %(message)s",
-    )
 
     parser = argparse.ArgumentParser(description="Zero System command line interface")
     parser.add_argument("--log", default="zero_system.log", help="path to log file")
